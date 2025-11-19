@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Compile all course files
+# for f in course-*.Rnw
+for f in cours-*.Rnw
+do
+  # Knit the file
+  Rscript -e "knitr::knit('$f')"
+  # Compile with xelatex (three times for cross-references)
+  xelatex --nonstopmode "${f%.Rnw}.tex"
+  xelatex --nonstopmode "${f%.Rnw}.tex"
+  xelatex --nonstopmode "${f%.Rnw}.tex"
+done
+# Remove intermediate files
+rm *.aux *.fdb_latexmk *.fls *.log *.nav *.out *.snm *.toc *.vrb

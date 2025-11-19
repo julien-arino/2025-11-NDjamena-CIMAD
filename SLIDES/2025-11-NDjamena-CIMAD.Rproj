@@ -1,0 +1,18 @@
+Version: 1.0
+ProjectId: 209a7307-f32f-4600-8ebb-5d4cdf2c9ec6
+
+RestoreWorkspace: No
+SaveWorkspace: No
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: knitr
+LaTeX: pdfLaTeX
+
+SpellingDictionary: fr_FR
+
+ProjectName: CIMAD 2025 N'Djaména

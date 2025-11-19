@@ -1,0 +1,314 @@
+\documentclass[aspectratio=169]{beamer}
+
+
+
+\input{slides-setup-white-background-fr.tex}
+
+\title{Stochastic aspects}
+\subtitle{Populate Summer School -- Course 03}
+\date{20 June 2025}
+\author{\texorpdfstring{Julien Arino\newline Department of Mathematics @ University of Manitoba \newline Maud Menten Institute @ PIMS\newline\url{julien.arino@umanitoba.ca}}{Julien Arino}}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE AND OUTLINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlepagewithfigure{FIGS-slides-admin/Gemini_Generated_Image_uckjmbuckjmbuckj.jpeg}
+\outlinepage{FIGS-slides-admin/Gemini_Generated_Image_sq8p8jsq8p8jsq8p.jpeg}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Why incorporate stochasticity?}
+% The section page
+\newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_tve93ftve93ftve9.jpeg}
+
+\begin{frame}{At the beginning of the COVID-19 crisis}
+\bbullet 
+I was working under contract with the Public Health Agency of Canada on \emph{COVID-19 importation risk assessment}
+\vfill
+\bbullet 
+Produced daily report with list of countries most likely to next report cases of COVID-19
+\vfill
+\bbullet
+Used ensemble runs of a fitted global deterministic metapopulation model
+\end{frame}
+
+\maxFrameImage{FIGS/covid-cluster}
+
+\begin{frame}
+\bbullet Very very long days (18-20 hours, 7 days a week)
+\vfill
+\bbullet including a lot of time waiting for the ``cluster'' to finish
+\vfill
+$\implies$ PHAC gave me money for a cluster (yay Threadrippers!!!)
+\vfill
+$\implies$ Also thought about whether my model was really adequate as our focus switched from thinking about movement on a planetary scale to movement within Canadian provinces
+\end{frame}
+
+\begin{frame}{What is wrong with deterministic models?}
+\bbullet I pointed out yesterday that SARS-CoV-2 is one \emph{single} realisation of a stochastic process
+\vfill
+\bbullet Deterministic models ``operate on averages'' over a large ($\to\infty$) number of realisations
+\vfill
+\bbullet If we want to get a better sense of what could happen, not only on average, then we need to see what can indeed happen
+\end{frame}
+
+\begin{frame}{My new focus -- Introductions}
+\bbullet I started thinking in particular about \defword{introductions} (or importations) of pathogens into new populations
+\vfill
+\bbullet Indeed, introductions are an obligatory step in spatial spread
+\end{frame}
+
+\begin{frame}{First piece of evidence}
+In real life, introductions of pathogens does not always follow the patter
+\begin{center}
+\{$\R_0<1 \implies \to$ DFE | $\R_0>1 \implies $ epidemic or $\to$ EEP\} 
+\end{center}
+\end{frame}
+
+\maxFrameImage{FIGS/Delory_etal-cover}
+\maxFrameImage{FIGS/Delory_etal-table}
+
+\begin{frame}{Second piece of evidence}
+The start of an outbreak can be extremely slow, with very few cases for quite a while
+\end{frame}
+
+\maxFrameImage{FIGS/select_Wyoming-Campbell_bars_zoom}
+
+\begin{frame}{Why this is relevant}
+Far from the only reason, but as an example: Canada has remote/isolated communities that are vulnerable to introductions of pathogens
+\end{frame}
+
+\maxFrameImage{FIGS/cities_roads_CAN-MB_detail.png}
+\maxFrameImage{FIGS/nutrition-north-canada-eligibility.png}
+\maxFrameImage{FIGS/Screenshot from 2024-06-25 14-42-25.png}
+\maxFrameImage{FIGS/Screenshot from 2024-06-25 16-56-16.png}
+
+\begin{frame}{For First Nation and Métis Communities}
+  \defword{Remote} describes a \textbf{geographical area} where a community is \textbf{located over 350 km} from the \textbf{nearest service centre} \textbf{having year-round access} by land and/or water routes normally used in all weather conditions
+  \vfill	
+  \defword{Isolated} means a \textbf{geographical area} that has \textbf{scheduled flights} and good telephone service, but is \textbf{without year-round access} by land and/or water normally used in all weather conditions
+  \vfill
+  \defword{Remote-Isolated} means a \textbf{geographic area} that has \textbf{neither scheduled flights nor year-round access} by land and/or water routes normally that can be used in all weather conditions, irrespective of the level of telephone and radio service available
+\end{frame}
+
+\begin{frame}{For Inuit communities}
+  Inuit Communities to be referred to as \defword{Inuit Nunangat}, not remote and isolated communities to respect the unique language and culture of Inuit regions, as well as the common challenges in social determinants of health, access to care, and infrastructure found across all Inuit communities
+\end{frame}
+
+\begin{frame}\frametitle{MB remote communities}
+  \begin{quote}
+  \defword{Remote communities} are communities in Manitoba that \textbf{do not have permanent road access} (i.e., no all-weather road), are \textbf{more than a four-hour drive} from a major rural hospital (and a dialysis unit), \textbf{or have rail or fly-in access only}. This includes Norway House, Lynn Lake, Leaf Rapids, Gillam, and Cross Lake. If most communities in a health district are designated as "remote", the entire district is designated as "remote". In Manitoba, remote districts include:
+  \begin{itemize}
+  \item Northern Health Region: NO23, NO13, NO25, NO16, NO22, NO26, NO28, NO31, and
+  \item Interlake-Eastern Health Region: IE61.
+  \end{itemize}
+  \end{quote}
+  \vfill
+  \small
+  Chartier M, Dart A, Tangri N, Komenda P, Walld R, Bogdanovic B, Burchill C, Koseva I, McGowan K, Rajotte L. Care of Manitobans Living with Chronic Kidney Disease. Winnipeg, MB.
+  Manitoba Centre for Health Policy, December 2015
+\end{frame}
+
+\maxFrameImage{FIGS/remote-health-regions.png}
+
+\begin{frame}{Travel to/from remote or isolated communities}
+  How do you think this compares to travel in non-remote/isolated communities ?
+  \vfill
+  Residence time (the lake ecology version): theoretic time an average water or comparable molecule spends in a lake, considering inflow into and outflow from the lake
+  \vfill
+  Think of residence times in these communities: what is the average time a person spends in a remote or isolated community before leaving it?
+  \vfill
+  The \defword{residence time in a location} is the total number of trips inbound into and outbound from location over a duration of time (1 month here) divided by the normal population in the location 
+\end{frame}
+
+\maxFrameImage{FIGS/residence-time-in-airports.png}
+
+\begin{frame}{The paradox of travel to/from remote/isolated communities}
+Travel volumes small but movement rates high
+\vfill
+ICs are highly connected to the urban centre(s) they are subordinated to
+\vfill
+Further reinforced in Winnipeg by urban indigenous population (102,075 or 12.45\% of metro population), meaning many family connections exist
+\end{frame}
+
+% \begin{frame}{Travel restrictions/interruptions}
+% During COVID, travelling above 53 north in MB was forbidden for anyone not resident above 53 north	
+% \vfill
+% If you wanted to fly to Nunavut, you needed to spend two weeks in quarantine in a hotel in Edmonton, Ottawa or Winnipeg
+% \vfill
+% Canada implemented two weeks quarantine when IB from abroad (with exceptions)
+% \vfill
+% Canada interrupted travel from a variety of places
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Questions}
+% 	\begin{itemize}
+% 		\item What is the probability that an introduction is successful? \newline (note: I am judging things from the perspective of the pathogen)
+% 		\vfill
+% 		\item How long is the stochastic phase following an introduction?
+% 		\newline (what Amy called the ``stuttering period'')
+% 		\vfill
+% 		\item What do the different control measures do, how good are they?
+% 	\end{itemize}
+% \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Stochasticity in deterministic models}
+% The section page
+\newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
+
+
+\subsection{Distributions of times to events}
+% The section page
+\newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_fu32wbfu32wbfu32.jpeg}
+
+\begin{frame}
+See in particular the work of \href{https://scholar.google.ca/citations?user=o7R6ZHMAAAAJ}{Horst Thieme}
+\vfill
+If one considers time of sojourn in compartments from a more detailed perspective, one obtains integro-differential models
+\vfill
+We use here continuous random variables. See chapters 12 and 13 in \href{https://press.princeton.edu/books/paperback/9780691092911/mathematics-in-population-biology}{Thieme's book} for arbitrary distributions
+\end{frame}
+
+
+\begin{frame}\frametitle{Time to events}
+We suppose that a system can be in two states, $A$ and $B$
+\begin{itemize}
+\item At time $t=0$, the system is in state $A$
+\item An event happens at some time $t=\tau$, which triggers the switch from
+state $A$ to state $B$
+\end{itemize}
+\vfill
+Let us call $T$ the random variable 
+\begin{quote}
+``time spent in state $A$ before switching into state $B$''
+\end{quote}
+\end{frame}
+
+\begin{frame}
+The states can be anything:
+\begin{itemize}
+\item $A$: working, $B$: broken
+\item $A$: infected, $B$: recovered
+\item $A$: alive, $B$: dead
+\item $\ldots$
+\end{itemize}
+\vfill
+We take a collection of objects or individuals that are in state $A$ and want
+some law for the \defword{distribution} of the times spent in $A$, i.e., a law for $T$
+\vfill
+For example, we make light bulbs and would like to tell our customers that on average, our light bulbs last 200 years...
+\vfill
+We conduct an \defword{infinite} number of experiments, and observe the time that it takes, in every experiment, to switch from $A$ to $B$
+\end{frame}
+
+\begin{frame}
+\begin{center}
+  \begin{tikzpicture}[auto, %node distance = 2cm, auto,
+  scale=0.8, every node/.style={transform shape},
+  cloud/.style={minimum width={width("XN-1")+2pt},
+  draw, ellipse,fill=blue!20}]
+  \node [cloud] (S0_1) at (0,0) {$A$};
+  \node [cloud] (S1_1) at (2,0) {$B$};
+  \node [cloud] (S0_2) at (0,-1) {$A$};
+  \node [cloud] (S1_2) at (2.5,-1) {$B$};
+  \node [cloud] (S0_3) at (0,-2) {$A$};
+  \node [cloud] (S1_3) at (3.5,-2) {$B$};
+  \node [cloud] (S0_4) at (0,-3) {$A$};
+  \node [cloud] (S1_4) at (1.5,-3) {$B$};
+  %%
+  \node [cloud] (S0_10) at (0,-5) {$A$};
+  \node [cloud] (S1_10) at (5.5,-5) {$B$};
+  %%
+  \node [cloud] (S0_15) at (0,-7) {$A$};
+  \node [cloud] (S1_15) at (5,-7) {$B$};
+  %% Arrows
+  \path [line, very thick] (S0_1) to (S1_1);
+  \path [line, very thick] (S0_2) to (S1_2);
+  \path [line, very thick] (S0_3) to (S1_3);
+  \path [line, very thick] (S0_4) to (S1_4);
+  \path [line, very thick] (S0_10) to (S1_10);
+  \path [line, very thick] (S0_15) to (S1_15);
+  %%
+  \draw [-,-, dashed, thick] (S0_4) -- (S0_10);
+  \draw [-,-, dashed, thick] (S0_10) to (S0_15);
+  \draw [-,-, dashed, thick] (S0_15) to (0,-8);
+  %% The time arrow
+  \path [line, very thick] (0,-8.35) to (7,-8.35);
+  \node[anchor=north, align=center,text=black] at (6,-8.5)
+  {time}; 
+  \node[anchor=north, align=center,text=black] at (0,-8.5)
+  {$0$}; 
+  \end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}\frametitle{A distribution of probability is a model}
+From the sequence of experiments, we deduce a model, which in this context is called a \defword{probability distribution}
+\vfill
+We assume that $T$ is a \defword{continuous} random variable
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
