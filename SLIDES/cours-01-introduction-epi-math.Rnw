@@ -51,8 +51,8 @@ cat(input_setup)
 @
 
 \title{Introduction à l'épidémiologie mathématique}
-\subtitle{École d'été Populate -- Cours 01}
-\date{17 juin 2025}
+\subtitle{CIMAD N'Djaména 2025 -- Cours 01}
+\date{23 novembre 2025}
 \author{\texorpdfstring{Julien Arino\newline Département de mathématiques @ Université du Manitoba \newline Institut Maud Menten @ PIMS\newline\url{julien.arino@umanitoba.ca}}{Julien Arino}}
 
 \begin{document}
