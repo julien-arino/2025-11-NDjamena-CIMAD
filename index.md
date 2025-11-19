@@ -12,9 +12,9 @@ Le matériau contenu dans ce répo GitHub est sous license libre GPL. Vous pouve
 
 ### Transparents
 
-- [Course 01](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/cours-01-introduction-epi-math.pdf): Introduction to mathematical epidemiology.
-- [Course 02](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/course-02-metapopulations-and-advanced-models.pdf): Metaapopulation models and a few advanced models. 
-- [Course 03](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/course-03-stochastic-aspects.pdf): Stochastic aspects. 
+- [Cours 01](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/cours-01-introduction-epi-math.pdf): Introduction à lépidémiologie mathématique.
+- [Course 02](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/course-02-metapopulations-and-advanced-models.pdf): Modèles en métapopulations et quelques modèles avancés. 
+- [Course 03](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/course-03-stochastic-aspects.pdf): Aspects stochastiques.
 
 
 ### Additional slides and videos
