@@ -17,6 +17,6 @@ Le matériau contenu dans ce répo GitHub est sous license libre GPL. Vous pouve
 - [Course 03](https://julien-arino.github.io/2025-11-NDjamena-CIMAD/SLIDES/course-03-stochastic-aspects.pdf): Aspects stochastiques.
 
 
-### Additional slides and videos
+### Du matériau additionnel
 
-On [my website](https://julien-arino.github.io/teaching/), I have a variety of slides sets/courses and sometimes videos that may help you go further. In particular, if you want to learn more about R, you may find [these "vignettes"](https://julien-arino.github.io/R-for-modellers/) useful.
+Sur [mon site web](https://julien-arino.github.io/teaching/), j'ai une variété de cours et parfois de vidéos qui pourraient vous aider. La plupart sont en anglais, toutefois.
