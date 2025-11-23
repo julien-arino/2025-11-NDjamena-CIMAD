@@ -130,8 +130,7 @@ sol_KMK <- ode(IC, times, rhs_SIR_KMK, params)
 ## ----KMK_R0eq1dot5------------------------------------------------------------
 plot(sol_KMK[, "time"], sol_KMK[, "I"], 
      type = "l", lwd = 2,
-     main = TeX("Kermack-McKendrick SIR, $R_0=1.5$"),
-     xlab = "Time (days)", ylab = "Prevalence")
+     xlab = "Temps (jours)", ylab = "Prévalence")
 
 
 ## ----eval=TRUE----------------------------------------------------------------
@@ -169,7 +168,7 @@ S_inf = uniroot(f = function(x) final_size_eq(S_inf = x,
                                               S0 = S0, I0 = I0, 
                                               R_0 = R_0),
                 interval = c(0.05, S0))
-plot(S, fs, type = "l", ylab = "Value of equation (10)")
+plot(S, fs, type = "l", ylab = "Valeur de l'équation (10)")
 abline(h = 0)
 points(x = S_inf$root, y = 0, pch = 19)
 text(x = S_inf$root, y = 0, labels = "S_inf", adj = c(-0.25,-1))
@@ -186,7 +185,7 @@ S_inf = uniroot(f = function(x) final_size_eq(S_inf = x,
                                               S0 = S0, I0 = I0, 
                                               R_0 = R_0),
                 interval = c(0.05, S0))
-plot(S, fs, type = "l", ylab = "Value of equation (10)")
+plot(S, fs, type = "l", ylab = "Valeur de l'équation (10)")
 abline(h = 0)
 points(x = S_inf$root, y = 0, pch = 19)
 text(x = S_inf$root, y = 0, labels = "S_inf", adj = c(-0.25,-1))    
@@ -240,11 +239,11 @@ sol_SIRS <- ode(y = IC, times = times, func = rhs_SIRS,
 # Plot the result
 plot(sol_SIRS[,"time"], sol_SIRS[,"I"], 
      type = "l", lwd = 2,
-     xlab = "Time (days)", ylab = "Prevalence")
+     xlab = "Temps (jours)", ylab = "Prévalence")
 
 
 ## ----SIRS_3_sims_prevalence,echo=FALSE----------------------------------------
-# Compute the EPs
+# Calcul des equilibres
 valeur_PE = function(params) {
   with(as.list(c(params)), {
     OUT = list()
@@ -262,8 +261,8 @@ valeur_PE = function(params) {
 }
 # RHS function set in previous chunk
 
-# Put the parameters in a list
-# "Known" parametres
+# On met les paremetres dans une liste
+# Parametres "connus"
 params = list()
 params$Pop = N0
 params$d = 1/(80 * 365.25)
@@ -309,7 +308,7 @@ max_I = max(unlist(lapply(sol_ODE, function(x) max(x[,"I"]))))
 plot(sol_ODE[[1]][,"time"], sol_ODE[[1]][,"I"],
      ylim = c(0, max_I),
      type = "l", lwd = 5, col = EP[[1]]$col, lty = EP[[1]]$lty,
-     xlab = "Time (days)", ylab = "Prevalence")
+     xlab = "Temps (jours)", ylab = "Prévalence")
 points(x = params$t_f, y = EP[[1]]$I_EP, 
        col = EP[[1]]$col, pch = 19, cex = 2)
 for (i in 2:length(sol_ODE)) {
@@ -333,7 +332,7 @@ value_EPs = function(R_0, N) {
 
 R_0 = seq(0.5, 5, by = 0.01)
 EP_I = value_EPs(R_0, N = 1000)
-# We also show the DFE when R_0>1, so prepare this
+# We also show the ÉSM when R_0>1, so prepare this
 R_0_geq_1 = R_0[which(R_0>=1)]
 DFE = rep(0, length(R_0_geq_1))
 
@@ -341,11 +340,11 @@ plot(R_0, EP_I,
      type = "l", lwd = 3,
      xlab = TeX("$R_0$"),
      las = 1,
-     ylab = "Prevalence at equilibrium")
+     ylab = "Prévalence à l'équilibre")
 lines(R_0_geq_1, DFE,
       type = "l", lwd = 3,
       lty = 2)
-legend("topleft", legend = c("LAS EP", "Unstable EP"),
+legend("topleft", legend = c("PE LAS", "PE instable"),
        lty = c(1, 2), lwd = c(2,2),
        bty = "n")
 

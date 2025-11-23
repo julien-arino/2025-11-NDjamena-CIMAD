@@ -228,7 +228,8 @@ Cet article a été suivi d'une série de \guillemetleft Contributions to the ma
 \bbullet Depuis le début de la COVID-19 : c'est fou
 \end{frame}
 
-\begin{frame}{Quelques jalons en épidémiologie mathématique (opinion personnelle baisée)}
+\begin{frame}{Quelques jalons en épidémiologie mathématique}
+\framesubtitle{(opinion personnelle baisée)}
 \bbullet Macdonald. The epidemiology and control of malaria. 1957
 \vfill
 \bbullet Baroyan, Rvachev et al. Deterministic epidemic models for a territory with a transport network. Kibernetika, 1967 \nocite{BaroyanRvachev1967}
@@ -819,10 +820,10 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
     \vfill
     Pour le modèle SIR ($\dot{S}=-\beta SI/N, \dot{I}=\beta SI/N - \gamma I, \dot{R}=\gamma I$):
     \begin{itemize}
-        \item \textbf{Équilibre sans maladie (DFE):}
+        \item \textbf{Équilibre sans maladie (ÉSM):}
         Ceci correspond à l'absence de maladie. Nous posons $I=0$.
         $$ I^* = 0 \implies \dot{S}=0, \dot{I}=0, \dot{R}=0 $$
-        Le DFE est tout point $(S, 0, R)$ où $S+R=N$. Nous le désignons typiquement par $E_0 = (N, 0, 0)$.
+        L'ÉSM est tout point $(S, 0, R)$ où $S+R=N$. Nous le désignons typiquement par $E_0 = (N, 0, 0)$.
         \item \textbf{Équilibre endémique (EE):}
         Ceci correspond à la persistance de la maladie dans la population. Nous posons $\dot{I}=0$ avec $I \neq 0$.
         $$ \frac{\beta S^* I^*}{N} - \gamma I^* = 0 \implies \frac{\beta S^*}{N} = \gamma \implies S^* = \frac{\gamma N}{\beta} $$
@@ -853,7 +854,7 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
     \end{definition}
     \textbf{Analogie:} Une fonction de Lyapunov est comme l'"énergie" du système. Si l'énergie diminue toujours, le système doit éventuellement se stabiliser à son état d'énergie minimale (l'équilibre)
     \vfill
-    Trouver une fonction de Lyapunov est un art, mais pour de nombreux modèles épidémiologiques, elles peuvent être construites pour prouver la stabilité globale soit du DFE (quand $R_0 < 1$) soit de l'EE (quand $R_0 > 1$). Cela fournit des garanties beaucoup plus fortes sur le comportement du système
+    Trouver une fonction de Lyapunov est un art, mais pour de nombreux modèles épidémiologiques, elles peuvent être construites pour prouver la stabilité globale soit du ÉSM (quand $R_0 < 1$) soit de l'EE (quand $R_0 > 1$). Cela fournit des garanties beaucoup plus fortes sur le comportement du système
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -1154,7 +1155,7 @@ Si $\mathcal{N}_1$ peut être choisi de sorte qu'en plus des propriétés de la 
 \end{frame}
 
 \begin{frame}
-Les DFE \eqref{eq:DFE_KMK} de \eqref{sys:KMK} ne sont pas \defword{isolés} : tout voisinage (ouvert) d'un équilibre contient une infinité d'autres équilibres
+Les ÉSM \eqref{eq:DFE_KMK} de \eqref{sys:KMK} ne sont pas \defword{isolés} : tout voisinage (ouvert) d'un équilibre contient une infinité d'autres équilibres
 \vfill
 \begin{center}
     \begin{tikzpicture}
@@ -1191,7 +1192,7 @@ La ligne mince est $E_0^\text{KMK}$, la ligne épaisse est $E_0^\text{KMK}\cap\N
 Considérons un équilibre sans maladie $x^\star\in E_0^\text{KMK}$ de \eqref{sys:KMK}. Alors $x^\star$ est LS mais pas LAS  
 \end{proposition}
 \vfill
-Cela signifie en particulier que considérer la matrice jacobienne de \eqref{sys:KMK} au DFE \textbf{n'a aucun sens} !
+Cela signifie en particulier que considérer la matrice jacobienne de \eqref{sys:KMK} au ÉSM \textbf{n'a aucun sens} !
 \end{frame}
 
 \begin{frame}{Preuve}
@@ -1212,7 +1213,7 @@ Considérons la méthode de \cite{VdDWatmough2002}
 \vfill
 Pour construire $\R_0$, ils exigent la \emph{stabilité locale}
 \vfill
-Le Théorème 2 de \cite{VdDWatmough2002} concernant la LAS, d'autre part, a une hypothèse (hypothèse A5) selon laquelle le DFE doit être \emph{localement asymptotiquement stable}, avec l'hypothèse que toutes les valeurs propres de la linéarisation près d'un équilibre sans maladie ont des parties réelles négatives
+Le Théorème 2 de \cite{VdDWatmough2002} concernant la LAS, d'autre part, a une hypothèse (hypothèse A5) selon laquelle l'ÉSM doit être \emph{localement asymptotiquement stable}, avec l'hypothèse que toutes les valeurs propres de la linéarisation près d'un équilibre sans maladie ont des parties réelles négatives
 \vfill
 Clairement, ceci ne peut pas être vrai avec \eqref{sys:KMK}
 \end{frame}
@@ -1261,7 +1262,7 @@ Clairement, ceci ne peut pas être vrai avec \eqref{sys:KMK}
 Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(S_0,1-S_0)$ et $\beta/\gamma=2.5$
 \vfill
 \begin{center}
-\includegraphics[width=0.9\textwidth]{FIGS/course-01-KMK_SI_plane-1.pdf}
+\includegraphics[width=\textwidth]{FIGS/course-01-KMK_SI_plane-1.pdf}
 \end{center}
 \end{frame}
 
@@ -1289,7 +1290,7 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
 
 \begin{frame}{}
   \begin{theorem}[Epidemic or no epidemic?]
-    Let $(S(t),I(t))$ be a solution to \eqref{sys:KMK_2d} and $\R_0$ defined by
+    Soient $(S(t),I(t))$ une solution de \eqref{sys:KMK_2d} et $\R_0$ définis par
     \begin{equation}\label{eq:R0_KMK}
     \R_0=\frac{\beta}{\gamma}S_0
     \end{equation}
@@ -1339,8 +1340,7 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
 \begin{alltt}
 \hlkwd{plot}\hldef{(sol_KMK[,} \hlsng{"time"}\hldef{], sol_KMK[,} \hlsng{"I"}\hldef{],}
      \hlkwc{type} \hldef{=} \hlsng{"l"}\hldef{,} \hlkwc{lwd} \hldef{=} \hlnum{2}\hldef{,}
-     \hlkwc{main} \hldef{=} \hlkwd{TeX}\hldef{(}\hlsng{"Kermack-McKendrick SIR, $R_0=1.5$"}\hldef{),}
-     \hlkwc{xlab} \hldef{=} \hlsng{"Time (days)"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Prevalence"}\hldef{)}
+     \hlkwc{xlab} \hldef{=} \hlsng{"Temps (jours)"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Prévalence"}\hldef{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1362,20 +1362,20 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
 \end{frame}
 
 \begin{frame}{Quelques valeurs types de $\R_0$}
-  $\R_0$ can be estimated from data (from the Anderson \& May book)
+  $\R_0$ peut être estimé en utilisant les données (table du livre  de Anderson \& May)
   \vfill
   \begin{center}
   \begin{tabular}{llcc}
   \hline 
-  Infection & Location & Period & $\R_0$ \\
+  Infection & Lieux & Période & $\R_0$ \\
   \hline
-  Measles & Cirencester, England & 1947-50 & 13-14 \\
-  & England and Wales & 1950-68 & 16-18 \\
+  Rougeole & Cirencester, Angleterre & 1947-50 & 13-14 \\
+  & Angleterre et Pays de Galle & 1950-68 & 16-18 \\
   & Kansas, USA & 1918-21 & 5-6 \\
   & Ontario, Canada & 1912-3 & 11-12 \\
-  & Willesden, England & 1912-3 & 11-12 \\
+  & Willesden, Angleterre & 1912-3 & 11-12 \\
   & Ghana & 1960-8 & 14-15 \\
-  & East Nigeria & 1960-8 & 16-17 \\
+  & Est du Nigéria & 1960-8 & 16-17 \\
   \end{tabular}
   \end{center}
 \end{frame}
@@ -1419,7 +1419,7 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
   $$
   -\int_0^\infty\gamma I(t)dt = -\gamma\int_0^\infty I(t)dt = -\gamma \hat I
   $$
-  We thus have
+  On a donc
   \begin{equation}
   \label{eq:KMK_final_size_step1}
   S_\infty-S_0-I_0 = -\gamma\hat I
@@ -1442,13 +1442,13 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
   \label{eq:KMK_final_size_step2}
   \ln S_\infty-\ln S_0 = -\beta \hat I
   \end{equation}
-  Express \eqref{eq:KMK_final_size_step1} and \eqref{eq:KMK_final_size_step2} in terms of $-\hat I$ and equate
+  Exprimons \eqref{eq:KMK_final_size_step1} et \eqref{eq:KMK_final_size_step2} en terme de $-\hat I$ et égalisons
   $$
   \frac{\ln S_\infty-\ln S_0}{\beta}
   =
   \frac{S_\infty-S_0-I_0}{\gamma}
   $$
-  Thus we have
+  Donc on a
   \begin{equation}
   \label{eq:final_size}
   (\ln S_0-\ln S_\infty)S_0 = (S_0-S_\infty)\R_0+I_0\R_0
@@ -1457,11 +1457,11 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
 
 
 
-\begin{frame}{}
-\begin{theorem}[Final size relation]
-  Let $(S(t),I(t))$ be a solution to \eqref{sys:KMK_2d} and $\R_0$ defined by \eqref{eq:R0_KMK}
+\begin{frame}{Relation de taille finale}
+\begin{theorem}[Relation de taille finale]
+  Soient $(S(t),I(t))$ une solution de \eqref{sys:KMK_2d} et $\R_0$ définis par \eqref{eq:R0_KMK}
   \vskip0.5cm
-  The number $S(t)$ of susceptible individuals is a nonincreasing function and its limit $S_\infty$ is the only solution in $(0,S_0)$ of the transcendental equation
+  Le nombre $S(t)$ d'individus susceptibles est une fonction décroissante et sa limite $S_\infty$ est l'unique solution dans $(0,S_0)$ de l'équation transcendante
   \begin{equation}\tag{\ref{eq:final_size}}
   (\ln S_0-\ln S_\infty)S_0 = (S_0-S_\infty)\R_0+I_0\R_0
   \end{equation}
@@ -1471,12 +1471,12 @@ Trajectoires de \eqref{sys:KMK_2d} dans l'espace $(S,I)$, normalisé, avec CI $(
 
 
 \begin{frame}{L'équation (transcendante) de taille finale}
-  Rewrite the final size equation
+  Réécrivons l'équation de taille finale
   \begin{equation}
     \tag{\ref{eq:final_size}}
   (\ln S_0-\ln S_\infty)S_0 = (S_0-S_\infty)\R_0+I_0\R_0
   \end{equation}
-  as
+  sous la forme
   \begin{equation}
   \label{eq:final_size_2}
   T(S_\infty) =(\ln S_0-\ln S_\infty)S_0
@@ -1605,7 +1605,7 @@ et résolvons facilement en utilisant \code{uniroot}:
 \end{knitrout}
 \end{frame}
 
-\begin{frame}[fragile]{A figure with all the information}
+\begin{frame}[fragile]{Une figure avec toute l'information}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1619,7 +1619,7 @@ et résolvons facilement en utilisant \code{uniroot}:
                                               \hlkwc{S0} \hldef{= S0,} \hlkwc{I0} \hldef{= I0,}
                                               \hlkwc{R_0} \hldef{= R_0),}
                 \hlkwc{interval} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{0.05}\hldef{, S0))}
-\hlkwd{plot}\hldef{(S, fs,} \hlkwc{type} \hldef{=} \hlsng{"l"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Value of equation (10)"}\hldef{)}
+\hlkwd{plot}\hldef{(S, fs,} \hlkwc{type} \hldef{=} \hlsng{"l"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Valeur de l'équation (10)"}\hldef{)}
 \hlkwd{abline}\hldef{(}\hlkwc{h} \hldef{=} \hlnum{0}\hldef{)}
 \hlkwd{points}\hldef{(}\hlkwc{x} \hldef{= S_inf}\hlopt{$}\hldef{root,} \hlkwc{y} \hldef{=} \hlnum{0}\hldef{,} \hlkwc{pch} \hldef{=} \hlnum{19}\hldef{)}
 \hlkwd{text}\hldef{(}\hlkwc{x} \hldef{= S_inf}\hlopt{$}\hldef{root,} \hlkwc{y} \hldef{=} \hlnum{0}\hldef{,} \hlkwc{labels} \hldef{=} \hlsng{"S_inf"}\hldef{,} \hlkwc{adj} \hldef{=} \hlkwd{c}\hldef{(}\hlopt{-}\hlnum{0.25}\hldef{,}\hlopt{-}\hlnum{1}\hldef{))}
@@ -1646,7 +1646,7 @@ et résolvons facilement en utilisant \code{uniroot}:
   \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{A little nicer}
+\begin{frame}[fragile]{Un peu plus joli}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -1667,7 +1667,7 @@ et résolvons facilement en utilisant \code{uniroot}:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-(requires \code{lattice}, \code{viridis} and \code{latex2exp} librairies)
+(nécessite les librairies \code{lattice}, \code{viridis} et \code{latex2exp})
 \end{frame}
 
 \begin{frame}{Taux d'attaque (en \%)}
@@ -1789,7 +1789,7 @@ Nous trouvons le nombre de reproduction de base
 \right)S_0
 =\frac{\beta\rho}{\alpha}S_0
 \end{equation}
-where 
+où 
 \[
 \rho = \alpha
 \left(
@@ -1924,7 +1924,7 @@ Les CI sont $\geq 0$ avec au moins une des composantes de $\bI(0)$ positive
 
 
 \begin{frame}
-Supposons que $\bE_0$ soit un équilibre sans maladie (DFE) localement stable du système sans maladie, c'est-à-dire, un EP de
+Supposons que $\bE_0$ soit un équilibre sans maladie (ÉSM) localement stable du système sans maladie, c'est-à-dire, un EP de
 \begin{align*}
 \bS\pprime &= \mathbf{b}(\bS,\b0,\bR) \\
 \bR\pprime &= \mathbf{f}(\bS,\b0,\bR) \\
@@ -1939,8 +1939,8 @@ Soit
 \bPi\bD\bS_0
 \end{equation}
 \begin{itemize}
-\item Si $\mathcal{R}_0<1$, le DFE $\bE_0$ est un EP localement asymptotiquement stable de \eqref{sys:SIR_general}
-\item Si $\mathcal{R}_0>1$, le DFE $\bE_0$ de \eqref{sys:SIR_general} est instable
+\item Si $\mathcal{R}_0<1$, l'ÉSM $\bE_0$ est un EP localement asymptotiquement stable de \eqref{sys:SIR_general}
+\item Si $\mathcal{R}_0>1$, l'ÉSM $\bE_0$ de \eqref{sys:SIR_general} est instable
 \end{itemize}
 \end{theorem}
 \vfill
@@ -2024,16 +2024,16 @@ $$
 \sigma_i\bGamma\bD^{-1}\left(\bS(0)-\bS(\infty)\right)
 +\sigma_i\beta(K)\bh\mathbf{V}^{-1}\bI(0)
 $$
-where $K$ is the initial total population
+où $K$ est la popiulation totale initiale
 \end{frame}  
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\subsection{A variation on the SLIAR model}
+\subsection{Une variation sur le modèle SLIAR}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_vqpscpvqpscpvqps.jpeg}
 
 \begin{frame}{Le modèle SLIAR}
-\bbullet Paper we have already seen: Arino, Brauer, PvdD, Watmough \& Wu. \href{http://dx.doi.org/10.1098/rsif.2006.0112}{Simple models for containment of a pandemic}, \emph{Journal of the Royal Society Interface} (2006)
+\bbullet Papier que nous avons déjà vu: Arino, Brauer, PvdD, Watmough \& Wu. \href{http://dx.doi.org/10.1098/rsif.2006.0112}{Simple models for containment of a pandemic}, \emph{Journal of the Royal Society Interface} (2006)
 \vfill
 \bbullet Cependant, supposons de plus que les $L$ sont également infectieux
 \end{frame}  
@@ -2045,7 +2045,7 @@ where $K$ is the initial total population
 
 
 \begin{frame}
-Here, $\bS=S$, $\bI=(L,I,A)^T$ and $\bR=R$, so $m=1$, $n=3$ and 
+Ici, $\bS=S$, $\bI=(L,I,A)^T$ et $\bR=R$, $m=1$, $n=3$ et donc 
 $$
 \bh=[\varepsilon\; 1\; \delta],
 \quad
@@ -2099,7 +2099,7 @@ Pour la taille finale, puisque $m=1$, nous pouvons utiliser $\eqref{eq:final_siz
 (S_0-S_\infty)+\beta\bh\mathbf{V}^{-1}\bI_0
 \]
 \vfill
-Suppose $\bI_0=(0,I_0,0)$, then
+Supposons que $\bI_0=(0,I_0,0)$, alors
 \[
 \ln\left(
 \frac{S_0}{S_\infty}
@@ -2108,7 +2108,7 @@ Suppose $\bI_0=(0,I_0,0)$, then
 +\frac{\beta}{\alpha}I_0
 \]
 \vfill
-If $\bI_0=(L_0,I_0,A_0)$, then
+Si $\bI_0=(L_0,I_0,A_0)$, alors
 \[
 \ln\left(
 \frac{S_0}{S_\infty}
@@ -2171,12 +2171,12 @@ I_V\pprime &= \kappa_VL_V-\alpha_VI_V \\
 R\pprime &= f_U\alpha_UI_I+f_V\alpha_VI_V
 \end{align}
 \end{subequations}
-with $S_U(0)=(1-\gamma)S_0$ and $S_V(0)=\gamma S_0$
+avec $S_U(0)=(1-\gamma)S_0$ et $S_V(0)=\gamma S_0$
 \end{frame}  
 
 
 \begin{frame}
-Here, $m=2$, $n=4$,
+Ici, $m=2$, $n=4$,
 \[
 \bh = [0\;0\;1\;\sigma_I],\quad
 \bD=\begin{pmatrix}
@@ -2187,7 +2187,7 @@ Here, $m=2$, $n=4$,
 1 & 0 \\ 0 & 1 \\ 0 & 0 \\ 0 & 0
 \end{pmatrix}
 \]
-and
+et
 \[
 \mathbf{V}=
 \begin{pmatrix}
@@ -2200,7 +2200,7 @@ and
 \end{frame}
 
 \begin{frame}
-So
+Donc
 \[
 \bGamma=\left[
 \frac{\beta}{\alpha_U}\; \frac{\sigma_I\sigma_S\beta}{\alpha_V}
@@ -2228,7 +2228,7 @@ S_V(\infty) = \gamma S_U(0)\left(
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\subsection{Antiviral resistance}
+\subsection{Resistance aux antiviraux}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_vqpscpvqpscpvqps.jpeg}
 
 \maxFrameImage{FIGS/ArinoBowmanMoghadas.png}
@@ -2300,7 +2300,7 @@ Problème : nous avons des antiviraux à utiliser contre la grippe, soit à titr
 \nocite{ArinoPortet2020}
 
 \begin{frame}
-Étend le modèle SLIAR pour tenir compte des durées de stade non exponentiellement distribuées (voir cours 02)
+Étend le modèle SLIAR pour tenir compte des durées de stade non exponentiellement distribuées (voir cours 03)
 \end{frame}
 
 \begin{frame}{Le modèle original (enfin, presque le premier)}
@@ -2335,7 +2335,7 @@ Problème : nous avons des antiviraux à utiliser contre la grippe, soit à titr
 
 
 \begin{frame}{Réinterprétation des termes}
-Ici $D$ signifie \emph{détecté}, $U$ est \emph{non détecté}
+Ici $D$ signifie \emph{détecté}, $U$ est \emph{non détecté} (\emph{undetected})
 \vfill
 \centering
 \includegraphics[width=\textwidth]{FIGS/figure_SLDURM_base_model_with_different_epsilon_and_infectious_compartments}
@@ -2353,7 +2353,7 @@ Ici $D$ signifie \emph{détecté}, $U$ est \emph{non détecté}
 \item $\sim$ 23 janvier 2020: confinement de Wuhan et de la province du Hubei + mandats de masques faciaux
 \end{itemize}
 \vfill
-\bbullet By 2020-01-29, virus in all provinces of mainland CHN
+\bbullet Au 2020-01-29, le virus était présent dans toutes les provinces de la Chine continentale
 \end{frame}
 
 
@@ -2509,7 +2509,7 @@ Soit $t^\star$ tel que $C(t^\star)=547$ ; alors $t_i=\textrm{2020-01-22}-t^\star
 \end{frame}
 
 \begin{frame}{Naissance et mort sont \emph{relatifs}}
-  Remark that the notions of \emph{birth} and \emph{death} are relative to the population under consideration
+  Remarquons que les notions de \emph{naissance} et \emph{mort} sont relatifs à la population considérée
   \vfill
   Par exemple, considérons un modèle pour le virus de l'immunodéficience humaine (VIH) dans une population à risque de consommateurs de drogues intraveineuses. Alors
   \begin{itemize}
@@ -2551,7 +2551,7 @@ Dans ce cas, \eqref{eq:total_pop_general} prend la forme
 \[
 N\pprime=bN-dN=(b-d)N
 \]
-with initial condition $N(0)=N_0$
+avec la condition initiale $N(0)=N_0$
 \vfill
 La solution de cette EDO scalaire autonome est facile
 \[
@@ -2725,7 +2725,7 @@ Nous cherchons $S=S^\star, I=I^\star, R=R^\star$ tels que
 \vfill
 De \eqref{sys:SIRS_EP_dI}, soit $I^\star=0$ soit $\beta S-(d+\gamma)=0$, c'est-à-dire, $S^\star=(d+\gamma)/\beta$
 \vfill
-Lorsque $I^\star=0$, substituer $I^\star=0$ dans \eqref{sys:SIRS_EP_dR} implique que $R^\star=0$ et, à son tour, substituer $I^\star=R^\star=0$ dans \eqref{sys:SIRS_EP_dR} donne $S^\star=b/d$. Ceci donne l'équilibre sans maladie (DFE)
+Lorsque $I^\star=0$, substituer $I^\star=0$ dans \eqref{sys:SIRS_EP_dR} implique que $R^\star=0$ et, à son tour, substituer $I^\star=R^\star=0$ dans \eqref{sys:SIRS_EP_dR} donne $S^\star=b/d$. Ceci donne l'équilibre sans maladie (ÉSM)
 \begin{equation}\label{eq:SIRS_DFE}
 \bE_0:=(S^\star,I^\star,R^\star)=
 \left(\frac bd, 0, 0\right)
@@ -2737,9 +2737,9 @@ Nous revenons à $S^\star=(d+\gamma)/\beta$ dans un moment
 
 
 \begin{frame}{Méthode classique pour calculer $\R_0$}
-$\R_0$ est la surface dans l'espace des paramètres où le DFE perd sa LAS
+$\R_0$ est la surface dans l'espace des paramètres où l'ÉSM perd sa LAS
 \vfill
-Pour trouver $\R_0$, nous étudions donc la LAS du DFE
+Pour trouver $\R_0$, nous étudions donc la LAS du ÉSM
 \vfill
 Dans un $(S,I,R)$ arbitraire, la matrice jacobienne de \eqref{sys:SIRS} prend la forme
 \begin{equation}
@@ -2754,7 +2754,7 @@ J_{(S,I,R)} =
 \end{frame}
 
 \begin{frame}
-La LAS du DFE dépend du signe des parties réelles des valeurs propres de \eqref{eq:SIRS_Jacobian} à ce point d'équilibre, donc nous évaluons
+La LAS de l'ÉSM dépend du signe des parties réelles des valeurs propres de \eqref{eq:SIRS_Jacobian} à ce point d'équilibre, donc nous évaluons
 \begin{equation}
 \label{eq:SIRS_Jacobian_DFE}
 J_{\bE_0} =
@@ -2765,31 +2765,31 @@ J_{\bE_0} =
 \end{pmatrix}
 \end{equation}
 \vfill
-Block upper triangular matrix $\implies$ eigenvalues are $-d<0$, $-(d+\nu)<0$ and $\beta S^\star-(d+\gamma)$ 
+Matrice bloc triangulaire supérieure $\implies$ valeurs propres $-d<0$, $-(d+\nu)<0$ et $\beta S^\star-(d+\gamma)$ 
 \vfill
-$\implies$ LAS of the DFE determined by sign of $\beta S^\star-(d+\gamma)$
+$\implies$ SAL de l'ÉSM est déterminé par le signe de $\beta S^\star-(d+\gamma)$
 \end{frame}
 
 
 \begin{frame}{Signe de $\beta S^\star-(d+\gamma)$}
-Rappelons qu'au DFE \eqref{eq:SIRS_DFE}, $S^\star=b/d$, donc
+Rappelons qu'au ÉSM \eqref{eq:SIRS_DFE}, $S^\star=b/d$, donc
 \[
 \text{sign}(\beta S^\star-(d+\gamma))
 =\text{sign}\left(
 \beta\frac{b}{d} -(d+\gamma)
 \right)
 \]
-Donc le DFE est LAS si
+Donc l'ÉSM est LAS si
 \[
 \beta\frac bd < d+\gamma
 \iff \frac\beta{d+\gamma}\ \frac bd <1
 \]
-Denote
+Notons
 \begin{equation}\label{eq:SIRS_R0}
 \R_0 = \frac\beta{d+\gamma}\ \frac bd
 \end{equation}
 \vfill
-(We sometimes emphasise that $b/d=N^\star$, the total population, and thus write $\R_0=\beta N^\star/(d+\gamma)$)
+(On écrit parfois $b/d=N^\star$ pour mettre en évidence la population totale, et écrivons par conséquent $\R_0=\beta N^\star/(d+\gamma)$)
 \end{frame}
 
 
@@ -2815,7 +2815,7 @@ I^\star = \left(1-\frac{1}{\R_0}\right)\
 
 
 \begin{frame}{Le PEE}
-L'\defword{équilibre endémique} (EEP) de \eqref{sys:SIRS} est
+L'\defword{équilibre endémique} (PEE) de \eqref{sys:SIRS} est
 \begin{multline}\label{eq:SIRS_EEP}
 \bE_\star:=(S^\star,I^\star,R^\star) = \\
 \left(
@@ -2826,22 +2826,22 @@ N^\star-(S^\star+I^\star)
 \right)
 \end{multline}
 \vfill
-Remarquer que $\bE_\star$ n'est \defword{pas biologiquement pertinent} lorsque $\R_0\leq 1$
+Remarquons que $\bE_\star$ n'est \defword{pas biologiquement pertinent} lorsque $\R_0\leq 1$
 \end{frame}
 
 
 \begin{frame}
 \begin{theorem}\label{th:SIRS_LAS_DFE}
-Let the basic reproduction number be
+Définissons le nombre de reproduction élémentaire comme
 \begin{equation}\tag{\ref{eq:SIRS_R0}}
 \R_0 = \frac\beta{d+\gamma}\ N^\star
 \end{equation}
-et considérons l'EP de \eqref{sys:SIRS}: le DFE
+et considérons l'EP de \eqref{sys:SIRS}: l'ÉSM
 \begin{equation}\tag{\ref{eq:SIRS_DFE}}
 \bE_0=
 \left(\frac bd, 0, 0\right)
 \end{equation}
-and the EEP
+et le PEE
 \begin{equation}\tag{\ref{eq:SIRS_EEP}}
 \bE_\star=
 \left(
@@ -2853,8 +2853,8 @@ N^\star-(S^\star+I^\star)
 \end{equation}
 \vskip0.5cm
 \begin{itemize}
-\item If $\R_0<1$, then $\bE_0$ is LAS and $\bE_\star$ is not biologically relevant
-\item If $\R_0>1$, then $\bE_0$ is unstable and $\bE_\star$ is biologically relevant
+\item Si $\R_0<1$, alors $\bE_0$ est LAS et $\bE_\star$ n'est pas biologiquement pertinent
+\item Si $\R_0>1$, alors $\bE_0$ est instable et $\bE_\star$ est pertinent biologiquement
 \end{itemize}
 \end{theorem}
 \end{frame}
@@ -2889,23 +2889,24 @@ De cela, nous obtenons que $-d$ est une valeur propre de $J$
 \begin{frame}
 Nous pourrions continuer et après un peu de sang, de sueur et de larmes, obtenir que $J_{\bE_\star}$ a ses valeurs propres avec des parties réelles négatives quand $\bE_\star$ est biologiquement pertinent, c'est-à-dire, quand $\R_0>1$
 \vfill
-Avec encore plus de sang, de sueur et de larmes, nous pouvons réellement montrer que le résultat est \emph{global}
-\vfill Nous exprimons cela dans la diapositive suivante
+Avec encore plus de sang, de sueur et de larmes, nous pouvons montrer que le résultat est \emph{global}
+\vfill 
+Nous exprimons cela dans la diapositive suivante
 \end{frame}
 
 \begin{frame}
 \begin{theorem}\label{th:SIRS_GAS_behaviour}
-Soit le nombre de reproduction de base défini par \eqref{eq:SIRS_R0} et considérons le DFE \eqref{eq:SIRS_DFE} et l'EEP \eqref{eq:SIRS_EEP}
+Soient le nombre de reproduction de base \eqref{eq:SIRS_R0}, l'ÉSM \eqref{eq:SIRS_DFE} et le PEE \eqref{eq:SIRS_EEP}
 \vskip1cm
 \begin{itemize}
-\item If $\R_0<1$, then $\bE_0$ is globally asymptotically stable (GAS) and $\bE_\star$ is not biologically relevant
-\item If $\R_0>1$, then $\bE_0$ is unstable and $\bE_\star$ is GAS
+\item Si $\R_0<1$, alors $\bE_0$ est globalement asymptotiquement stable (GAS) et $\bE_\star$ n'est pas pertinent biologiquement
+\item Si $\R_0>1$, alors $\bE_0$ est instable and $\bE_\star$ is GAS
 \end{itemize}
 \end{theorem}
 \vfill
 En d'autres termes
 \begin{itemize}
-\item quand $\R_0<1$, alors toutes les solutions vont vers le DFE, la maladie s'\defword{éteint}
+\item quand $\R_0<1$, alors toutes les solutions vont vers l'ÉSM, la maladie s'\defword{éteint}
 \item quand $\R_0>1$, alors toutes les solutions vont vers le EEP, la maladie devient \defword{endémique}
 \end{itemize}
 \end{frame}
@@ -2951,7 +2952,7 @@ En d'autres termes
 \hlcom{# Plot the result}
 \hlkwd{plot}\hldef{(sol_SIRS[,}\hlsng{"time"}\hldef{], sol_SIRS[,}\hlsng{"I"}\hldef{],}
      \hlkwc{type} \hldef{=} \hlsng{"l"}\hldef{,} \hlkwc{lwd} \hldef{=} \hlnum{2}\hldef{,}
-     \hlkwc{xlab} \hldef{=} \hlsng{"Time (days)"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Prevalence"}\hldef{)}
+     \hlkwc{xlab} \hldef{=} \hlsng{"Temps (jours)"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{"Prévalence"}\hldef{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -2997,7 +2998,7 @@ Nous avons vu que quand $\R_0<1$, $I\to 0$, alors que quand $\R_0>1$, $I\to (1-1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Herd immunity in the SIRS model}
+\subsection{Immunité collective dans le modèle SIRS}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_vqpscpvqpscpvqps.jpeg}
 
 \begin{frame}{Un modèle SIRS avec vaccination}
@@ -3055,10 +3056,10 @@ L'équation \eqref{eq:total_pop_general} pour la population totale est inchangé
 \vfill
 La jacobienne \eqref{eq:SIRS_Jacobian} en un point arbitraire est également inchangée
 \vfill
-Le DFE est affecté, cependant ; en conséquence, le nombre de reproduction l'est aussi
+L'ÉSM est affecté, cependant; en conséquence, le nombre de reproduction l'est aussi
 \end{frame}
 
-\begin{frame}{Le DFE pour le modèle SIRS avec vaccination}
+\begin{frame}{L'ÉSM pour le modèle SIRS avec vaccination}
 Considérant \eqref{sys:SIR_vacc} à l'équilibre et substituant $I^\star=0$ dans ce système donne
 \begin{align*}
 0 &= (1-p)b+\nu R^\star-dS^\star \\
@@ -3097,7 +3098,7 @@ d+\nu & \nu \\ 0 & d
 \end{frame}
 
 \begin{frame}
-En conséquence, le DFE prend la forme
+En conséquence, L'ÉSM prend la forme
 \begin{equation}\label{eq:SIRS_vacc_DFE}
 \bE_0^v := (S^\star,I^\star,R^\star) =
 \left(
@@ -3106,7 +3107,7 @@ En conséquence, le DFE prend la forme
 \right)
 \end{equation}
 \vfill
-Substituting \eqref{eq:SIRS_vacc_DFE} into the eigenvalue that determines stability of the DFE, $\beta S^\star-(d+\gamma)$, we get
+Substituant \eqref{eq:SIRS_vacc_DFE} dans la valeur propre $\beta S^\star-(d+\gamma)$ qui détermine la stabilité de l'ÉSM, on obtient
 \begin{align*}
 \beta S^\star-(d+\gamma)<0 &\iff
 \frac\beta{d+\gamma} S^\star <1 \\
@@ -3251,14 +3252,14 @@ Le nombre de reproduction de base $\R_0$ est le nombre moyen de cas secondaires 
 \end{frame}
 
 \begin{frame}\frametitle{Calcul de $\R_0$}
-Mathématiquement, $\R_0$ est un paramètre de bifurcation agrégeant certains des paramètres du modèle et tel que l'équilibre sans maladie (DFE) perd sa stabilité asymptotique locale lorsque $\R_0=1$ est franchi de gauche à droite
+Mathématiquement, $\R_0$ est un paramètre de bifurcation agrégeant certains des paramètres du modèle et tel que l'équilibre sans maladie (ÉSM) perd sa stabilité asymptotique locale lorsque $\R_0=1$ est franchi de gauche à droite
 \vfill
 \begin{itemize}
 \item
-En conséquence, $\R_0$ se trouve en considérant le spectre de la matrice jacobienne du système évaluée au DFE
+En conséquence, $\R_0$ se trouve en considérant le spectre de la matrice jacobienne du système évaluée au ÉSM
 \vfill
 \item
-La matrice devient rapidement difficile à manipuler (taille et absence de \guillemetleft motif \guillemetright) et la forme obtenue n'est pas unique, ce qui est gênant lors de l'interprétation de $\R_0$
+La matrice devient rapidement difficile à manipuler (taille et absence de \guillemetleft motif\guillemetright) et la forme obtenue n'est pas unique, ce qui est gênant lors de l'interprétation de $\R_0$
 \end{itemize}
 \end{frame}
 
@@ -3308,7 +3309,7 @@ Supposer que si la population est exempte de maladie alors la population restera
 \end{frame}
 
 \begin{frame}{Une dernière hypothèse pour la route}
-Soit $x_0$ un DFE du système, c'est-à-dire, une solution d'équilibre (localement asymptotiquement) stable du modèle sans maladie, c'est-à-dire, le système restreint à $X_s$. Nous n'avons pas besoin de supposer que le modèle a un DFE unique
+Soit $x_0$ un ÉSM du système, c'est-à-dire, une solution d'équilibre (localement asymptotiquement) stable du modèle sans maladie, c'est-à-dire, le système restreint à $X_s$. Nous n'avons pas besoin de supposer que le modèle a un ÉSM unique
 \vfill
 Soit $Df(x_0)$ la matrice jacobienne $[\partial f_i/\partial x_j]$. Certaines dérivées sont unilatérales, puisque $x_0$ est sur la frontière du domaine
 \vfill
@@ -3317,16 +3318,16 @@ Soit $Df(x_0)$ la matrice jacobienne $[\partial f_i/\partial x_j]$. Certaines d�
 Note : si la méthode échoue, c'est généralement avec (A5) que réside le problème
 \end{frame}
 
-\begin{frame}{Stabilité du DFE en fonction de $\mathcal{R}_0$}
+\begin{frame}{Stabilité du ÉSM en fonction de $\mathcal{R}_0$}
 \begin{theorem}\label{th:R0_VdDW}
-Supposons que le DFE existe. Soit alors
+Supposons que L'ÉSM existe. Soit alors
 \[
 \mathcal{R}_0=\rho(FV^{-1})
 \]
 avec les matrices $F$ et $V$ obtenues comme indiqué. Supposons que les conditions (A1) à (A5) sont satisfaites. Alors
 \begin{itemize}
-\item si $\mathcal{R}_0<1$, alors le DFE est LAS
-\item si $\mathcal{R}_0>1$, le DFE est instable
+\item si $\mathcal{R}_0<1$, alors L'ÉSM est LAS
+\item si $\mathcal{R}_0>1$, L'ÉSM est instable
 \end{itemize}
 \end{theorem}
 \vfill
@@ -3334,7 +3335,7 @@ Important de souligner la nature \emph{locale} de la stabilité qui est déduite
 \end{frame}
 
 \begin{frame}{Direction de la bifurcation à $\mathcal{R}_0=1$}
-$\mu$ paramètre de bifurcation tel que $\mathcal{R}_0<1$ pour $\mu<0$ et $\mathcal{R}_0>1$ pour $\mu>0$ et $x_0$ DFE pour toutes les valeurs de $\mu$ et considérons le système
+$\mu$ paramètre de bifurcation tel que $\mathcal{R}_0<1$ pour $\mu<0$ et $\mathcal{R}_0>1$ pour $\mu>0$ et $x_0$ ÉSM pour toutes les valeurs de $\mu$ et considérons le système
 \begin{equation}
 \label{eq:sys_PvdDW}
 x'=f(x,\mu)
@@ -3404,13 +3405,13 @@ Définissons $a$ et $b$ par $\eqref{eq:PvdDW_a}$ et $\eqref{eq:PvdDW_b}$ ; suppo
 
 
 \begin{frame}
-\frametitle{Example of the SLIRS model \eqref{sys:SLIRS}}
-Variation of the infected variables in \eqref{sys:SLIRS} are described by
+\frametitle{Exemple du modèle SLIRS \eqref{sys:SLIRS}}
+Les variations des variables infectées dans \eqref{sys:SLIRS} sont décrites par
 \begin{align*}
 L\pprime &= f(S,I,N)-(\varepsilon+d) L \\
 I\pprime &= \varepsilon L -(d+\gamma) I
 \end{align*}
-Write
+On écrit sous la forme
 \begin{equation}
 \I\pprime = 
 \left(
@@ -3437,7 +3438,7 @@ f(S,I,N) \\
 
 
 \begin{frame}
-Denote
+Notons
 \[
 f_L^{\,\star}:=
 \left.\frac{\partial}{\partial L}f
@@ -3447,9 +3448,9 @@ f_I^{\,\star}:=
 \left.\frac{\partial}{\partial I}f
 \right|_{(S,I,R)=\bE_0}
 \]
-the values of the partials of the incidence function at the DFE $\bE_0$
+les valeurs des dérivées partielles de la fonction d'incidence en l'ÉSM $\bE_0$
 \vfill
-Calculer les matrices jacobiennes des vecteurs $\F$ et $\V$ au DFE $\bE_0$
+Calculer les matrices jacobiennes des vecteurs $\F$ et $\V$ à l'ÉSM $\bE_0$
 \begin{equation}
 F=\left(
 \begin{matrix}
@@ -3457,7 +3458,7 @@ f_L^{\,\star} & f_I^{\,\star} \\
 0 & 0
 \end{matrix}
 \right)
-\quad\text{and}\quad
+\quad\text{et}\quad
 V=\left(
 \begin{matrix}
 \varepsilon+d & 0 \\
@@ -3468,7 +3469,7 @@ V=\left(
 \end{frame}
 
 \begin{frame}
-Thus
+Ainsi
 \[
 V^{-1}=\frac{1}{(d+\varepsilon)(d+\gamma)}
 \left(
@@ -3492,7 +3493,7 @@ FV^{-1}=\frac{f_I^{\,\star}}
 \right)
 \]
 \vfill
-As a consequence,
+Par conséquent,
 \[
 \R_0=\varepsilon
 \frac{f_I^{\,\star}}
@@ -3503,16 +3504,16 @@ As a consequence,
 
 \begin{frame}
 \begin{theorem}\label{th:R0_SEIRS}
-Let
+Soit
 \begin{equation}\label{eq:R0_SEIRS}
 \R_0=
 \frac{\varepsilon f_I^{\,\star}}
 {(d+\varepsilon)(d+\gamma)}
 \end{equation}
-Then
+Alors
 \begin{itemize}
-\item if $\R_0<1$, the DFE is LAS
-\item if $\R_0>1$, the DFE is unstable
+\item si $\R_0<1$, l'ÉSM est LAS
+\item if $\R_0>1$, l'ÉSM est instable
 \end{itemize}
 \end{theorem}
 \vfill
@@ -3522,17 +3523,17 @@ Il est important ici de souligner que le résultat que nous obtenons concerne la
 
 \begin{frame}
 \frametitle{Application}
-The DFE is
+L'ÉSM est
 \[
 (\bar S,\bar L,\bar I,\bar R)=(N,0,0,0)
 \]
 \begin{itemize}
-\item Mass action incidence (frequency-dependent contacts):
+\item Incidence en action de masse (contacts fréquence-dépendants):
  \[
 f_I^{\,\star}=\beta\bar S \Rightarrow\R_0 =
 \frac{\epsilon\beta N}{(\epsilon+d)(\gamma+d)} 
 \]
-\item Standard incidence (proportion-dependent contacts):
+\item Incidence standard (contacts proportion-dépendants):
 \[
 f_I^{\,\star}=\frac{\beta\bar S}{N}
 \Rightarrow\R_0 = \frac{\epsilon\beta}{(\epsilon+d)(\gamma+d)}
@@ -3542,7 +3543,7 @@ f_I^{\,\star}=\frac{\beta\bar S}{N}
 
 
 \begin{frame}
-\frametitle{Links between SLIRS-type models}
+\frametitle{Liens entre modèles de type SLIRS}
 { %\footnotesize
 \begin{align*}
 S\pprime&=b+\nu R-dS-f(S,I,N) \\
@@ -3553,24 +3554,26 @@ R\pprime&=\gamma I-(d+\nu)R
 \begin{center}
 \begin{tabular}{c|l}
 \hline
-SLIR & SLIRS where $\nu=0$ \\
-SLIS & Limit of SLIRS when $\nu\to\infty$ \\
-SLI & SLIR where $\gamma=0$ \\
-SIRS & Limit of SLIRS when $\varepsilon\to\infty$ \\
-SIR & SIRS where $\nu=0$ \\
-SIS & Limit of SIRS when $\nu\to\infty$ \\
-& Limit SLIS when $\varepsilon\to\infty$ \\
-SI & SIS where $\nu=0$ 
+SLIR & SLIRS où $\nu=0$ \\
+SLIS & Limite SLIRS lorsque $\nu\to\infty$ \\
+SLI & SLIR où $\gamma=0$ \\
+SIRS & Limite SLIRS lorsque $\varepsilon\to\infty$ \\
+SIR & SIRS où $\nu=0$ \\
+SIS & Limite SIRS lorsque $\nu\to\infty$ \\
+& Limite SLIS lorsque $\varepsilon\to\infty$ \\
+SI & SIS où $\nu=0$ 
 \end{tabular}
 \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Values of $\R_0$}
-$(\bar S,\bar I,\bar N)$ values of $S,I$ and $N$ at DFE. Denote $\bar f_I=\partial f/\partial I(\bar S,\bar I,\bar N)$.
+\frametitle{Valeurs de $\R_0$}
+$(\bar S,\bar I,\bar N)$ valeurs de $S,I$ et $N$ à l'ÉSM. 
+Notons $\bar f_I=\partial f/\partial I(\bar S,\bar I,\bar N)$
 \begin{center}
-\begin{tabular}{c|c}
-\hline
+\begin{tabular}{cc}
+Modèle & $\R_0$ \\
+\midrule
 SLIRS & 
 $\frac{\varepsilon\bar f_I}{(d+\varepsilon)(d+\gamma)}$ \\
 SLIR & 
@@ -3579,7 +3582,10 @@ SLIS &
 $\frac{\varepsilon\bar f_I}{(d+\varepsilon)(d+\gamma)}$ \\
 SLI & 
 $\frac{\varepsilon\bar f_I}{(d+\varepsilon)(d+\gamma)}$ \\
-& \\
+\end{tabular}\qquad\qquad
+\begin{tabular}{cc}
+Modèle & $\R_0$ \\
+\midrule
 SIRS & 
 $\frac{\varepsilon\bar f_I}{d+\gamma}$ \\
 SIR & $\frac{\bar f_I}{d+\gamma}$ \\
@@ -3592,7 +3598,7 @@ SI & $ \frac{\bar f_I}{d+\gamma}$
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\subsection{A better vaccination model?}
+\subsection{Un meilleur modèle de vaccination?}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_vqpscpvqpscpvqps.jpeg}
 
 \maxFrameImage{FIGS/ArinoMccluskeyPvdD.png}
@@ -3915,7 +3921,7 @@ Paramètre additionnel qui peut être pris en compte (tous par unité de temps)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Personnes à lire pour les modèles de paludisme (ÀMAO)}
+\begin{frame}{Personnes à lire pour les modèles de paludisme}
 Voir aussi les travaux de 
 \vfill
 \begin{itemize}
@@ -3935,7 +3941,7 @@ Le cycle de vie du Plasmodium dans le moustique est commensurable avec la durée
 \vfill
 Besoin de modèles capables de tenir compte de cela, car les EDO ne sont pas vraiment bonnes pour cela (voir le début de la conférence sur les systèmes stochastiques)
 \vfill
-Mathematics becomes more complicated
+Les mathématiques deviennent plus compliquées
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -3946,7 +3952,7 @@ Mathematics becomes more complicated
 \maxFrameImage{FIGS/Codeco-BMB-cover}
 \nocite{codecco2001endemic}
 
-\begin{frame}{Code\c{c}o's model}
+\begin{frame}{Le modèle de Codeço}
 \begin{minipage}{0.49\textwidth}
 \begin{center}
   \begin{tikzpicture}[scale=1.25, transform shape]
@@ -3984,7 +3990,7 @@ B' &= (b_B-d_B)B+\zeta I
 $K$ concentration de choléra dans l'eau donnant 50\% de chance de l'attraper
 \end{minipage}
 \vfill
-Notez que la flèche pointillée de $I$ à $B$ n'est pas un flux: les individus ne se convertissent pas en \emph{vibrio cholerae}
+Notez que la flèche pointillée de $I$ à $B$ n'est pas un flux à proprement parler: les individus ne se convertissent pas en \emph{vibrio cholerae}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -4006,21 +4012,21 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
     \def\vertskip{*2}
     \def\horzskip{*3}
     \begin{tikzpicture}[scale=1, transform shape]
-      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {Susceptible humans};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {Infectious humans};
-      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {Susceptible animals};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {Infectious animals};
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {Live oo/cysts in water};
+      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {Humains susceptibles};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {Humains infectieux};
+      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {Animaux susceptibles};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {Animaux infectieux};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {Oo/cystes vivant dans l'eau};
       %% Flows 
-      \path [line, very thick] (S_H.south east) to node [midway, below] (TextNode) {P2P transmission} (I_H.south west);
-      \path [line, dashed, very thick] (S_H.north east) to node [near end, above] (TextNode) {conversion of oo/cysts to infection} (I_H.north west);
-      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {recovery} (S_H);
-      \path [line, very thick] (S_A.north east) to node [midway, above] (TextNode) {A2A transmission} (I_A.north west);
-      \path [line, very thick] (I_A.south west) to node [midway, below] (TextNode) {recovery} (S_A.south east);
+      \path [line, very thick] (S_H.south east) to node [midway, below] (TextNode) {Transmission P2P} (I_H.south west);
+      \path [line, dashed, very thick] (S_H.north east) to node [near end, above] (TextNode) {conversion des oo/cystes en infection} (I_H.north west);
+      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {guérison} (S_H);
+      \path [line, very thick] (S_A.north east) to node [midway, above] (TextNode) {Transmission A2A} (I_A.north west);
+      \path [line, very thick] (I_A.south west) to node [midway, below] (TextNode) {guérison} (S_A.south east);
       %% Flows of W
-      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {Death of oo/cysts in water} (-2\horzskip,1\vertskip);
-      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {pick up rate} (0\horzskip,0.35\vertskip);
-      \path [line, dashed, very thick] (I_A) to node [midway, below] (TextNode) {deposit rate} (W);
+      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {Mort oo/cystes dans l'eau} (-2\horzskip,1\vertskip);
+      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {taux de ramassage} (0\horzskip,0.35\vertskip);
+      \path [line, dashed, very thick] (I_A) to node [midway, below] (TextNode) {taux de déposition} (W);
     \end{tikzpicture}    
   \end{center}  
 \end{frame}
@@ -4050,7 +4056,7 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
 \end{frame}
 
 
-\begin{frame}{The full model}
+\begin{frame}{Le modèle complet}
   \begin{subequations}
     \label{sys:WaterHamilton_etal}
     \begin{align}
@@ -4062,11 +4068,11 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
     \end{align}
   \end{subequations}
   \vfill
-  Considered with $N_A=S_A+I_A$ and $N_H=S_H+I_H$ constant
+  Considéré avec $N_A=S_A+I_A$ et $N_H=S_H+I_H$ constants
 \end{frame}
 
 \begin{frame}{Simplified model}
-  Because $N_A$ and $N_H$ are constant, \eqref{sys:WaterHamilton_etal} can be simplified:
+  Puisque $N_A$ et $N_H$ sont constants, \eqref{sys:WaterHamilton_etal} se simplifie:
   \begin{subequations}
     \label{sys:WaterHamilton_etal_simplified}
     \begin{align}
@@ -4076,23 +4082,23 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
     \end{align}
   \end{subequations}
   \vfill
-  Trois EP: DFE $(0,0,0)$; maladie endémique chez les humains en raison de la transmission H2H; endémique à la fois chez H et A en raison de W
+  Trois EP: ÉSM $(0,0,0)$; maladie endémique chez les humains en raison de la transmission H2H; endémique à la fois chez H et A en raison de W
 \end{frame}
 
 
 \begin{frame}
-  Trois EP: DFE $(0,0,0)$; maladie endémique chez les humains en raison de la transmission H2H; endémique à la fois chez H et A en raison de W
+  Trois EP: ÉSM $(0,0,0)$; maladie endémique chez les humains en raison de la transmission H2H; endémique à la fois chez H et A en raison de W
   \vfill
-  Let
+  Soit
   \begin{equation}
-    \R_{0A} = \frac{\beta_A}{\gamma_A}N_A\quad\text{and}\quad
+    \R_{0A} = \frac{\beta_A}{\gamma_A}N_A\quad\text{et}\quad
     \R_{0H} = \frac{\beta_H}{\gamma_H}N_H
   \end{equation}
   \vfill
   \begin{itemize}
-    \item DFE LAS if $\R_{0A}<1$ and $\R_{0H}<1$, unstable if $\R_{0A}>1$ or $\R_{0H}>1$
-    \item If $\R_{0H}>1$ and $\R_{0A}<1$, \eqref{sys:WaterHamilton_etal_simplified} goes to EP with endemicity only in humans
-    \item Endemic EP with both A and H requires $\R_{0A}>1$ and $\R_{0H}<1$
+    \item ÉSM LAS si $\R_{0A}<1$ et $\R_{0H}<1$, instable si $\R_{0A}>1$ ou $\R_{0H}>1$
+    \item Si $\R_{0H}>1$ et $\R_{0A}<1$, \eqref{sys:WaterHamilton_etal_simplified} va vers le PE avec endémicité seulement chez les humains
+    \item PE endémique avec A et H requiert $\R_{0A}>1$ et $\R_{0H}<1$
   \end{itemize}
   Note that proof is \textbf{not} global
 \end{frame}
@@ -4109,7 +4115,7 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
 \vfill
 \bbullet Nous utilisons souvent $R=N^\star-S-I$
 \vfill
-\bbullet Cela peut grandement simplifier certains calculs
+\bbullet Cela peut simplifier certains calculs
 \vfill
 \bbullet Le faire ou non est une question de préférence
 \end{frame}
@@ -4117,7 +4123,7 @@ Modèle utilisé ici par exemple pour modéliser la transmission de la Giardia d
 \begin{frame}{Normaliser ou ne pas normaliser ?}
 \bbullet Dans le modèle épidémique KMK \eqref{sys:KMK} et le modèle endémique SIRS \eqref{sys:SIRS}, puisque la population totale est constante ou asymptotiquement constante, il est possible de normaliser à $N=1$
 \vfill
-\bbullet Cela peut grandement simplifier certains calculs
+\bbullet Cela peutsimplifier certains calculs
 \vfill
 \bbullet Cependant, je ne suis pas un grand fan : il est important d'avoir toujours les \guillemetleft tailles \guillemetright des objets à l'esprit
 \vfill
@@ -4162,7 +4168,7 @@ Pour finir, nous utilisons la commande \code{purl} pour générer un fichier \co
 \end{knitrout}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{About that \code{R} file}
+\begin{frame}[fragile]\frametitle{Au sujet de ce fichier \code{R}}
 Sourcer le fichier \code{course-01-introduction-math-epi.R} (dans le répertoire \code{CODE}) dans \code{R} pour reproduire tous les résultats dans ces diapositives
 \vfill
 Quelques petits changements sont nécessaires; par exemple, lors du sourcing (au lieu de knitting ou de manière interactive), certaines figures sont créées mais ne sont pas imprimées, donc dans le fichier \code{R}, vous devez les imprimer ``manuellement'' (définir la sortie sur une variable et les \code{print})

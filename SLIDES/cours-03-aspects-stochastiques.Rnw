@@ -1,7 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 
 <<set-options,echo=FALSE,warning=FALSE,message=FALSE>>=
-# Load required libraries
+# Charger les bibliothèques requises
 required_packages = c("adaptivetau",
                       "deSolve",
                       "dplyr",
@@ -23,7 +23,7 @@ for (p in required_packages) {
     require(p, character.only = TRUE)
   }
 }
-# Knitr options
+# Options Knitr
 opts_chunk$set(echo = TRUE, 
                warning = FALSE, 
                message = FALSE, 
@@ -35,10 +35,10 @@ opts_chunk$set(echo = TRUE,
                fig.show = "hide")
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 options(knitr.table.format = "latex")
-# Date for front title page (if needed)
+# Date pour la page de titre (si nécessaire)
 yyyy = strsplit(as.character(Sys.Date()), "-")[[1]][1]
-# The kframe environment can conflict with allowframebreaks, 
-# so we remove it.
+# L'environnement kframe peut entrer en conflit avec allowframebreaks, 
+# donc nous le supprimons.
 knit_hooks$set(document = function(x) {
   gsub('\\\\(begin|end)\\{kframe\\}', '', x)
 })
@@ -80,19 +80,19 @@ cat(input_setup)
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Why incorporate stochasticity?}
+\section{Pourquoi incorporer la stochasticité ?}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_tve93ftve93ftve9.jpeg}
 
-\begin{frame}{At the beginning of the COVID-19 crisis}
+\begin{frame}{Au début de la crise COVID-19}
 \bbullet 
-I was working under contract with the Public Health Agency of Canada on \emph{COVID-19 importation risk assessment}
+Je travaillais sous contrat avec l'Agence de la santé publique du Canada sur l'\emph{évaluation du risque d'importation de COVID-19}
 \vfill
 \bbullet 
-Produced daily report with list of countries most likely to next report cases of COVID-19
+Produisais un rapport quotidien avec la liste des pays les plus susceptibles de signaler des cas de COVID-19 ensuite
 \vfill
 \bbullet
-Used ensemble runs of a fitted global deterministic metapopulation model
+Utilisais des exécutions d'ensemble d'un modèle de métapopulation déterministe global ajusté
 \end{frame}
 
 \maxFrameImage{FIGS/covid-cluster}
@@ -107,38 +107,38 @@ $\implies$ PHAC gave me money for a cluster (yay Threadrippers!!!)
 $\implies$ Also thought about whether my model was really adequate as our focus switched from thinking about movement on a planetary scale to movement within Canadian provinces
 \end{frame}
 
-\begin{frame}{What is wrong with deterministic models?}
-\bbullet I pointed out yesterday that SARS-CoV-2 is one \emph{single} realisation of a stochastic process
+\begin{frame}{Qu'est-ce qui ne va pas avec les modèles déterministes ?}
+\bbullet J'ai souligné hier que le SARS-CoV-2 est une \emph{unique} réalisation d'un processus stochastique
 \vfill
-\bbullet Deterministic models ``operate on averages'' over a large ($\to\infty$) number of realisations
+\bbullet Les modèles déterministes « opèrent sur des moyennes » sur un grand ($\to\infty$) nombre de réalisations
 \vfill
-\bbullet If we want to get a better sense of what could happen, not only on average, then we need to see what can indeed happen
+\bbullet Si nous voulons avoir une meilleure idée de ce qui pourrait se passer, pas seulement en moyenne, alors nous devons voir ce qui peut effectivement se passer
 \end{frame}
 
-\begin{frame}{My new focus -- Introductions}
-\bbullet I started thinking in particular about \defword{introductions} (or importations) of pathogens into new populations
+\begin{frame}{Mon nouveau focus -- Introductions}
+\bbullet J'ai commencé à penser en particulier aux \defword{introductions} (ou importations) de pathogènes dans de nouvelles populations
 \vfill
-\bbullet Indeed, introductions are an obligatory step in spatial spread
+\bbullet En effet, les introductions sont une étape obligatoire dans la propagation spatiale
 \end{frame}
 
-\begin{frame}{First piece of evidence}
-In real life, introductions of pathogens does not always follow the patter
+\begin{frame}{Premier élément de preuve}
+Dans la vraie vie, les introductions de pathogènes ne suivent pas toujours le schéma
 \begin{center}
-\{$\R_0<1 \implies \to$ DFE | $\R_0>1 \implies $ epidemic or $\to$ EEP\} 
+\{$\R_0<1 \implies \to$ DFE | $\R_0>1 \implies $ épidémie ou $\to$ EEP\} 
 \end{center}
 \end{frame}
 
 \maxFrameImage{FIGS/Delory_etal-cover}
 \maxFrameImage{FIGS/Delory_etal-table}
 
-\begin{frame}{Second piece of evidence}
-The start of an outbreak can be extremely slow, with very few cases for quite a while
+\begin{frame}{Deuxième élément de preuve}
+Le début d'une épidémie peut être extrêmement lent, avec très peu de cas pendant un certain temps
 \end{frame}
 
 \maxFrameImage{FIGS/select_Wyoming-Campbell_bars_zoom}
 
-\begin{frame}{Why this is relevant}
-Far from the only reason, but as an example: Canada has remote/isolated communities that are vulnerable to introductions of pathogens
+\begin{frame}{Pourquoi ceci est pertinent}
+Loin d'être la seule raison, mais à titre d'exemple : le Canada a des communautés éloignées/isolées qui sont vulnérables aux introductions de pathogènes
 \end{frame}
 
 \maxFrameImage{FIGS/cities_roads_CAN-MB_detail.png}
@@ -146,24 +146,24 @@ Far from the only reason, but as an example: Canada has remote/isolated communit
 \maxFrameImage{FIGS/Screenshot from 2024-06-25 14-42-25.png}
 \maxFrameImage{FIGS/Screenshot from 2024-06-25 16-56-16.png}
 
-\begin{frame}{For First Nation and Métis Communities}
-  \defword{Remote} describes a \textbf{geographical area} where a community is \textbf{located over 350 km} from the \textbf{nearest service centre} \textbf{having year-round access} by land and/or water routes normally used in all weather conditions
+\begin{frame}{Pour les communautés des Premières Nations et Métis}
+  \defword{Éloignée} décrit une \textbf{zone géographique} où une communauté est \textbf{située à plus de 350 km} du \textbf{centre de services le plus proche} \textbf{ayant un accès toute l'année} par voies terrestres et/ou maritimes normalement utilisées par tous les temps
   \vfill	
-  \defword{Isolated} means a \textbf{geographical area} that has \textbf{scheduled flights} and good telephone service, but is \textbf{without year-round access} by land and/or water normally used in all weather conditions
+  \defword{Isolée} signifie une \textbf{zone géographique} qui a des \textbf{vols réguliers} et un bon service téléphonique, mais est \textbf{sans accès toute l'année} par voies terrestres et/ou maritimes normalement utilisées par tous les temps
   \vfill
-  \defword{Remote-Isolated} means a \textbf{geographic area} that has \textbf{neither scheduled flights nor year-round access} by land and/or water routes normally that can be used in all weather conditions, irrespective of the level of telephone and radio service available
+  \defword{Éloignée-Isolée} signifie une \textbf{zone géographique} qui n'a \textbf{ni vols réguliers ni accès toute l'année} par voies terrestres et/ou maritimes qui peuvent être utilisées par tous les temps, indépendamment du niveau de service téléphonique et radio disponible
 \end{frame}
 
-\begin{frame}{For Inuit communities}
-  Inuit Communities to be referred to as \defword{Inuit Nunangat}, not remote and isolated communities to respect the unique language and culture of Inuit regions, as well as the common challenges in social determinants of health, access to care, and infrastructure found across all Inuit communities
+\begin{frame}{Pour les communautés inuites}
+  Les communautés inuites doivent être appelées \defword{Inuit Nunangat}, et non communautés éloignées et isolées, afin de respecter la langue et la culture uniques des régions inuites, ainsi que les défis communs en matière de déterminants sociaux de la santé, d'accès aux soins et d'infrastructure qui se retrouvent dans toutes les communautés inuites
 \end{frame}
 
-\begin{frame}\frametitle{MB remote communities}
+\begin{frame}\frametitle{Communautés éloignées du MB}
   \begin{quote}
-  \defword{Remote communities} are communities in Manitoba that \textbf{do not have permanent road access} (i.e., no all-weather road), are \textbf{more than a four-hour drive} from a major rural hospital (and a dialysis unit), \textbf{or have rail or fly-in access only}. This includes Norway House, Lynn Lake, Leaf Rapids, Gillam, and Cross Lake. If most communities in a health district are designated as "remote", the entire district is designated as "remote". In Manitoba, remote districts include:
+  Les \defword{communautés éloignées} sont des communautés du Manitoba qui \textbf{n'ont pas d'accès routier permanent} (c'est-à-dire, pas de route praticable en toutes saisons), sont \textbf{à plus de quatre heures de route} d'un hôpital rural important (et d'une unité de dialyse), \textbf{ou ont un accès uniquement par rail ou avion}. Cela inclut Norway House, Lynn Lake, Leaf Rapids, Gillam et Cross Lake. Si la plupart des communautés d'un district sanitaire sont désignées comme « éloignées », l'ensemble du district est désigné comme « éloigné ». Au Manitoba, les districts éloignés comprennent :
   \begin{itemize}
-  \item Northern Health Region: NO23, NO13, NO25, NO16, NO22, NO26, NO28, NO31, and
-  \item Interlake-Eastern Health Region: IE61.
+  \item Région sanitaire du Nord : NO23, NO13, NO25, NO16, NO22, NO26, NO28, NO31, et
+  \item Région sanitaire Interlake-Est : IE61.
   \end{itemize}
   \end{quote}
   \vfill
@@ -174,24 +174,24 @@ Far from the only reason, but as an example: Canada has remote/isolated communit
 
 \maxFrameImage{FIGS/remote-health-regions.png}
 
-\begin{frame}{Travel to/from remote or isolated communities}
-  How do you think this compares to travel in non-remote/isolated communities ?
+\begin{frame}{Voyages vers/depuis des communautés éloignées ou isolées}
+  Comment pensez-vous que cela se compare aux voyages dans les communautés non éloignées/isolées ?
   \vfill
-  Residence time (the lake ecology version): theoretic time an average water or comparable molecule spends in a lake, considering inflow into and outflow from the lake
+  Temps de résidence (la version écologie lacustre) : temps théorique qu'une molécule d'eau moyenne ou comparable passe dans un lac, considérant l'afflux dans et l'écoulement hors du lac
   \vfill
-  Think of residence times in these communities: what is the average time a person spends in a remote or isolated community before leaving it?
+  Pensez aux temps de résidence dans ces communautés : quel est le temps moyen qu'une personne passe dans une communauté éloignée ou isolée avant de la quitter ?
   \vfill
-  The \defword{residence time in a location} is the total number of trips inbound into and outbound from location over a duration of time (1 month here) divided by the normal population in the location 
+  Le \defword{temps de résidence dans une localisation} est le nombre total de trajets entrants et sortants d'une localisation sur une durée (1 mois ici) divisé par la population normale dans la localisation 
 \end{frame}
 
 \maxFrameImage{FIGS/residence-time-in-airports.png}
 
-\begin{frame}{The paradox of travel to/from remote/isolated communities}
-Travel volumes small but movement rates high
+\begin{frame}{Le paradoxe des voyages vers/depuis les communautés éloignées/isolées}
+Volumes de voyage faibles mais taux de mouvement élevés
 \vfill
-ICs are highly connected to the urban centre(s) they are subordinated to
+Les CI sont fortement connectées au(x) centre(s) urbain(s) auxquels elles sont subordonnées
 \vfill
-Further reinforced in Winnipeg by urban indigenous population (102,075 or 12.45\% of metro population), meaning many family connections exist
+Encore renforcé à Winnipeg par la population autochtone urbaine (102 075 ou 12,45\% de la population métropolitaine), ce qui signifie que de nombreux liens familiaux existent
 \end{frame}
 
 % \begin{frame}{Travel restrictions/interruptions}
@@ -222,53 +222,53 @@ Further reinforced in Winnipeg by urban indigenous population (102,075 or 12.45\
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Stochasticity in deterministic models}
+\section{Stochasticité dans les modèles déterministes}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 
-\subsection{Distributions of times to events}
+\subsection{Distributions des temps jusqu'aux événements}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_fu32wbfu32wbfu32.jpeg}
 
 \begin{frame}
-See in particular the work of \href{https://scholar.google.ca/citations?user=o7R6ZHMAAAAJ}{Horst Thieme}
+Voir en particulier les travaux de \href{https://scholar.google.ca/citations?user=o7R6ZHMAAAAJ}{Horst Thieme}
 \vfill
-If one considers time of sojourn in compartments from a more detailed perspective, one obtains integro-differential models
+Si l'on considère le temps de séjour dans les compartiments d'une perspective plus détaillée, on obtient des modèles intégro-différentiels
 \vfill
-We use here continuous random variables. See chapters 12 and 13 in \href{https://press.princeton.edu/books/paperback/9780691092911/mathematics-in-population-biology}{Thieme's book} for arbitrary distributions
+Nous utilisons ici des variables aléatoires continues. Voir les chapitres 12 et 13 du \href{https://press.princeton.edu/books/paperback/9780691092911/mathematics-in-population-biology}{livre de Thieme} pour des distributions arbitraires
 \end{frame}
 
 
-\begin{frame}\frametitle{Time to events}
-We suppose that a system can be in two states, $A$ and $B$
+\begin{frame}\frametitle{Temps jusqu'aux événements}
+Nous supposons qu'un système peut être dans deux états, $A$ et $B$
 \begin{itemize}
-\item At time $t=0$, the system is in state $A$
-\item An event happens at some time $t=\tau$, which triggers the switch from
-state $A$ to state $B$
+\item Au temps $t=0$, le système est dans l'état $A$
+\item Un événement se produit à un certain temps $t=\tau$, qui déclenche le passage de
+l'état $A$ à l'état $B$
 \end{itemize}
 \vfill
-Let us call $T$ the random variable 
+Appelons $T$ la variable aléatoire 
 \begin{quote}
-``time spent in state $A$ before switching into state $B$''
+``temps passé dans l'état $A$ avant de passer à l'état $B$''
 \end{quote}
 \end{frame}
 
 \begin{frame}
-The states can be anything:
+Les états peuvent être n'importe quoi :
 \begin{itemize}
-\item $A$: working, $B$: broken
-\item $A$: infected, $B$: recovered
-\item $A$: alive, $B$: dead
+\item $A$ : fonctionnel, $B$ : en panne
+\item $A$ : infecté, $B$ : rétabli
+\item $A$ : vivant, $B$ : mort
 \item $\ldots$
 \end{itemize}
 \vfill
-We take a collection of objects or individuals that are in state $A$ and want
-some law for the \defword{distribution} of the times spent in $A$, i.e., a law for $T$
+Nous prenons une collection d'objets ou d'individus qui sont dans l'état $A$ et voulons
+une loi pour la \defword{distribution} des temps passés dans $A$, c'est-à-dire une loi pour $T$
 \vfill
-For example, we make light bulbs and would like to tell our customers that on average, our light bulbs last 200 years...
+Par exemple, nous fabriquons des ampoules et aimerions dire à nos clients qu'en moyenne, nos ampoules durent 200 ans...
 \vfill
-We conduct an \defword{infinite} number of experiments, and observe the time that it takes, in every experiment, to switch from $A$ to $B$
+Nous effectuons un nombre \defword{infini} d'expériences, et observons le temps qu'il faut, dans chaque expérience, pour passer de $A$ à $B$
 \end{frame}
 
 \begin{frame}
@@ -313,49 +313,49 @@ We conduct an \defword{infinite} number of experiments, and observe the time tha
 \end{frame}
 
 
-\begin{frame}\frametitle{A distribution of probability is a model}
-From the sequence of experiments, we deduce a model, which in this context is called a \defword{probability distribution}
+\begin{frame}\frametitle{Une distribution de probabilité est un modèle}
+À partir de la séquence d'expériences, nous déduisons un modèle, qui dans ce contexte est appelé une \defword{distribution de probabilité}
 \vfill
-We assume that $T$ is a \defword{continuous} random variable
+Nous supposons que $T$ est une variable aléatoire \defword{continue}
 \end{frame}
 
 <<distrib_a_b,eval=TRUE,echo=FALSE,fig.width=8,fig.height=6,include=FALSE>>=
-# Parameters for normal distribution
-mu <- 5      # mean (mode for normal distribution)
-sigma <- 1.5 # standard deviation
-a <- 4       # left boundary
-b <- 7       # right boundary
+# Paramètres pour la distribution normale
+mu <- 5      # moyenne (mode pour la distribution normale)
+sigma <- 1.5 # écart-type
+a <- 4       # limite gauche
+b <- 7       # limite droite
 
-# Create x values for plotting
+# Créer les valeurs x pour le tracé
 x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
 y <- dnorm(x, mean = mu, sd = sigma)
 
-# Create x values for shaded area
+# Créer les valeurs x pour la zone ombrée
 x_fill <- seq(a, b, length.out = 200)
 y_fill <- dnorm(x_fill, mean = mu, sd = sigma)
 
-# Plot the distribution (no bounding box, axes shown)
+# Tracer la distribution (pas de cadre, axes affichés)
 plot(x, y, type = "l", lwd = 3, col = fg_colour,
      xlab = "t", ylab = "f(t)",
      axes = FALSE, frame.plot = FALSE)
 
-# Add shaded area (from curve to y=0)
+# Ajouter la zone ombrée (de la courbe à y=0)
 polygon(c(a, x_fill, b), c(0, y_fill, 0), 
          col = fill_colour, border = NA, density = 20)
 
-# Add horizontal line at y=0
+# Ajouter une ligne horizontale à y=0
 abline(h=0, col = fg_colour, lty = 1, lwd = 1)
-# Add vertical lines at a and b
+# Ajouter des lignes verticales à a et b
 abline(v = a, col = "red", lwd = 2, lty = 2)
 abline(v = b, col = "red", lwd = 2, lty = 2)
 
-# Add labels
+# Ajouter les étiquettes
 text(a, -0.02, "a", pos = 1, cex = 1.2, col = "red", font = 2)
 text(b, -0.02, "b", pos = 1, cex = 1.2, col = "red", font = 2)
 @
 
-\begin{frame}\frametitle{Probability density function}
-Since $T$ is continuous, it has a continuous \defword{probability density function} $f$
+\begin{frame}\frametitle{Fonction de densité de probabilité}
+Puisque $T$ est continue, elle a une \defword{fonction de densité de probabilité} continue $f$
 \begin{minipage}{0.4\textwidth}
 \begin{itemize}
 \item $f\geq 0$
@@ -369,40 +369,40 @@ Since $T$ is continuous, it has a continuous \defword{probability density functi
 \end{frame}
 
 <<distrib_minf_b,eval=TRUE,echo=FALSE,include=FALSE>>=
-# Parameters for normal distribution
-mu <- 5      # mean (mode for normal distribution)
-sigma <- 1.5 # standard deviation
-a <- mu - 4*sigma       # left boundary
-b <- 7       # right boundary
+# Paramètres pour la distribution normale
+mu <- 5      # moyenne (mode pour la distribution normale)
+sigma <- 1.5 # écart-type
+a <- mu - 4*sigma       # limite gauche
+b <- 7       # limite droite
 
-# Create x values for plotting
+# Créer les valeurs x pour le tracé
 x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
 y <- dnorm(x, mean = mu, sd = sigma)
 
-# Create x values for shaded area
+# Créer les valeurs x pour la zone ombrée
 x_fill <- seq(a, b, length.out = 200)
 y_fill <- dnorm(x_fill, mean = mu, sd = sigma)
 
-# Plot the distribution (no bounding box, axes shown)
+# Tracer la distribution (pas de cadre, axes affichés)
 plot(x, y, type = "l", lwd = 3, col = fg_colour,
      xlab = "t", ylab = "f(t)",
      axes = FALSE, frame.plot = FALSE)
 
-# Add shaded area (from curve to y=0)
+# Ajouter la zone ombrée (de la courbe à y=0)
 polygon(c(a, x_fill, b), c(0, y_fill, 0), 
          col = fill_colour, border = NA, density = 20)
 
-# Add horizontal line at y=0
+# Ajouter une ligne horizontale à y=0
 abline(h=0, col = fg_colour, lty = 1, lwd = 1)
-# Add vertical lines at b
+# Ajouter des lignes verticales à b
 abline(v = b, col = "red", lwd = 2, lty = 2)
-# Add labels
+# Ajouter les étiquettes
 text(b, -0.02, "b", pos = 1, cex = 1.2, col = "red", font = 2)
 @
 
-\begin{frame}\frametitle{Cumulative distribution function (c.d.f.)}
+\begin{frame}\frametitle{Fonction de distribution cumulative (f.d.c.)}
 \begin{minipage}{0.4\textwidth}
-The \defword{cumulative distribution function} is a function $F(t)$ that characterizes the distribution of $T$, and defined by
+La \defword{fonction de distribution cumulative} est une fonction $F(t)$ qui caractérise la distribution de $T$, et définie par
 \[
 F(s)=\IP(T\leq s)=\int_{-\infty}^sf(x)dx
 \]
@@ -412,34 +412,34 @@ F(s)=\IP(T\leq s)=\int_{-\infty}^sf(x)dx
 \end{minipage}
 \end{frame}
 
-\begin{frame}\frametitle{Survival function}
-Another characterization of the distribution of the random variable $T$ is through the \defword{survival} (or \defword{sojourn}) function
+\begin{frame}\frametitle{Fonction de survie}
+Une autre caractérisation de la distribution de la variable aléatoire $T$ se fait par la fonction de \defword{survie} (ou de \defword{séjour})
 \vfill
-The survival function of state $A$ is given by 
+La fonction de survie de l'état $A$ est donnée par 
 \begin{equation}
   \S(t)=1-F(t)=\IP(T>t)
   \label{eq:survival}
 \end{equation}
-This gives a description of the \defword{sojourn time} of a
-system in a particular state (the time spent in the state)
+Ceci donne une description du \defword{temps de séjour} d'un
+système dans un état particulier (le temps passé dans l'état)
 \vfill
-$\S$ is a nonincreasing function (since $\S=1-F$
-with $F$ a c.d.f.), and
-$\S(0)=1$ (since $T$ is a nonnegative random variable)
+$\S$ est une fonction non croissante (puisque $\S=1-F$
+avec $F$ une f.d.c.), et
+$\S(0)=1$ (puisque $T$ est une variable aléatoire non négative)
 \end{frame}
 
 <<pdf-cdf-surv-normal,eval=TRUE,echo=FALSE,include=FALSE>>=
-# Parameters for normal distribution
+# Paramètres pour la distribution normale
 mu <- 5
 sigma <- 1.5
 x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
 
-# Compute functions
+# Calculer les fonctions
 pdf <- dnorm(x, mean = mu, sd = sigma)
 cdf <- pnorm(x, mean = mu, sd = sigma)
 surv <- 1 - cdf
 
-# Plot all three functions
+# Tracer les trois fonctions
 plot(x, pdf, type = "l", col = "blue", lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
      main = "PD, CD and Survival functions",
@@ -447,7 +447,7 @@ plot(x, pdf, type = "l", col = "blue", lwd = 2,
 lines(x, cdf, col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv, col = "red", lwd = 2, lty = 3)
 
-# Add legend
+# Ajouter la légende
 legend("right",
        legend = c("PDF", "CDF", "Survival"),
        col = c("blue", "darkgreen", "red"),
@@ -459,55 +459,55 @@ legend("right",
 \maxFrameImage{\Sexpr{fig_chunk('pdf-cdf-surv-normal', 'pdf')}}
 
 \begin{frame}
-The \defword{average sojourn time} $\tau$ in state $A$ is given by
+Le \defword{temps de séjour moyen} $\tau$ dans l'état $A$ est donné par
 \[
 \tau=E(T)=\int_0^\infty tf(t)dt
 \]
-Since $\lim_{t\to\infty}t\S(t)=0$, it follows that 
+Puisque $\lim_{t\to\infty}t\S(t)=0$, il s'ensuit que 
 \[
 \tau=\int_0^\infty \S(t)dt
 \]
 \vfill
-\defword{Expected future lifetime}:
+\defword{Durée de vie future espérée} :
 \[
 \frac{1}{\S(t_0)} \int_0^{\infty} t\,f(t+t_0)\,dt 
 \]
 \vfill
 \begin{eqnarray*}
-\S(t)-\S(a)&=&\IP\left\{\textrm{survive during }
- (a,t)\textrm{ having survived until }a\right\} \\
+\S(t)-\S(a)&=&\IP\left\{\textrm{survivre pendant }
+ (a,t)\textrm{ ayant survécu jusqu'à }a\right\} \\
 &=& \exp\left(-\int_a^t h(u)du\right)
 \end{eqnarray*}
 \end{frame}
 
-\begin{frame}\frametitle{Hazard rate}
-The \defword{hazard rate} (or \defword{failure rate}) is
+\begin{frame}\frametitle{Taux de risque}
+Le \defword{taux de risque} (ou \defword{taux de défaillance}) est
 \begin{align*}
 h(t) &= \lim_{\Delta t\to 0}\frac{\S(t)-\S(t+\Delta t)}{\Delta t} \\
 & = \lim_{\Delta t\to 0} \frac{\IP(T<t+\Delta t | T\geq
 t)}{\Delta t} \\
 &= \frac{f(t)}{\S(t)}
 \end{align*}
-It gives probability of failure between $t$ and $\Delta t$, given survival to $t$.
+Il donne la probabilité de défaillance entre $t$ et $\Delta t$, étant donné la survie jusqu'à $t$.
 \vfill
-We have
+Nous avons
 \[
 h(t)=-\frac{d}{dt}\ln\S(t)
 \]
 \end{frame}
 
 <<pdf-cdf-surv-hazard-normal,eval=TRUE,echo=FALSE,include=FALSE>>=
-# Parameters for normal distribution
+# Paramètres pour la distribution normale
 mu <- 5
 sigma <- 1.5
 x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 1000)
 
-# Compute functions
+# Calculer les fonctions
 pdf <- dnorm(x, mean = mu, sd = sigma)
 cdf <- pnorm(x, mean = mu, sd = sigma)
 surv <- 1 - cdf
 
-# Plot all three functions
+# Tracer les trois fonctions
 plot(x, pdf, type = "l", col = "blue", lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
      main = "PD, CD and Survival functions & Hazard rate",
@@ -516,7 +516,7 @@ lines(x, cdf, col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv, col = "red", lwd = 2, lty = 3)
 lines(x, pdf/surv, col = fg_colour, lty = 3, lwd = 1)
 
-# Add legend
+# Ajouter la légende
 legend("right",
        legend = c("PDF", "CDF", "Survival", "Hazard"),
        col = c("blue", "darkgreen", "red", "black"),
@@ -528,32 +528,32 @@ legend("right",
 \maxFrameImage{\Sexpr{fig_chunk('pdf-cdf-surv-hazard-normal', 'pdf')}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Competing risks}
-Suppose now that the system starts in state $A$ at time $t=0$ and that depending on which of the two events $\mathcal{E}_1$ or $\mathcal{E}_2$ takes place first, it switches to state $B_1$ or $B_2$, respectively
+\begin{frame}{Risques concurrents}
+Supposons maintenant que le système commence dans l'état $A$ au temps $t=0$ et que selon lequel des deux événements $\mathcal{E}_1$ ou $\mathcal{E}_2$ a lieu en premier, il passe à l'état $B_1$ ou $B_2$, respectivement
 \vfill
-Consider the random variables $T_A$, \emph{time spent} in state $A$ (or sojourn time in $A$), $T_{AB_1}$, \emph{time before switch to} $B_1$ and $T_{AB_2}$, \emph{time before switch to} $B_2$
+Considérons les variables aléatoires $T_A$, \emph{temps passé} dans l'état $A$ (ou temps de séjour dans $A$), $T_{AB_1}$, \emph{temps avant le passage à} $B_1$ et $T_{AB_2}$, \emph{temps avant le passage à} $B_2$
 \vfill
-If we consider state $A$, we cannot observe the variables $T_{AB_1}$ or $T_{AB_2}$. What is observable is the sojourn time in $A$
+Si nous considérons l'état $A$, nous ne pouvons pas observer les variables $T_{AB_1}$ ou $T_{AB_2}$. Ce qui est observable est le temps de séjour dans $A$
 \[
 T^*_A=\min\left( T_{AB_1},T_{AB_2} \right)
 \]
-(where $^*$ indicates that a quantity is observable)
+(où $^*$ indique qu'une quantité est observable)
 \end{frame}
 
-\begin{frame}{Failure rate by type of event}
-We have two (or more) types of events whose individual failure rates have to be accounted for
+\begin{frame}{Taux de défaillance par type d'événement}
+Nous avons deux (ou plusieurs) types d'événements dont les taux de défaillance individuels doivent être pris en compte
 \begin{align*}
 h_j(t) &= \lim_{\Delta t\to 0} \frac{\mathbb{P}( T<t+\Delta t, S=S_j | T\geq t)}{\Delta t} 
 \end{align*}
-where $\mathbb{P}(T<t+\Delta t, S=S_j | T\geq t)$ is the probability of failure due to cause $S_j$ ($j=1,2$ ici), i.e., $S$ is a discrete r.v. representing the event that is taking place
+où $\mathbb{P}(T<t+\Delta t, S=S_j | T\geq t)$ est la probabilité de défaillance due à la cause $S_j$ ($j=1,2$ ici), c'est-à-dire $S$ est une v.a. discrète représentant l'événement qui se produit
 \end{frame}
 
 \begin{frame}
-By the law of total probability, since only one of the event can take place, if there are $n$ risks, then
+Par la loi de probabilité totale, puisqu'un seul des événements peut avoir lieu, s'il y a $n$ risques, alors
 $$
 h(t) = \sum_{i=1}^n h_j(t)
 $$
-or, identically,
+ou, de manière identique,
 $$
 \mathcal{S}(t)
 =
@@ -564,9 +564,9 @@ $$
 \end{frame}
 
 \begin{frame}
-As a consequence, suppose a process is subject to two competing exponential risks with respective distributions with parameters $\theta_1$ and $\theta_2$
+En conséquence, supposons qu'un processus est soumis à deux risques exponentiels concurrents avec des distributions respectives de paramètres $\theta_1$ et $\theta_2$
 \vfill
-Then the mean sojourn time in the initial state before being affected by one of the two risks is
+Alors le temps de séjour moyen dans l'état initial avant d'être affecté par l'un des deux risques est
 $$
 \frac{1}{\theta_1+\theta_2}
 $$
@@ -577,50 +577,50 @@ $$
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{Two ``extreme'' distributions and a nicer one}
+\subsection{Deux distributions « extrêmes » et une plus agréable}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
-\begin{frame}\frametitle{The exponential distribution}
-The random variable $T$ has an \defword{exponential} distribution if its
-probability density function takes the form
+\begin{frame}\frametitle{La distribution exponentielle}
+La variable aléatoire $T$ a une distribution \defword{exponentielle} si sa
+fonction de densité de probabilité prend la forme
 \begin{equation}\label{eq:exp_distrib}
-f(t)=\begin{cases}0&\textrm{if }t<0,\\
-\theta e^{-\theta t}&\textrm{if }t\geq 0,
+f(t)=\begin{cases}0&\textrm{si }t<0,\\
+\theta e^{-\theta t}&\textrm{si }t\geq 0,
 \end{cases}
 \end{equation}
-with $\theta>0$. Then the
-survival function for state $A$ is of the form $\S(t)=e^{-\theta
-  t}$, for $t\geq 0$, and the average sojourn time in state $A$ is
+avec $\theta>0$. Alors la
+fonction de survie pour l'état $A$ est de la forme $\S(t)=e^{-\theta
+  t}$, pour $t\geq 0$, et le temps de séjour moyen dans l'état $A$ est
 \[
 \tau=\int_0^\infty e^{-\theta t}dt=\frac 1\theta
 \]
 \end{frame}
 
-\begin{frame}\frametitle{Particularities of the exponential distribution}
-The standard deviation of an exponential distribution is also $1/\theta$. When estimating $\theta$, it is impossible to distinguish the mean and the standard deviation
+\begin{frame}\frametitle{Particularités de la distribution exponentielle}
+L'écart-type d'une distribution exponentielle est également $1/\theta$. Lors de l'estimation de $\theta$, il est impossible de distinguer la moyenne et l'écart-type
 \vfill
-The exponential distribution is \defword{memoryless}: its conditional probability obeys
+La distribution exponentielle est \defword{sans mémoire} : sa probabilité conditionnelle obéit à
 \[
 P(T > s + t\; |\; T > s) = P(T > t),\quad\forall s, t \ge 0
 \]
 
-The exponential and geometric distributions are the only memoryless probability distributions
+Les distributions exponentielle et géométrique sont les seules distributions de probabilité sans mémoire
 \vfill
-The exponential distribution has a constant hazard function $h(t)\equiv\theta$
+La distribution exponentielle a une fonction de risque constante $h(t)\equiv\theta$
 \end{frame}
 
 <<pdf-cdf-surv-hazard-expon,eval=TRUE,echo=FALSE,include=FALSE>>=
-# Parameters for exponential distribution
+# Paramètres pour la distribution exponentielle
 lambda <- 0.8
 x <- seq(0, 10, length.out = 1000)
 
-# Compute functions
+# Calculer les fonctions
 pdf <- dexp(x, rate = lambda)
 cdf <- pexp(x, rate = lambda)
 surv <- 1 - cdf
 
-# Plot all three functions
+# Tracer les trois fonctions
 plot(x, pdf, type = "l", col = "blue", lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
      main = "PD, CD and Surv. functions & Hazard rate of exponential")
@@ -628,7 +628,7 @@ lines(x, cdf, col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv, col = "red", lwd = 2, lty = 3)
 lines(x, pdf/surv, col = fg_colour, lty = 3, lwd = 1)
 
-# Add legend
+# Ajouter la légende
 legend("right",
        legend = c("PDF", "CDF", "Survival", "Hazard"),
        col = c("blue", "darkgreen", "red", "black"),
@@ -639,8 +639,8 @@ legend("right",
 
 \maxFrameImage{\Sexpr{fig_chunk('pdf-cdf-surv-hazard-expon', 'pdf')}}
 
-\begin{frame}\frametitle{The Dirac delta distribution}
-If for some constant $\omega>0$,
+\begin{frame}\frametitle{La distribution delta de Dirac}
+Si pour une constante $\omega>0$,
 \[
 \S(t)=
 \left\{
@@ -650,29 +650,29 @@ If for some constant $\omega>0$,
 \end{array}
 \right.
 \]
-meaning that $T$ has a Dirac delta distribution
-$\delta_\omega(t)$, then the average sojourn time is
+ce qui signifie que $T$ a une distribution delta de Dirac
+$\delta_\omega(t)$, alors le temps de séjour moyen est
 \[
 \tau=\int_0^\omega dt=\omega
 \]
-with standard deviation $\sigma=0$
+avec écart-type $\sigma=0$
 \end{frame}
 
-\begin{frame}{The Gamma distribution}
-R.v. $X$ is \defword{Gamma} distributed ($X\,\sim\Gamma(k, \theta)$) with \defword{shape parameter} $k$ and \defword{scale parameter} $\theta$ (or \defword{rate} $\beta = 1/\theta$) (all positive) if its probability density function takes the form
+\begin{frame}{La distribution Gamma}
+La v.a. $X$ est distribuée selon une loi \defword{Gamma} ($X\,\sim\Gamma(k, \theta)$) avec \defword{paramètre de forme} $k$ et \defword{paramètre d'échelle} $\theta$ (ou \defword{taux} $\beta = 1/\theta$) (tous positifs) si sa fonction de densité de probabilité prend la forme
 \begin{equation}\label{eq:gamma_distrib}
 f(x;k,\theta) = \frac{x^{k-1} \mathrm{e}^{-\frac{x}{\theta}}}{\Gamma ( k)\theta ^k}
 \end{equation}
-where $x>0$ and $\Gamma$ is the Euler Gamma function, defined for all $z\in\mathbb{C}$ s.t. $\Re(z) > 0$ by
+où $x>0$ et $\Gamma$ est la fonction Gamma d'Euler, définie pour tout $z\in\mathbb{C}$ tel que $\Re(z) > 0$ par
 \[
 \Gamma : z \mapsto \int_0^{+\infty}  t^{z-1}\,\mathrm{e}^{-t}\,\mathrm{d}t
 \]
 \end{frame}
 
-\begin{frame}{Properties of the Gamma distribution}
-Mean $k\theta$, variance $k\theta^2$
+\begin{frame}{Propriétés de la distribution Gamma}
+Moyenne $k\theta$, variance $k\theta^2$
 \vfill
-Survival function
+Fonction de survie
 \[
 \mathcal{S}(t)=
 1-\frac{1}{\Gamma(k)}\gamma\left(
@@ -682,26 +682,26 @@ k,\frac{t}{\theta}
 k,\beta t
 \right)
 \]
-where 
+où 
 \[
 \gamma(a,x)=\int_0^x t^{a-1}{\rm e}^{-t}{\rm d}t
 \]
-is an incomplete Gamma function
+est une fonction Gamma incomplète
 \end{frame}
 
 <<pdf-cdf-surv-hazard-gamma,eval=TRUE,echo=FALSE,include=FALSE>>=
-# Parameters for gamma distribution
-shape <- 3       # shape parameter (k)
-scale <- 2       # scale parameter (θ)
+# Paramètres pour la distribution gamma
+shape <- 3       # paramètre de forme (k)
+scale <- 2       # paramètre d'échelle (θ)
 x <- seq(0, shape*scale + 4*scale, length.out = 1000)
 
-# Compute functions
+# Calculer les fonctions
 pdf    <- dgamma(x, shape = shape, scale = scale)
 cdf    <- pgamma(x, shape = shape, scale = scale)
 surv   <- 1 - cdf
 hazard <- pdf / surv
 
-# Plot all four curves
+# Tracer les quatre courbes
 plot(x, pdf, type = "l", col = "blue",      lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
      main = "PDF, CDF, Survival & Hazard of Gamma Distribution")
@@ -709,7 +709,7 @@ lines(x, cdf,    col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv,   col = "red",       lwd = 2, lty = 3)
 lines(x, hazard, col = fg_colour,   lwd = 1, lty = 3)
 
-# Legend
+# Légende
 legend("right",
        legend = c("PDF", "CDF", "Survival", "Hazard"),
        col    = c("blue","darkgreen","red","black"),
@@ -725,41 +725,41 @@ legend("right",
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{A simple cohort model with death} 
+\subsection{Un modèle de cohorte simple avec décès} 
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
-\begin{frame}\frametitle{A model for a cohort with one cause of death}
-Consider a \defword{cohort} of individuals born at the same time, e.g., the same year
+\begin{frame}\frametitle{Un modèle pour une cohorte avec une cause de décès}
+Considérons une \defword{cohorte} d'individus nés au même moment, par exemple, la même année
 \vfill
 \begin{itemize}
-\item At time $t=0$, there are initially $N_0>0$ individuals
-\item All causes of death are compounded together 
-\item The time until death, for a given individual, is a random variable $T$, with continuous probability density distribution $f(t)$ and survival function $\S(t)$
+\item Au temps $t=0$, il y a initialement $N_0>0$ individus
+\item Toutes les causes de décès sont combinées ensemble 
+\item Le temps jusqu'au décès, pour un individu donné, est une variable aléatoire $T$, avec une distribution de densité de probabilité continue $f(t)$ et une fonction de survie $\S(t)$
 \end{itemize}
 \vfill
-$N(t)$ the cohort population at time $t\geq 0$
+$N(t)$ la population de la cohorte au temps $t\geq 0$
 \begin{equation}\label{eq:N_general}
 N(t)=N_0\S(t)
 \end{equation}
 \vfill
-$\S(t)$ proportion of initial population still alive at time $t$, so $N_0\S(t)$ number in the cohort still alive at time $t$
+$\S(t)$ proportion de la population initiale encore en vie au temps $t$, donc $N_0\S(t)$ nombre dans la cohorte encore en vie au temps $t$
 \end{frame}
 
-\begin{frame}\frametitle{Case where $T$ is exponentially distributed}
-Suppose that $T$ has an exponential distribution with mean $1/d$ (or parameter $d$), $f(t)=de^{-dt}$. Then the survival function is $\S(t)=e^{-dt}$, and \eqref{eq:N_general} takes the form
+\begin{frame}\frametitle{Cas où $T$ est distribuée exponentiellement}
+Supposons que $T$ ait une distribution exponentielle avec moyenne $1/d$ (ou paramètre $d$), $f(t)=de^{-dt}$. Alors la fonction de survie est $\S(t)=e^{-dt}$, et \eqref{eq:N_general} prend la forme
 \begin{equation}\label{eq:N}
 N(t)=N_0e^{-dt}
 \end{equation}
 \vfill
-Now note that
+Notez maintenant que
 \begin{align*}
 \frac{d}{dt} N(t) &= -dN_0e^{-dt} \\
 &= -dN(t)
 \end{align*}
-with $N(0)=N_0$.
+avec $N(0)=N_0$.
 \vfill
-{\red $\Rightarrow$} The ODE $N'=-dN$ makes the assumption that the life expectancy at birth is exponentially distributed
+{\red $\Rightarrow$} L'EDO $N'=-dN$ fait l'hypothèse que l'espérance de vie à la naissance est distribuée exponentiellement
 \end{frame}
 
 <<prop_surviving_exp_80years,eval=TRUE,echo=FALSE,fig.width=8,fig.height=6,include=FALSE>>=
@@ -780,32 +780,32 @@ grid(lwd=2)
 @
 
 \begin{frame}
-Survival function, $\S(t)=\IP(T>t)$, for an exponential distribution with mean 80 years
+Fonction de survie, $\S(t)=\IP(T>t)$, pour une distribution exponentielle avec moyenne 80 ans
 \begin{center}
 \includegraphics[width=0.8\textwidth]{\Sexpr{fig_chunk('prop_surviving_exp_80years', 'pdf')}}
 \end{center}
 \end{frame}
 
 
-\begin{frame}\frametitle{Case where $T$ has a Dirac delta distribution}
-Suppose that $T$ has a Dirac delta distribution at $t=\omega$, giving the
-survival function 
+\begin{frame}\frametitle{Cas où $T$ a une distribution delta de Dirac}
+Supposons que $T$ ait une distribution delta de Dirac en $t=\omega$, donnant la
+fonction de survie 
 \[
 \S(t)=\begin{cases}
 1, & 0\leq t\leq\omega \\
 0, & t>\omega 
 \end{cases}
 \]
-Then \eqref{eq:N_general} takes the form
+Alors \eqref{eq:N_general} prend la forme
 \begin{equation}\label{eq:N2}
 N(t)=\begin{cases}
 N_0, & 0\leq t\leq\omega \\
 0, & t>\omega
 \end{cases}
 \end{equation}
-All individuals survive until time $\omega$, then they all die at time $\omega$
+Tous les individus survivent jusqu'au temps $\omega$, puis ils meurent tous au temps $\omega$
 \vfill
-Here, $N'=0$ everywhere except at $t=\omega$, where it is undefined
+Ici, $N'=0$ partout sauf en $t=\omega$, où elle est indéfinie
 \end{frame}
 
 
@@ -831,7 +831,7 @@ grid(lwd=2)
 @
 
 \begin{frame}
-Survival function, $\S(t)=\IP(T>t)$, for a Dirac distribution with mean 80 years
+Fonction de survie, $\S(t)=\IP(T>t)$, pour une distribution de Dirac avec moyenne 80 ans
 \begin{center}
 \includegraphics[width=0.8\textwidth]{\Sexpr{fig_chunk('prop_surviving_dirac_80years', 'pdf')}}
 \end{center}
@@ -844,7 +844,7 @@ Survival function, $\S(t)=\IP(T>t)$, for a Dirac distribution with mean 80 years
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{A possible fix to the exponential distribution issue} 
+\subsection{Une correction possible au problème de la distribution exponentielle} 
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
@@ -855,21 +855,21 @@ if (plot_blackBG) {
 } else {
   colour = "black"
 }
-# Set paramaters
+# Définir les paramètres
 d_1 = 1/80 
 y_1 = seq(0, 200, 0.1)
 S_1 = 1-pexp(y_1, d_1)
 d_2 = 1/4
 y_2 = seq(0, 20, 0.05)
 S_2 = 1-pexp(y_2, d_2)
-# Find some locations
+# Trouver quelques emplacements
 idx_50_years = max(which(y_1<=50))
 idx_80_years = max(which(y_1<=80))
 idx_100_years = min(which(y_1>=100))
 idx_150_years = min(which(y_1>=150))
 idx_1_days = max(which(y_2<=1))
 idx_10_days = max(which(y_2<=10))
-# Plot
+# Tracer
 par(mfrow = c(1,2))
 plot(y_2, S_2,
      type = "l", lwd = 3,
@@ -932,49 +932,49 @@ text(x = 80, y = 0.8,
      pos = 4)
 @
 
-\begin{frame}{Survival for the exponential distribution}
+\begin{frame}{Survie pour la distribution exponentielle}
 \begin{center}
 \includegraphics[width=0.75\textwidth]{\Sexpr{fig_chunk('prop_surviving_exp_80years_details', 'pdf')}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Issues with the exponential distribution}
-\bbullet Survival drops quickly
+\begin{frame}{Problèmes avec la distribution exponentielle}
+\bbullet La survie chute rapidement
 \vfill
-\bbullet Survival continues way beyond the mean
+\bbullet La survie continue bien au-delà de la moyenne
 \vfill
-Acceptable if what matters is the average duration of sojourn in a compartment (e.g., long term dynamics)
+Acceptable si ce qui compte est la durée moyenne de séjour dans un compartiment (par ex., dynamique à long terme)
 \vfill
-More iffy if one is interested in short-term dynamics
+Plus délicat si l'on s'intéresse à la dynamique à court terme
 \vfill
-\bbullet Exponential distribution with parameter $\theta$ has same mean and standard deviation $1/\theta$, i.e., a single parameter controls mean and dispersion about the mean
+\bbullet La distribution exponentielle avec paramètre $\theta$ a la même moyenne et écart-type $1/\theta$, c'est-à-dire qu'un seul paramètre contrôle la moyenne et la dispersion autour de la moyenne
 \end{frame}
 
-\begin{frame}{Exponential distributions are ``bad'' but also cool}
-$X_1$ and $X_2$ 2 i.i.d. (independent and identically distributed) r.v. with parametres $\theta_1$ and $\theta_2$. Then the probability density function of the r.v. $Z=X_1+X_2$ is given by the convolution
+\begin{frame}{Les distributions exponentielles sont « mauvaises » mais aussi cool}
+$X_1$ et $X_2$ 2 v.a. i.i.d. (indépendantes et identiquement distribuées) avec paramètres $\theta_1$ et $\theta_2$. Alors la fonction de densité de probabilité de la v.a. $Z=X_1+X_2$ est donnée par la convolution
 \begin{align}
  f_Z(z) &= \int_{-\infty}^\infty f_{X_1}(x_1) f_{X_2}(z - x_1)\,dx_1 \nonumber\\
    &= \int_0^z \theta_1 e^{-\theta_1 x_1} \theta_2 e^{-\theta_2(z - x_1)} \, dx_1 \nonumber\\
    &= \theta_1 \theta_2 e^{-\theta_2 z} \int_0^z e^{(\theta_2 - \theta_1)x_1}\,dx_1 \nonumber\\
    &= \begin{cases}
-        \dfrac{\theta_1 \theta_2}{\theta_2-\theta_1} \left(e^{-\theta_1 z} - e^{-\theta_2 z}\right) & \text{ if } \theta_1 \neq \theta_2 \\
-        \theta^2 z e^{-\theta z} & \text{ if } \theta_1 = \theta_2 =: \theta
+        \dfrac{\theta_1 \theta_2}{\theta_2-\theta_1} \left(e^{-\theta_1 z} - e^{-\theta_2 z}\right) & \text{ si } \theta_1 \neq \theta_2 \\
+        \theta^2 z e^{-\theta z} & \text{ si } \theta_1 = \theta_2 =: \theta
       \end{cases}
 \end{align}
 \end{frame}
 
-\begin{frame}{The tool we use}
+\begin{frame}{L'outil que nous utilisons}
 \begin{theorem}
-Let $X_i$ be independent exponentially distributed random variables with parameter $\xi$ and $Y = \sum_{i=1}^n X_i$
+Soit $X_i$ des variables aléatoires indépendantes distribuées exponentiellement avec paramètre $\xi$ et $Y = \sum_{i=1}^n X_i$
 \vskip1cm
-Then the random variable $Y\rightsquigarrow E(n,\xi)$, an Erlang distribution with \emph{shape} parameter $n$ and \emph{scale} parameter $\xi$
+Alors la variable aléatoire $Y\rightsquigarrow E(n,\xi)$, une distribution d'Erlang avec paramètre de \emph{forme} $n$ et paramètre d'\emph{échelle} $\xi$
 \end{theorem}
 \vfill
-(Erlang distribution: Gamma distribution with integer shape parameter)
+(Distribution d'Erlang : distribution Gamma avec paramètre de forme entier)
 \end{frame}
 
-\begin{frame}{Consequences for compartmental models}
-If $n$ compartments are traversed successively by individuals, with each compartment having an outflow rate of $1/\xi$ (or a mean sojourn time of $\xi$), then the time of sojourn from entry into the first compartment to exit from the last is Erlang distributed with mean $E(Y)=n\xi$ and variance $\mathsf{Var}(Y)=n\xi^2$
+\begin{frame}{Conséquences pour les modèles compartimentaux}
+Si $n$ compartiments sont traversés successivement par des individus, avec chaque compartiment ayant un taux de sortie de $1/\xi$ (ou un temps de séjour moyen de $\xi$), alors le temps de séjour depuis l'entrée dans le premier compartiment jusqu'à la sortie du dernier est distribué selon Erlang avec moyenne $E(Y)=n\xi$ et variance $\mathsf{Var}(Y)=n\xi^2$
 \vfill
 \begin{center}
 \def\skip{*3}
@@ -1009,20 +1009,20 @@ draw, circle]
 \draw [|-|, thick] (0\skip,6.5) -- (7\skip,6.5);
 \draw [|-|, thick] (0\skip,2.5) -- (7\skip,2.5);
 %% Labels of time lines 
-\node at (6\skip,2) {Average sojourn time $N/\varepsilon$};
-\node at (6\skip,6) {Average sojourn time $1/\mu$};
+\node at (6\skip,2) {Temps de séjour moyen $N/\varepsilon$};
+\node at (6\skip,6) {Temps de séjour moyen $1/\mu$};
 \end{tikzpicture}
 \end{center}
 \vfill
-I have a \href{https://daytah-or-dahtah.ovh:3838/Erlang_shiny/}{Shiny app} for this :)
+J'ai une \href{https://daytah-or-dahtah.ovh:3838/Erlang_shiny/}{appli Shiny} pour ceci :)
 \end{frame}
 
-\begin{frame}{Example: EVD incubation periods}
-Consider the incubation period for Ebola Virus Disease. During the 2014 EVD crisis in Western Africa, the WHO Ebola Response Team estimated incubation periods in a 2015 paper
+\begin{frame}{Exemple : périodes d'incubation de la MVE}
+Considérons la période d'incubation de la Maladie à Virus Ebola. Pendant la crise de MVE de 2014 en Afrique de l'Ouest, l'Équipe de réponse Ebola de l'OMS a estimé les périodes d'incubation dans un article de 2015
 \vfill
-Table S2 in the Supplementary Information in that paper gives the best fit for the distribution of incubation periods for EVD as a Gamma distribution with mean 10.3 days and standard deviation 8.2, i.e., $n\varepsilon = 10.3$ and $\varepsilon \sqrt{n}=8.2$
+Le tableau S2 dans les Informations Supplémentaires de cet article donne le meilleur ajustement pour la distribution des périodes d'incubation de la MVE comme une distribution Gamma avec moyenne 10,3 jours et écart-type 8,2, c'est-à-dire $n\varepsilon = 10,3$ et $\varepsilon \sqrt{n}=8,2$
 \vfill
-From this, $\varepsilon = 8.2^2/10.3 \simeq 6.53$ and $n = 10.3^2/8.2^2 \simeq 1.57$. However, that is a Gamma distribution
+De ceci, $\varepsilon = 8,2^2/10,3 \simeq 6,53$ et $n = 10,3^2/8,2^2 \simeq 1,57$. Cependant, c'est une distribution Gamma
 \end{frame}
 
 \begin{frame}[fragile]{Switching to a compartmental model approach}
@@ -1082,9 +1082,9 @@ optimize_gamma <- function(t,d) {
 time_points <- seq(0,60)
 data_points <- dgamma(time_points, shape = 1.57, 
                       scale = 6.53)
-# Run the minimization
+# Exécuter la minimisation
 optim_fits <- optimize_gamma(time_points,data_points)
-# Which is the best Erlang to fit the data
+# Quelle est la meilleure Erlang pour ajuster les données
 idx_best <- which.min(optim_fits$error)
 @
 
@@ -1107,7 +1107,7 @@ legend("topright", legend = c("Data","Best Erlang fit"),
 @
 
 \begin{frame}
-We find the best fit below, which is obtained using \Sexpr{optim_fits[idx_best,]$shape} compartments
+Nous trouvons le meilleur ajustement ci-dessous, qui est obtenu en utilisant \Sexpr{optim_fits[idx_best,]$shape} compartiments
 \begin{center}
 \includegraphics[width=0.75\textwidth]{\Sexpr{fig_chunk('plot_results_optim_Erlang', 'pdf')}}
 \end{center}
@@ -1122,93 +1122,93 @@ We find the best fit below, which is obtained using \Sexpr{optim_fits[idx_best,]
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{Sojourn times in an SIS disease transmission model} 
+\subsection{Temps de séjour dans un modèle de transmission de maladie SIS} 
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
-\begin{frame}\frametitle{An SIS model}
-\framesubtitle{Hypotheses}
+\begin{frame}\frametitle{Un modèle SIS}
+\framesubtitle{Hypothèses}
 \begin{itemize}
-\item Individuals typically recover from the disease
+\item Les individus se rétablissent typiquement de la maladie
 \vfill
-\item The disease does not confer immunity
+\item La maladie ne confère pas d'immunité
 \vfill
-\item There is no birth or death (from the disease or natural) \newline\imply\;
-Constant total population $N\equiv N(t)=S(t)+I(t)$
+\item Il n'y a pas de naissance ou de décès (de la maladie ou naturel) \newline\imply\;
+Population totale constante $N\equiv N(t)=S(t)+I(t)$
 \vfill
-\item Infection is of \defword{standard incidence} type
+\item L'infection est de type \defword{incidence standard}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}\frametitle{Recovery}
+\begin{frame}\frametitle{Rétablissement}
 \begin{itemize}
-\item Traditional models suppose that recovery occurs with rate constant
+\item Les modèles traditionnels supposent que le rétablissement se produit avec un taux constant
 $\gamma$
 \vfill
-\item Here, of the individuals that become
-infective at time $t_0$, a fraction $\S(t-t_0)$ remain infective at
-time $t\geq t_0$
+\item Ici, parmi les individus qui deviennent
+infectieux au temps $t_0$, une fraction $\S(t-t_0)$ reste infectieuse au
+temps $t\geq t_0$
 \vfill
 \item \imply\;
-For $t\geq 0$, $\S(t)$ is a survival function. As such, it verifies
-$\S(0)=1$ and $\S$ is nonnegative and nonincreasing
+Pour $t\geq 0$, $\S(t)$ est une fonction de survie. En tant que telle, elle vérifie
+$\S(0)=1$ et $\S$ est non négative et non croissante
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}\frametitle{Model for infectious individuals}
-Since $N$ is constant, $S(t)=N-I(t)$ and we need only
-consider the following equation (where $S$ is used for clarity)
+\begin{frame}\frametitle{Modèle pour les individus infectieux}
+Puisque $N$ est constant, $S(t)=N-I(t)$ et nous n'avons besoin de
+considérer que l'équation suivante (où $S$ est utilisé pour plus de clarté)
 \begin{equation}
 I(t) = I_0(t)+ \int_0^t\beta\frac{S(u)I(u)}{N} \S(t-u) du
 \label{eq:SIS_I} 
 \end{equation}
 \vfill
 \begin{itemize}
-\item $I_0(t)$ number of individuals who were infective at time
-$t=0$ and still are at time $t$
+\item $I_0(t)$ nombre d'individus qui étaient infectieux au temps
+$t=0$ et le sont toujours au temps $t$
 \begin{itemize}
-\item $I_0(t)$ is nonnegative, nonincreasing, and
-such that $\lim_{t\to\infty}I_0(t)=0$
+\item $I_0(t)$ est non négatif, non croissant, et
+tel que $\lim_{t\to\infty}I_0(t)=0$
 \end{itemize}
-\item $\S(t-u)$ proportion of individuals who became infective at time $u$ and who still are at time $t$
+\item $\S(t-u)$ proportion d'individus qui sont devenus infectieux au temps $u$ et qui le sont toujours au temps $t$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}\frametitle{Expression under the integral}
-Integral equation for the number of infective individuals: 
+\begin{frame}\frametitle{Expression sous l'intégrale}
+Équation intégrale pour le nombre d'individus infectieux : 
 \begin{equation}
 I(t) = I_0(t)+ \int_0^t\beta\frac{(N-I(u))I(u)}{N} \S(t-u) du
 \tag{\ref{eq:SIS_I}} 
 \end{equation}
-The term
+Le terme
 \[
 \beta\frac{(N-I(u))I(u)}{N} \S(t-u)
 \]
 \begin{itemize}
-\item $\beta (N-I(u))I(u)/N$ is the rate at which new infectives are created, at time $u$
-\item multiplying by $\S(t-u)$ gives the proportion of those who became
-infectives at time $u$ and who still are at time $t$
+\item $\beta (N-I(u))I(u)/N$ est le taux auquel de nouveaux infectieux sont créés, au temps $u$
+\item multiplier par $\S(t-u)$ donne la proportion de ceux qui sont devenus
+infectieux au temps $u$ et qui le sont toujours au temps $t$
 \end{itemize}
-Summing over $[0,t]$ gives the number of infective individuals at time $t$
+Sommer sur $[0,t]$ donne le nombre d'individus infectieux au temps $t$
 \end{frame}
 
 
-\begin{frame}\frametitle{Case of an exponentially distributed time to recovery}
-Suppose $\S(t)$ such that sojourn time in the infective
-state has exponential distribution with mean $1/\gamma$,
-\textit{i.e.}, $\S(t)=e^{-\gamma t}$
+\begin{frame}\frametitle{Cas d'un temps de rétablissement distribué exponentiellement}
+Supposons $\S(t)$ tel que le temps de séjour dans l'état infectieux
+ait une distribution exponentielle avec moyenne $1/\gamma$,
+\textit{c'est-à-dire}, $\S(t)=e^{-\gamma t}$
 \vfill
-Initial condition function $I_0(t)$ takes the form
+La fonction de condition initiale $I_0(t)$ prend la forme
 \[
 I_0(t)=I_0(0)e^{-\gamma t}
 \]
-with $I_0(0)$ the number of infective individuals at time $t=0$. Obtained by considering the cohort of initially infectious individuals, giving a
-model such as \eqref{eq:N_general}
+avec $I_0(0)$ le nombre d'individus infectieux au temps $t=0$. Obtenu en considérant la cohorte d'individus initialement infectieux, donnant un
+modèle tel que \eqref{eq:N_general}
 \vfill
-Equation (\ref{eq:SIS_I}) becomes
+L'équation (\ref{eq:SIS_I}) devient
 \begin{equation}\label{eq:I_ODE}
 I(t)=I_0(0)e^{-\gamma t}+\int_0^t \beta\frac{(N-I(u))I(u)}{N} e^{-\gamma
 (t-u)}du
@@ -1216,7 +1216,7 @@ I(t)=I_0(0)e^{-\gamma t}+\int_0^t \beta\frac{(N-I(u))I(u)}{N} e^{-\gamma
 \end{frame}
 
 \begin{frame}
-Taking the time derivative of \eqref{eq:I_ODE} yields
+Prendre la dérivée temporelle de \eqref{eq:I_ODE} donne
 \begin{align*}
 I'(t) &= -\gamma I_0(0)e^{-\gamma t}-\gamma\int_0^t
 \beta\frac{(N-I(u))I(u)}{N}e^{-\gamma(t-u)}du \\
@@ -1227,37 +1227,36 @@ I'(t) &= -\gamma I_0(0)e^{-\gamma t}-\gamma\int_0^t
 &= \beta \frac{(N-I(t))I(t)}{N}-\gamma I(t)
 \end{align*}
 \vfill
-This is the classical logistic type ordinary differential equation (ODE) for $I$ in an SIS model without vital dynamics (no birth or death)
+Ceci est l'équation différentielle ordinaire (EDO) classique de type logistique pour $I$ dans un modèle SIS sans dynamique vitale (pas de naissance ou de décès)
 \end{frame}
 
 
 
-\begin{frame}\frametitle{Case of a step function survival function}
-Consider case where the time spent infected has survival function 
+\begin{frame}\frametitle{Cas d'une fonction de survie en escalier}
+Considérons le cas où le temps passé infecté a une fonction de survie 
 \[
 \S(t)=\begin{cases}
 1, & 0\leq t\leq\omega,\\
 0, & t>\omega.
 \end{cases}
 \]
-i.e., the sojourn time in the infective state is a constant
+c'est-à-dire, le temps de séjour dans l'état infectieux est une constante
 $\omega>0$
 \vfill
-In this case (\ref{eq:SIS_I}) becomes
+Dans ce cas (\ref{eq:SIS_I}) devient
 \begin{equation}\label{eq:I_DDE}
 I(t)=I_0(t)+\int_{t-\omega}^t \beta\frac{(N-I(u))I(u)}{N} du.
 \end{equation}
-Here, it is more difficult to obtain an expression for $I_0(t)$. It is however assumed that $I_0(t)$ vanishes for $t>\omega$
+Ici, il est plus difficile d'obtenir une expression pour $I_0(t)$. Il est cependant supposé que $I_0(t)$ s'annule pour $t>\omega$
 \end{frame}
 
 \begin{frame}
-When differentiated, \eqref{eq:I_DDE} gives, for $t\geq\omega$,
+Lorsque différentiée, \eqref{eq:I_DDE} donne, pour $t\geq\omega$,
 \[
 I'(t)=I_0'(t)+\beta\frac{(N-I(t))I(t)}{N}
 -\beta\frac{\left(N-I(t-\omega)\right)I(t-\omega)}{N}.
 \]
-Since $I_0(t)$ vanishes for $t>\omega$, this gives the delay
-differential equation (DDE)
+Puisque $I_0(t)$ s'annule pour $t>\omega$, ceci donne l'équation différentielle à retard (EDR)
 \[
 I'(t)=\beta\frac{(N-I(t))I(t)}{N}
 -\beta\frac{(N-I(t-\omega))I(t-\omega)}{N}.
@@ -1271,14 +1270,14 @@ I'(t)=\beta\frac{(N-I(t))I(t)}{N}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{A model with vaccination}
+\subsection{Un modèle avec vaccination}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 \maxFrameImage{FIGS/ArinoCookePvdDVelasco.png}
 \nocite{ArinoCookeVdDVelasco2004}
 
-\begin{frame}\frametitle{Model structure}
+\begin{frame}\frametitle{Structure du modèle}
 \centering
 \def\skip{*3.5}
 \begin{tikzpicture}[scale=1, transform shape]
@@ -1306,13 +1305,13 @@ I'(t)=\beta\frac{(N-I(t))I(t)}{N}
 \end{tikzpicture}    
 \end{frame}
 
-\begin{frame}\frametitle{Assumptions on $\S$}
-$\S(t)$ is a nonnegative and nonincreasing function with $\S(0^+)=1$, and such that $\int_0^\infty \S(u)du$ is positive and finite
+\begin{frame}\frametitle{Hypothèses sur $\S$}
+$\S(t)$ est une fonction non négative et non croissante avec $\S(0^+)=1$, et telle que $\int_0^\infty \S(u)du$ est positive et finie
 \vfill
-So $\S(t)$ is a survival function
+Donc $\S(t)$ est une fonction de survie
 \end{frame}
 
-\begin{frame}\frametitle{The SIS model with vaccination} 
+\begin{frame}\frametitle{Le modèle SIS avec vaccination} 
 \begin{subequations}\label{sys:SIVS_general}
 \begin{align}
   \frac{dI(t)}{dt}&= \beta(S(t)+\sigma V(t))I(t)-(d+\gamma)I(t)
@@ -1324,115 +1323,115 @@ So $\S(t)$ is a survival function
 \end{subequations}
 \vfill
 \begin{itemize}
-\item $\alpha d$ proportion of vaccinated newborns
-\item $\phi S(u)$ proportion of vaccinated susceptibles
-\item $\S(t-u)$ fraction of the proportion vaccinated still in the $V$
-  class $t-u$ time units after going in
-\item $e^{-d(t-u)}$ fraction of the proportion vaccinated
-not dead due to natural causes
-\item $e^{-\sigma\beta\int_u^t I(x)dx}$ fraction of the proportion
-  vaccinated not gone to the infective class
+\item $\alpha d$ proportion de nouveau-nés vaccinés
+\item $\phi S(u)$ proportion de susceptibles vaccinés
+\item $\S(t-u)$ fraction de la proportion vaccinée encore dans la classe $V$
+  $t-u$ unités de temps après y être entrée
+\item $e^{-d(t-u)}$ fraction de la proportion vaccinée
+pas décédée de causes naturelles
+\item $e^{-\sigma\beta\int_u^t I(x)dx}$ fraction de la proportion
+  vaccinée pas passée dans la classe infectieuse
 \end{itemize} 
 \end{frame}
 
-\begin{frame}\frametitle{Reduction of the system using specific $\S(t)$ functions}
+\begin{frame}\frametitle{Réduction du système en utilisant des fonctions $\S(t)$ spécifiques}
 \vfill
 \begin{itemize}
-\item The distribution of waning times being exponential leads to
- an ODE system
+\item La distribution des temps de déclin étant exponentielle conduit à
+ un système d'EDO
 \vfill
-\item $\S(t)$ originating in a Dirac distribution leads to a discrete DDE model
+\item $\S(t)$ provenant d'une distribution de Dirac conduit à un modèle EDR à retard discret
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Be aware (beware?) of what's under the hood}
-ODEs and discrete-delay DDEs are fine, but they hide some pretty strong assumptions
+\begin{frame}{Soyez conscient (méfiez-vous ?) de ce qui se cache sous le capot}
+Les EDO et les EDR à retard discret vont bien, mais elles cachent des hypothèses assez fortes
 \vfill
-If you are using an ODE for an \emph{endemic} model, fine: you are typically working with $t\to\infty$ and the ODE ``uses'' the mean of your parameter
+Si vous utilisez une EDO pour un modèle \emph{endémique}, bien : vous travaillez typiquement avec $t\to\infty$ et l'EDO « utilise » la moyenne de votre paramètre
 \vfill
-If, on the other hand, you are using an ODE to assess behaviour for times that are not too different from the mean of your parameters, then beware
+Si, d'autre part, vous utilisez une EDO pour évaluer le comportement pour des temps qui ne sont pas trop différents de la moyenne de vos paramètres, alors méfiez-vous
 \vfill
-Discrete delays make the assumption that every single individual in your population has the same sojourn time if whatever compartment is being applied delay to... You may want to think about distributed delays or other mechanisms to compensate for this
+Les retards discrets font l'hypothèse que chaque individu dans votre population a le même temps de séjour si un compartiment quelconque se voit appliquer un retard... Vous pourriez vouloir penser aux retards distribués ou à d'autres mécanismes pour compenser ceci
 \vfill
-You may want to use a different hammer 
+Vous pourriez vouloir utiliser un marteau différent 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Continuous time Markov chains}
+\section{Chaînes de Markov à temps continu}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_bla659bla659bla6.jpeg}
 
-\subsection{Continuous time Markov chains}
+\subsection{Chaînes de Markov à temps continu}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_9agynl9agynl9agy.jpeg}
 \begin{frame}
-    \frametitle{From discrete to continuous time}
-    \begin{block}{Discrete-Time Markov Chains (DTMCs)}
-        A system transitions between states at fixed, discrete time steps ($n=0, 1, 2, \dots$)
+    \frametitle{Du temps discret au temps continu}
+    \begin{block}{Chaînes de Markov à temps discret (CMTD)}
+        Un système transite entre états à des pas de temps fixes et discrets ($n=0, 1, 2, \dots$)
         \begin{itemize}
-            \item The future depends only on the present state (Markov Property)
-            \item Governed by a \textbf{transition probability matrix} $P$, where $P_{ij}$ is the probability of moving from state $i$ to $j$ in one step
+            \item Le futur dépend uniquement de l'état présent (Propriété de Markov)
+            \item Régi par une \textbf{matrice de probabilité de transition} $P$, où $P_{ij}$ est la probabilité de passer de l'état $i$ à $j$ en une étape
         \end{itemize}
     \end{block}
     
-    \begin{block}{Continuous-Time Markov Chains (CTMCs)}
-        A system can transition between states at \textbf{any point in time}
+    \begin{block}{Chaînes de Markov à temps continu (CMTC)}
+        Un système peut transiter entre états à \textbf{n'importe quel moment}
         \begin{itemize}
-            \item Time spent in a state is a \textbf{continuous random variable}
-            \item The ``holding time'' in any state $i$ follows an \textbf{exponential distribution} parameterised by an \textit{exit rate} $q_i$
-            \item This is a direct consequence of the Markov Property being applied to continuous time (exponential is only continuous distribution that is ``memoryless'')
+            \item Le temps passé dans un état est une \textbf{variable aléatoire continue}
+            \item Le « temps de séjour » dans tout état $i$ suit une \textbf{distribution exponentielle} paramétrée par un \textit{taux de sortie} $q_i$
+            \item Ceci est une conséquence directe de la Propriété de Markov appliquée au temps continu (l'exponentielle est la seule distribution continue qui est « sans mémoire »)
         \end{itemize}
     \end{block}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Transition rates}
-    Dynamics of a CTMC defined by \textbf{transition rates}, not probabilities
+    \frametitle{Taux de transition}
+    Dynamique d'une CMTC définie par des \textbf{taux de transition}, pas des probabilités
 
-    \begin{definition}[Transition Rates]
-        For two states $i \neq j$, the rate $q_{ij} \ge 0$ is the instantaneous rate of transition from state $i$ to state $j$
+    \begin{definition}[Taux de transition]
+        Pour deux états $i \neq j$, le taux $q_{ij} \ge 0$ est le taux instantané de transition de l'état $i$ à l'état $j$
         \begin{itemize}
-            \item For a small time interval $\Delta t$, the probability of transitioning from $i$ to $j$ is approximately $q_{ij} \Delta t$
-            \item Total \defword{exit rate} from state $i$ is $q_i = \sum_{j \neq i} q_{ij}$
-            \item Time spent in state $i$ is an exponential random variable $T_i \sim \text{E}(q_i)$
+            \item Pour un petit intervalle de temps $\Delta t$, la probabilité de transition de $i$ à $j$ est approximativement $q_{ij} \Delta t$
+            \item Le \defword{taux de sortie} total de l'état $i$ est $q_i = \sum_{j \neq i} q_{ij}$
+            \item Le temps passé dans l'état $i$ est une variable aléatoire exponentielle $T_i \sim \text{E}(q_i)$
         \end{itemize}
     \end{definition}
 \end{frame}
     
-\begin{frame}{The generator matrix}
-    \begin{block}{Generator matrix (Q-Matrix)}
-        Collect all transition rates into a single matrix $Q$
+\begin{frame}{La matrice génératrice}
+    \begin{block}{Matrice génératrice (Matrice Q)}
+        Rassembler tous les taux de transition dans une seule matrice $Q$
         \begin{itemize}
-            \item Off-diagonal: $Q_{ij} = q_{ij}$ for $i \neq j$ (The rate of going from $i$ to $j$)
-            \item Diagonal: $Q_{ii} = -q_i = -\sum_{j \neq i} q_{ij}$. (The negative of the total exit rate from $i$)
+            \item Hors diagonale : $Q_{ij} = q_{ij}$ pour $i \neq j$ (Le taux de passage de $i$ à $j$)
+            \item Diagonale : $Q_{ii} = -q_i = -\sum_{j \neq i} q_{ij}$. (Le négatif du taux de sortie total de $i$)
         \end{itemize}
-        A key property is that all rows of $Q$ sum to zero: $\sum_{j} Q_{ij} = 0$.
+        Une propriété clé est que toutes les lignes de $Q$ somment à zéro : $\sum_{j} Q_{ij} = 0$.
     \end{block}
     
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Kolmogorov equations}
-    Let $P(t)$ be the matrix where $P_{ij}(t) = \mathbb{P}(X(t)=j | X(0)=i)$. How does $P(t)$ evolve over time?
+    \frametitle{Équations de Kolmogorov}
+    Soit $P(t)$ la matrice où $P_{ij}(t) = \mathbb{P}(X(t)=j | X(0)=i)$. Comment $P(t)$ évolue-t-elle dans le temps ?
     \vspace{1em}
     
-    \begin{alertblock}{Kolmogorov forward equations}
-        Describes rate of change of probability of ending up in a target state $j$
+    \begin{alertblock}{Équations de Kolmogorov progressives}
+        Décrit le taux de changement de probabilité de finir dans un état cible $j$
         $$ \frac{d}{dt}P(t) = P(t)Q $$
-        In element form:
+        Sous forme élémentaire :
         $$ P'_{ij}(t) = \sum_{k} P_{ik}(t) Q_{kj} $$
     \end{alertblock}
 \end{frame}
 
-\begin{frame}{Solution to the KFE}
-        The solution is the \textbf{matrix exponential}
+\begin{frame}{Solution de l'ÉKP}
+        La solution est l'\textbf{exponentielle matricielle}
         $$ P(t) = e^{tQ} = \sum_{k=0}^{\infty} \frac{(tQ)^k}{k!} $$
         \vfill
-        The generator matrix $Q$ ``generates'' the process's evolution
+        La matrice génératrice $Q$ « génère » l'évolution du processus
 \end{frame}
 
 
@@ -1458,27 +1457,27 @@ You may want to use a different hammer
 
 
 
-\subsection{ODE and CTMC}
+\subsection{EDO et CMTC}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 
-\begin{frame}{Converting your compartmental ODE model to CTMC}
-    Easy as $\pi$ :)
+\begin{frame}{Convertir votre modèle compartimentale EDO en CMTC}
+    Facile comme $\pi$ :)
 \vfill
 \begin{itemize}
-    \item Compartmental ODE model focuses on flows into and out of compartments
+    \item Le modèle compartimentale EDO se concentre sur les flux entrants et sortants des compartiments
     \vfill
-    \item ODE model has as many equations as there are compartments
+    \item Le modèle EDO a autant d'équations qu'il y a de compartiments
     \vfill
-    \item Compartmental CTMC model focuses on transitions
+    \item Le modèle compartimentale CMTC se concentre sur les transitions
     \vfill
-    \item CTMC model has as many transitions as there are arrows between (or into or out of) compartments
+    \item Le modèle CMTC a autant de transitions qu'il y a de flèches entre (ou vers ou depuis) les compartiments
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{ODE to CTMC : focus on different components}
+\begin{frame}{EDO vers CMTC : focus sur différents composants}
     \begin{center}
         \begin{tikzpicture}[auto,
             scale=1.2, every node/.style={transform shape},
@@ -1500,8 +1499,8 @@ You may want to use a different hammer
             %%
             \draw[very thick, dotted] (5,-2) -- (5,2);
             %%
-            \node[style=rectangle] at (2,2) {ODE};
-            \node[style=rectangle] at (7,2) {CTMC};
+            \node[style=rectangle] at (2,2) {EDO};
+            \node[style=rectangle] at (7,2) {CMTC};
             %%
             \node[style=rectangle] (fODE) at (2,-2) {focus};
             \path [line, dotted,red] (fODE) to  (S.south);
@@ -1514,101 +1513,101 @@ You may want to use a different hammer
 \end{frame}
 
 
-\begin{frame}{SIS without demography}
+\begin{frame}{SIS sans démographie}
     \begin{center}
         \begin{tabular}{cp{3cm}cc}
           \toprule
-            Transition & Effect & Weight & Probability \\
+            Transition & Effet & Poids & Probabilité \\
             \midrule
-            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
-            $S\to S+1$, $I\to I-1$ & recovery of an infectious & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
+            $S\to S-1$, $I\to I+1$ & nouvelle infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
+            $S\to S+1$, $I\to I-1$ & rétablissement d'un infectieux & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
             \bottomrule
         \end{tabular}
     \end{center}
     \vfill
-    States are $S,I$
+    Les états sont $S,I$
 \end{frame}
 
 
-\begin{frame}{SIS with demography}
+\begin{frame}{SIS avec démographie}
     \begin{center}
         \begin{tabular}{p{3cm}p{3cm}cc}
         \toprule
-            Transition & Effect & Weight & Probability \\
+            Transition & Effet & Poids & Probabilité \\
           \midrule
-            $S\to S+1$ & birth of a susceptible & $b$ & $\frac{b}{b+d(S+I)+\beta SI+\gamma I}$ \\
-            $S\to S-1$ & death of a susceptible & $dS$ & $\frac{dS}{b+d(S+I)+\beta SI+\gamma I}$ \\
-            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\frac{\beta SI}{b+d(S+I)+\beta SI+\gamma I}$ \\
-            $I\to I-1$ & death of an infectious & $dI$ & $\frac{dI}{b+d(S+I)+\beta SI+\gamma I}$ \\
-            $S\to S+1$, $I\to I-1$ & recovery of an infectious & $\gamma I$ & $\frac{\gamma I}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S+1$ & naissance d'un susceptible & $b$ & $\frac{b}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S-1$ & décès d'un susceptible & $dS$ & $\frac{dS}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S-1$, $I\to I+1$ & nouvelle infection & $\beta SI$ & $\frac{\beta SI}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $I\to I-1$ & décès d'un infectieux & $dI$ & $\frac{dI}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S+1$, $I\to I-1$ & rétablissement d'un infectieux & $\gamma I$ & $\frac{\gamma I}{b+d(S+I)+\beta SI+\gamma I}$ \\
             \bottomrule
         \end{tabular}
     \end{center}
 \vfill
-States are $S,I$
+Les états sont $S,I$
 \end{frame}
 
 
-\begin{frame}[fragile]{Kermack \& McKendrick model}
+\begin{frame}[fragile]{Modèle de Kermack \& McKendrick}
     \begin{center}
         \begin{tabular}{cp{3cm}cc}
         \toprule
-            Transition & Effect & Weight & Probability \\
+            Transition & Effet & Poids & Probabilité \\
             \midrule
-            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
-            $I\to I-1$, $R\to R+1$ & recovery of an infectious & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
+            $S\to S-1$, $I\to I+1$ & nouvelle infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
+            $I\to I-1$, $R\to R+1$ & rétablissement d'un infectieux & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
             \bottomrule
         \end{tabular}
     \end{center}
     \vfill
-    States are $S,I,R$
+    Les états sont $S,I,R$
 \end{frame}
 
 
-\subsection{Simulating CTMC (in theory)}
+\subsection{Simuler les CMTC (en théorie)}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 
-\begin{frame}{Gillespie's algorithm}
+\begin{frame}{L'algorithme de Gillespie}
     \begin{itemize}
-        \item A.k.a. the stochastic simulation algorithm (SSA)
+        \item Aussi appelé l'algorithme de simulation stochastique (SSA)
         \vfill
-        \item Derived in 1976 by Daniel Gillespie
+        \item Dérivé en 1976 par Daniel Gillespie
         \vfill
-        \item Generates possible solutions for CTMC
+        \item Génère des solutions possibles pour les CMTC
         \vfill
-        \item Extremely simple, so worth learning how to implement; there are however packages that you can use (see later)
+        \item Extrêmement simple, donc vaut la peine d'apprendre à implémenter ; il existe cependant des paquets que vous pouvez utiliser (voir plus tard)
     \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Gillespie's algorithm}
-Suppose system has state $\mathbf{x}(t)$ with initial condition $\mathbf{x}(t_0)=\mathbf{x}_0$ and \emph{propensity functions} $a_i$ of elementary reactions
+\begin{frame}{L'algorithme de Gillespie}
+Supposons que le système a un état $\mathbf{x}(t)$ avec condition initiale $\mathbf{x}(t_0)=\mathbf{x}_0$ et \emph{fonctions de propension} $a_i$ des réactions élémentaires
 \vfill
-set $t\leftarrow t_0$ and $\mathbf{x}(t)\leftarrow \mathbf{x}_0$\\
-while {$t\leq t_f$}\\
+définir $t\leftarrow t_0$ et $\mathbf{x}(t)\leftarrow \mathbf{x}_0$\\
+tant que {$t\leq t_f$}\\
 -\qquad $\xi_t\leftarrow \sum_j a_j(\mathbf{x}(t))$\\
--\qquad Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$\\
--\qquad Draw $\zeta_t$ from $\mathcal{U}([0,1])$\\
--\qquad Find $r$, smallest integer s.t. $\sum_{k=1}^j a_k(\mathbf{x}(t))> \zeta_t\sum_j a_j(\mathbf{x}(t))=\zeta_t\xi_t$\\
--\qquad Effect the next reaction (the one indexed $r$)\\
+-\qquad Tirer $\tau_t$ de $T\thicksim \mathcal{E}(\xi_t)$\\
+-\qquad Tirer $\zeta_t$ de $\mathcal{U}([0,1])$\\
+-\qquad Trouver $r$, le plus petit entier tel que $\sum_{k=1}^j a_k(\mathbf{x}(t))> \zeta_t\sum_j a_j(\mathbf{x}(t))=\zeta_t\xi_t$\\
+-\qquad Effectuer la prochaine réaction (celle indexée $r$)\\
 -\qquad $t\leftarrow t+\tau_t$\\    
 \end{frame}
 
 
-\begin{frame}{Drawing at random from an exponential distribution}
-    If you do not have an exponential distribution random number generator.. We want $\tau_t$ from $T\thicksim\mathcal{E}(\xi_t)$, i.e., $T$ has probability density function
+\begin{frame}{Tirer aléatoirement d'une distribution exponentielle}
+    Si vous n'avez pas de générateur de nombres aléatoires de distribution exponentielle.. Nous voulons $\tau_t$ de $T\thicksim\mathcal{E}(\xi_t)$, c'est-à-dire, $T$ a une fonction de densité de probabilité
     $$
     f(x,\xi_t)=
     \xi_te^{-\xi_t x}\mathbf{1}_{x\geq 0}
     $$
-    Use cumulative distribution function $F(x,\xi_t)=\int_{-\infty}^x f(s,\xi_t)\,ds$
+    Utiliser la fonction de distribution cumulative $F(x,\xi_t)=\int_{-\infty}^x f(s,\xi_t)\,ds$
     $$
     F(x,\xi_t)=
     (1-e^{-\xi_t x})\mathbf{1}_{x\geq 0}
     $$
-    which has values in $[0,1]$. So draw $\zeta$ from $\mathcal{U}([0,1])$ and solve $F(x,\xi_t)=\zeta$ for $x$
+    qui a des valeurs dans $[0,1]$. Donc tirer $\zeta$ de $\mathcal{U}([0,1])$ et résoudre $F(x,\xi_t)=\zeta$ pour $x$
     \begin{align*}
     F(x,\xi_t)=\zeta & \Leftrightarrow 1-e^{-\xi_tx}=\zeta \\
     &\Leftrightarrow e^{-\xi_tx} = 1-\zeta \\
@@ -1618,57 +1617,57 @@ while {$t\leq t_f$}\\
 \end{frame}
 
 
-\begin{frame}{Gillespie's algorithm (SIS model with only I eq.)}
-set $t\leftarrow t_0$ and $I(t)\leftarrow I(t_0)$\\
-while {$t\leq t_f$}\\
+\begin{frame}{L'algorithme de Gillespie (modèle SIS avec seulement l'éq. I)}
+définir $t\leftarrow t_0$ et $I(t)\leftarrow I(t_0)$\\
+tant que {$t\leq t_f$}\\
 -\qquad $\xi_t\leftarrow \beta (P^\star-i)i+\gamma i$\\
--\qquad Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$\\
+-\qquad Tirer $\tau_t$ de $T\thicksim \mathcal{E}(\xi_t)$\\
 -\qquad $v\leftarrow\left[\beta (P^\star-i)i,\xi_t\right]/\xi_t$\\
--\qquad Draw $\zeta_t$ from $\mathcal{U}([0,1])$\\
--\qquad Find $pos$ such that $v_{pos-1}\leq\zeta_t\leq v_{pos}$\\
--\qquad switch {$pos$}\\
-\qquad\qquad - 1: New infection, $I(t+\tau_t)=I(t)+1$ \\
-\qquad\qquad - 2: End of infectious period, $I(t+\tau_t)=I(t)-1$ \\
+-\qquad Tirer $\zeta_t$ de $\mathcal{U}([0,1])$\\
+-\qquad Trouver $pos$ tel que $v_{pos-1}\leq\zeta_t\leq v_{pos}$\\
+-\qquad selon {$pos$}\\
+\qquad\qquad - 1: Nouvelle infection, $I(t+\tau_t)=I(t)+1$ \\
+\qquad\qquad - 2: Fin de la période infectieuse, $I(t+\tau_t)=I(t)-1$ \\
 - $t\leftarrow t+\tau_t$
 \end{frame}
 
 
-\begin{frame}{Sometimes Gillespie goes bad}
+\begin{frame}{Parfois Gillespie tourne mal}
     \begin{itemize}
-        \item Recall that the inter-event time is exponentially distributed
-        \item Critical step of the Gillespie algorithm:
+        \item Rappelons que le temps inter-événements est distribué exponentiellement
+        \item Étape critique de l'algorithme de Gillespie :
         \begin{itemize}
-            \item $\xi_t\leftarrow$ weight of all possible events (\emph{propensity})
-            \item Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$
+            \item $\xi_t\leftarrow$ poids de tous les événements possibles (\emph{propension})
+            \item Tirer $\tau_t$ de $T\thicksim \mathcal{E}(\xi_t)$
         \end{itemize}
-        \item So the inter-event time $\tau_t\to 0$ if $\xi_t$ becomes very large for some $t$
-        \item This can cause the simulation to grind to a halt
+        \item Donc le temps inter-événements $\tau_t\to 0$ si $\xi_t$ devient très grand pour un certain $t$
+        \item Ceci peut causer le ralentissement de la simulation jusqu'à l'arrêt
     \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Example: a birth and death process}
+\begin{frame}{Exemple : un processus de naissance et de mort}
     \begin{itemize}
-        \item Individuals born at \emph{per capita} rate $b$
-        \item Individuals die at \emph{per capita} rate $d$
-        \item Let's implement this using classic Gillespie
+        \item Individus nés à un taux \emph{per capita} $b$
+        \item Individus meurent à un taux \emph{per capita} $d$
+        \item Implémentons cela en utilisant le Gillespie classique
     \end{itemize}
     \vfill
-(See \href{https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_birth_death_CTMC.R}{\code{simulate\_birth\_death\_CTMC.R}} on course GitHub repo)
+(Voir \href{https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_birth_death_CTMC.R}{\code{simulate\_birth\_death\_CTMC.R}} sur le dépôt GitHub du cours)
 \end{frame}
 
 
-\begin{frame}{Gillespie's algorithm (birth-death model)}
-set $t\leftarrow t_0$ and $N(t)\leftarrow N(t_0)$\\
-while {$t\leq t_f$}\\
+\begin{frame}{L'algorithme de Gillespie (modèle naissance-mort)}
+définir $t\leftarrow t_0$ et $N(t)\leftarrow N(t_0)$\\
+tant que {$t\leq t_f$}\\
 -\qquad $\xi_t\leftarrow (b+d)N(t)$\\
--\qquad Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$\\
+-\qquad Tirer $\tau_t$ de $T\thicksim \mathcal{E}(\xi_t)$\\
 -\qquad $v\leftarrow\left[bN(t),\xi_t\right]/\xi_t$\\
--\qquad Draw $\zeta_t$ from $\mathcal{U}([0,1])$\\
--\qquad Find $pos$ such that $v_{pos-1}\leq\zeta_t\leq v_{pos}$\\
--\qquad switch {$pos$}\\
-\qquad\qquad - 1: Birth, $N(t+\tau_t)=N(t)+1$ \\
-\qquad\qquad - 2: Death, $N(t+\tau_t)=N(t)-1$ \\
+-\qquad Tirer $\zeta_t$ de $\mathcal{U}([0,1])$\\
+-\qquad Trouver $pos$ tel que $v_{pos-1}\leq\zeta_t\leq v_{pos}$\\
+-\qquad selon {$pos$}\\
+\qquad\qquad - 1: Naissance, $N(t+\tau_t)=N(t)+1$ \\
+\qquad\qquad - 2: Décès, $N(t+\tau_t)=N(t)-1$ \\
 - $t\leftarrow t+\tau_t$    
 \end{frame}
 
@@ -1726,7 +1725,7 @@ birth_death_CTMC(b=0.01, d=0.02)
 \maxFrameImage{\Sexpr{fig_chunk('CTMC_birth_death_b0_01_d0_02', 'pdf')}}
 
 \begin{frame}[fragile]{$b=0.03$ \& $d=0.01$...}
-We want to run the function with these parameter values but I know in advance this will not work well, so let's tweak the function a bit. We add a test:
+Nous voulons exécuter la fonction avec ces valeurs de paramètres mais je sais à l'avance que cela ne fonctionnera pas bien, donc modifions un peu la fonction. Nous ajoutons un test :
 \vfill
 \begin{lstlisting}
 if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
@@ -1803,8 +1802,8 @@ plot(interevent_time, type = "h",
         \item At stop time
         \begin{itemize}
             \item $N =$ \Sexpr{results$N[length(results$N)]}
-            \item $|N| =$ \Sexpr{length(results$N)} (and $|t|$ as well, of course!)
-            \item time was moving slowly
+            \item $|N| =$ \Sexpr{length(results$N)} (et $|t|$ aussi, bien sûr !)
+            \item le temps avançait lentement
         \end{itemize}
     \end{itemize}
     \vfill
@@ -1818,15 +1817,15 @@ tail(diff(results$t))
 
 \maxFrameImage{\Sexpr{fig_chunk('plot_CTMC_birth_death_b0_03_d0_01_interevent', 'pdf')}}
 
-\subsection{Simulating CTMC (in practice)}
+\subsection{Simuler les CMTC (en pratique)}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
-\begin{frame}{Tau-leaping (and packages) to the rescue!}
+\begin{frame}{Tau-leaping (et les paquets) à la rescousse !}
     \begin{itemize}
-        \item \emph{Approximation} method (compared to classic Gillespie, which is exact)
-        \item Roughly: consider "groups" of events instead of individual events
-        \item Good news: \code{GillespieSSA2} and \code{adaptivetau}, two standard packages for SSA in \code{R}, implement tau leaping
+        \item Méthode d'\emph{approximation} (comparée au Gillespie classique, qui est exact)
+        \item Grosso modo : considérer des « groupes » d'événements au lieu d'événements individuels
+        \item Bonne nouvelle : \code{GillespieSSA2} et \code{adaptivetau}, deux paquets standard pour SSA dans \code{R}, implémentent le tau leaping
     \end{itemize}
 \end{frame}
 
@@ -1838,7 +1837,7 @@ Pop <- 1000
 I_0 <- 2
 IC <- c(S = (Pop-I_0), I = I_0)
 gamma = 1/3
-# R0=beta/gamma*S0, so beta=R0*gamma/S0
+# R0=beta/gamma*S0, donc beta=R0*gamma/S0
 beta = as.numeric(1.5*gamma/IC["S"])
 params <- c(gamma = gamma, beta = beta)
 t_f = 100
@@ -1866,33 +1865,33 @@ plot(sol$time, sol$state[,"I"], type = "l",
 
 
 
-\subsection{Parallelising your code in \code{R}}
+\subsection{Paralléliser votre code dans \code{R}}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_4oxcef4oxcef4oxc.jpeg}
 
 
-\begin{frame}{Parallelisation}
-    To see multiple realisations: good idea to parallelise, then interpolate results. Write a function, e.g.,  \code{run\_one\_sim} that .. runs one simulation
+\begin{frame}{Parallélisation}
+    Pour voir plusieurs réalisations : bonne idée de paralléliser, puis interpoler les résultats. Écrire une fonction, par ex., \code{run\_one\_sim} qui.. exécute une simulation
     \vfill
-    Use some parallelisation mechanisms to run \code{run\_one\_sim} in parallel. One easy way to do it is to use a parallel version of \code{lapply}, which applies a function to a list
+    Utiliser certains mécanismes de parallélisation pour exécuter \code{run\_one\_sim} en parallèle. Une façon facile de le faire est d'utiliser une version parallèle de \code{lapply}, qui applique une fonction à une liste
     \vfill
-    Here, I am showing parallelisation using a recent-ish package called \code{future} (and \code{future.apply}, which contains the relevant \code{lapply} equivalent)
+    Ici, je montre la parallélisation en utilisant un paquet assez récent appelé \code{future} (et \code{future.apply}, qui contient l'équivalent pertinent de \code{lapply})
     \vfill
-    I am also illustrating another SSA library that I find less tricky on Windows because the reactions are not precompiled: \code{adaptivetau}
+    J'illustre également une autre bibliothèque SSA que je trouve moins délicate sous Windows car les réactions ne sont pas précompilées : \code{adaptivetau}
 \end{frame}
 
 <<parallel-CTMC-plot, message=FALSE, warning=FALSE>>=
 library(adaptivetau)
 library(future.apply)
-# It is useful to have the transitions, rates and 
-# names defined in a function
+# Il est utile d'avoir les transitions, les taux et
+# les noms définis dans une fonction
 CTMC_SIS <- function() {
-  # Define transitions for adaptivetau
+  # Définir les transitions pour adaptivetau
   transitions <- list(
-    c(S = -1, I = +1),  # new_infection
-    c(S = +1, I = -1)   # recovery
+    c(S = -1, I = +1),  # nouvelle_infection
+    c(S = +1, I = -1)   # rétablissement
   )
-  # Define rate function
+  # Définir la fonction de taux
   rates <- function(x, params, t) {
     c(
       params[["beta"]] * x["S"] * x["I"],
@@ -1924,19 +1923,19 @@ run_one_sim = function(CTMC, params) {
                       xout = wanted_t)
     names(interp_I) = c("time", "I")
     sol$interp_I = interp_I
-    # Return result
+    # Retourner le résultat
     return(sol)
 }
 
-# By default, use all available cores
+# Par défaut, utiliser tous les cœurs disponibles
 plan(multisession)
-## To use fewer workers, leaving one empty for 
+## Pour utiliser moins de workers, en laissant un vide par
 # instance
 # plan(multisession, availableCores()-1)
-## To run sequentially
+## Pour exécuter séquentiellement
 # plan(sequential)
 
-# Set up parameters not needing computation
+# Configurer les paramètres ne nécessitant pas de calcul
 params <- list(gamma = 1/3, 
                Pop = 1000, 
                I_0 = 2, 
@@ -1944,23 +1943,23 @@ params <- list(gamma = 1/3,
                t_f = 100, nb_sims = 50)
 IC <- c(S = (params$Pop-params$I_0), 
         I = params$I_0)
-# R0=beta/gamma*S0, so beta=R0*gamma/S0
+# R0=beta/gamma*S0, donc beta=R0*gamma/S0
 params = 
   c(params, 
     beta = as.numeric(params$R0*params$gamma /
                         IC["S"]))
-# Run the simulation
+# Exécuter la simulation
 CTMC <- CTMC_SIS()
 SIMS = future_lapply(
   X = 1:params$nb_sims,
   FUN =  function(x) run_one_sim(CTMC, params))
-#  Liberate the workers!
+#  Libérer les workers !
 stopCluster(cl) 
 
-# Find max y value for plot
+# Trouver la valeur y maximale pour le tracé
 y_max = max(unlist(lapply(SIMS, function(x) max(x$interp_I$I))),
             na.rm = TRUE)
-# Now plot
+# Maintenant tracer
 plot(SIMS[[1]]$interp_I$time,
      SIMS[[1]]$interp_I$I,
      type = "l", lwd = 0.5,
@@ -2025,7 +2024,7 @@ tictoc::toc()
 \end{frame}
 
 
-\subsection{Example -- Stochastic phase of an epidemic}
+\subsection{Exemple -- Phase stochastique d'une épidémie}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
@@ -2034,47 +2033,47 @@ tictoc::toc()
 
 \maxFrameImage{FIGS/select_Wyoming-Campbell_bars_zoom}
 
-\begin{frame}{Investigating outbreak types using a simple CTMC SIS}
+\begin{frame}{Enquête sur les types d'épidémie à l'aide d'un CMTC SIS simple}
 \[
 \mathbf{X}(t)=\left(S^A(t),I^A(t)\right)
 \]
 \vfill
-CTMC $\mathbf{X}(t)$ characterized by transitions
+CMTC $\mathbf{X}(t)$ caractérisée par les transitions
 \begin{center}
   \begin{tabular}{ccc}
     \toprule
-    Description & Transition & Rate \\
+    Description & Transition & Taux \\
     \midrule
     Infection & $\left(S^A,I^A\right)\to \left(S^A-1,I^A+1\right)$ & $\beta^AS^AI^A$ \\
-    Recovery & $\left(S^A,I^A\right)\to \left(S^A+1,I^A-1\right)$ & $\gamma^AI^A$ \\
+    Rétablissement & $\left(S^A,I^A\right)\to \left(S^A+1,I^A-1\right)$ & $\gamma^AI^A$ \\
     \bottomrule
   \end{tabular}
 \end{center}
 \end{frame}
 
-\begin{frame}{Investigating outbreak types using a simple CTMC SIS \emph{with a twist}}
-Regular chain of this type has $I=0$ as sole absorbing state
+\begin{frame}{Enquête sur les types d'épidémie à l'aide d'un CMTC SIS simple \emph{avec une variante}}
+Une chaîne régulière de ce type a $I=0$ comme seul état absorbant
 \vfill
-We add another absorbing state: if $I=\hat I$, then the chain has \emph{left} the stochastic phase and is in a quasi-deterministic phase with exponential growth
+Nous ajoutons un autre état absorbant : si $I=\hat I$, alors la chaîne a \emph{quitté} la phase stochastique et est dans une phase quasi-déterministe avec croissance exponentielle
 \vfill
-Doing this, time to absorption measures become usable additionally to first passage time ones
+En faisant cela, les mesures de temps d'absorption deviennent utilisables en plus des mesures de temps de premier passage
 \vfill
-And the question becomes: how long does the chain ``linger on'' (``stutter'') before it is absorbed? We define the inter-absorption trajectory as the stochastic phase
+Et la question devient : combien de temps la chaîne \guillemotleft\thinspace persiste\thinspace\guillemotright avant d'être absorbée ? Nous définissons la trajectoire inter-absorption comme la phase stochastique
 \end{frame}
 
 \maxFrameImage{FIGS/illustration_stochastic_phase.png}
 \maxFrameImage{FIGS/duration_stochastic_phase_1patch_pop1M_I0eq1.png}
 
-\begin{frame}{Problem of the value of the upper bound $\hat I$}
+\begin{frame}{Problème de la valeur de la borne supérieure $\hat I$}
   \begin{itemize}
-    \item Choose $\hat I$ too small and the stochastic phase will not last long
+    \item Choisir $\hat I$ trop petit et la phase stochastique ne durera pas longtemps
     \vfill
-    \item Choose $\hat I$ too large and absorption will only be at the DFE
+    \item Choisir $\hat I$ trop grand et l'absorption ne se fera qu'au DFE
     \vfill
-    \item So, how does one choose $\hat I$ ?
+    \item Alors, comment choisir $\hat I$ ?
     \begin{itemize}
-      \item A formula of Whittle (1955) \nocite{whittle1955}
-      \item Multitype branching process (MTBP)
+      \item Une formule de Whittle (1955) \nocite{whittle1955}
+      \item Processus de branchement multitype (MTBP)
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -2083,7 +2082,7 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{Value of travel control measures}
+\subsection{Valeur des mesures de contrôle des voyages}
 % The section page
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_bla65bbla65bbla6.jpeg}
 
@@ -2157,7 +2156,7 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 \maxFrameImage{FIGS/sim_2023_07_11-11_06_41_ID_25_run5.png}
 \maxFrameImage{FIGS/exporter_importer_panel_zoom.png}
 
-\begin{frame}{One last thought for the road}
+\begin{frame}{Une dernière pensée pour la route}
   V. Chetail. \href{https://doi.org/10.3389/fpos.2020.606307}{Crisis without borders: What does international law say about border closure in the context of Covid-19?} Frontiers in Political Science, 2 (12) (2020) \nocite{chetail2020crisis}
   \vfill
   \begin{quote}
@@ -2171,85 +2170,85 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Branching process approximations of CTMC}
+\section{Approximations par processus de branchement des CMTC}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 \begin{frame}
-    \frametitle{What is a Branching Process?}
-    \begin{block}{The Core Idea}
-        A branching process is a mathematical model for a population where individuals produce a random number of offspring and then die.
+    \frametitle{Qu'est-ce qu'un processus de branchement ?}
+    \begin{block}{L'idée centrale}
+        Un processus de branchement est un modèle mathématique pour une population où les individus produisent un nombre aléatoire de descendants puis meurent.
     \end{block}
     
     \begin{itemize}
-        \item Think of bacteria splitting, a virus spreading, or even the survival of family surnames.
-        \item We start with an initial population, $Z_0$.
-        \item Each individual in generation $n$ produces a number of offspring for generation $n+1$.
-        \item This "number of offspring" is a random variable. All individuals produce offspring according to the same probability distribution, independently of each other.
+        \item Pensez aux bactéries qui se divisent, à un virus qui se propage, ou même à la survie des noms de famille.
+        \item Nous commençons avec une population initiale, $Z_0$.
+        \item Chaque individu de la génération $n$ produit un nombre de descendants pour la génération $n+1$.
+        \item Ce « nombre de descendants » est une variable aléatoire. Tous les individus produisent des descendants selon la même distribution de probabilité, indépendamment les uns des autres.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{The Galton-Watson Process}
+    \frametitle{Le processus de Galton-Watson}
     
-    Let $Z_n$ be the size of the population in generation $n$. We typically start with $Z_0 = 1$.
+    Soit $Z_n$ la taille de la population à la génération $n$. Nous commençons typiquement avec $Z_0 = 1$.
     
-    The population evolves according to the rule:
+    La population évolue selon la règle :
     $$ Z_{n+1} = \sum_{i=1}^{Z_n} X_{n,i} $$
     
     \begin{itemize}
-        \item The term $X_{n,i}$ represents the number of offspring produced by the $i$-th individual in generation $n$.
-        \item The variables $\{X_{n,i}\}$ are assumed to be \textbf{independent and identically distributed (i.i.d.)} integer-valued random variables.
-        \item We call their common distribution $\{p_k\}_{k=0}^\infty$ the \textbf{offspring distribution}, where $p_k = P(X = k)$.
+        \item Le terme $X_{n,i}$ représente le nombre de descendants produits par le $i$-ème individu de la génération $n$.
+        \item Les variables $\{X_{n,i}\}$ sont supposées être des variables aléatoires \textbf{indépendantes et identiquement distribuées (i.i.d.)} à valeurs entières.
+        \item Nous appelons leur distribution commune $\{p_k\}_{k=0}^\infty$ la \textbf{distribution des descendants}, où $p_k = P(X = k)$.
     \end{itemize}
     
-    \begin{alertblock}{The Fundamental Questions}
+    \begin{alertblock}{Les questions fondamentales}
     \begin{enumerate}
-        \item What is the long-term expected size of the population?
-        \item What is the probability that the population eventually dies out?
+        \item Quelle est la taille espérée à long terme de la population ?
+        \item Quelle est la probabilité que la population finisse par s'éteindre ?
     \end{enumerate}
     \end{alertblock}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Mean Offspring}
+    \frametitle{Moyenne des descendants}
 
-    The fate of the population hinges on a single parameter: the mean of the offspring distribution
+    Le destin de la population dépend d'un seul paramètre : la moyenne de la distribution des descendants
 
     $$ \mu = E[X] = \sum_{k=0}^{\infty} k \cdot p_k $$
 
-    \begin{block}{Expected Population Size}
-        Using the law of total expectation, we find the expected size of the next generation:
+    \begin{block}{Taille de population espérée}
+        En utilisant la loi de l'espérance totale, nous trouvons la taille espérée de la prochaine génération :
         $$ E[Z_{n+1} | Z_n] = E\left[\sum_{i=1}^{Z_n} X_{n,i} \bigg| Z_n\right] = Z_n E[X] = Z_n \mu $$
 
-        Taking the expectation again, we get a simple recurrence:
+        En prenant l'espérance à nouveau, nous obtenons une récurrence simple :
         $$ E[Z_{n+1}] = \mu E[Z_n] $$
 
-        This implies:
+        Ceci implique :
         $$ E[Z_n] = Z_0 \mu^n $$
     \end{block}
 \end{frame}
 
 % --- SLIDE 5: The Three Regimes of Population Growth ---
 \begin{frame}
-    \frametitle{The Three Regimes of Population Growth}
+    \frametitle{Les trois régimes de croissance de population}
 
-    The behavior of $E[Z_n] = Z_0 \mu^n$ suggests three distinct cases:
+    Le comportement de $E[Z_n] = Z_0 \mu^n$ suggère trois cas distincts :
 
     \begin{columns}[T]
         \begin{column}{0.33\textwidth}
-            \begin{block}{Subcritical ($\mu < 1$)}
-                $E[Z_n] \to 0$. The population is expected to shrink. It goes extinct with probability 1.
+            \begin{block}{Sous-critique ($\mu < 1$)}
+                $E[Z_n] \to 0$. La population devrait rétrécir. Elle s'éteint avec probabilité 1.
             \end{block}
         \end{column}
         \begin{column}{0.33\textwidth}
-            \begin{block}{Critical ($\mu = 1$)}
-                $E[Z_n] = Z_0$. The population is expected to remain stable. Surprisingly, it still goes extinct with probability 1.
+            \begin{block}{Critique ($\mu = 1$)}
+                $E[Z_n] = Z_0$. La population devrait rester stable. Curieusement, elle s'éteint quand même avec probabilité 1.
             \end{block}
         \end{column}
         \begin{column}{0.33\textwidth}
-            \begin{block}{Supercritical ($\mu > 1$)}
-                $E[Z_n] \to \infty$. The population is expected to grow exponentially. It has a non-zero probability of surviving forever.
+            \begin{block}{Sur-critique ($\mu > 1$)}
+                $E[Z_n] \to \infty$. La population devrait croître exponentiellement. Elle a une probabilité non nulle de survivre à jamais.
             \end{block}
         \end{column}
     \end{columns}
@@ -2257,17 +2256,17 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 
 % --- SLIDE 6: Calculating the Extinction Probability ---
 \begin{frame}
-    \frametitle{Tool: The Probability Generating Function}
+    \frametitle{Outil : La fonction génératrice de probabilité}
 
-    To find the extinction probability, we need a powerful tool: the \textbf{probability generating function (PGF)} of the offspring distribution $X$.
+    Pour trouver la probabilité d'extinction, nous avons besoin d'un outil puissant : la \textbf{fonction génératrice de probabilité (FGP)} de la distribution des descendants $X$.
 
-    $$ G(s) = E[s^X] = \sum_{k=0}^{\infty} p_k s^k \quad \text{for } |s| \le 1 $$
+    $$ G(s) = E[s^X] = \sum_{k=0}^{\infty} p_k s^k \quad \text{pour } |s| \le 1 $$
 
-    \begin{block}{Key Properties}
+    \begin{block}{Propriétés clés}
     \begin{itemize}
         \item $G(1) = \sum p_k = 1$
-        \item The mean can be found from the derivative: $G'(1) = \sum k p_k = \mu$.
-        \item The PGF of $Z_n$ is the $n$-th iterate of $G(s)$ with itself. If $G_n(s)$ is the PGF of $Z_n$, then $G_{n+1}(s) = G(G_n(s))$.
+        \item La moyenne peut être trouvée à partir de la dérivée : $G'(1) = \sum k p_k = \mu$.
+        \item La FGP de $Z_n$ est le $n$-ième itéré de $G(s)$ avec elle-même. Si $G_n(s)$ est la FGP de $Z_n$, alors $G_{n+1}(s) = G(G_n(s))$.
     \end{itemize}
     \end{block}
 
@@ -2275,11 +2274,11 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 
 % --- SLIDE 7: The Extinction Probability Equation ---
 \begin{frame}
-    \frametitle{The Extinction Probability Equation}
-    Let $\pi_0$ be the probability of eventual extinction, starting with $Z_0=1$.
-    $$ \pi_0 = P(\text{population dies out}) = \lim_{n \to \infty} P(Z_n = 0) $$
+    \frametitle{Équation de la probabilité d'extinction}
+    Soit $\pi_0$ la probabilité d'extinction éventuelle, en commençant avec $Z_0=1$.
+    $$ \pi_0 = P(\text{la population s'éteint}) = \lim_{n \to \infty} P(Z_n = 0) $$
 
-    Since $P(Z_n=0) = G_n(0)$, and $G_{n+1}(0) = G(G_n(0))$, in the limit the extinction probability $\pi_0$ must satisfy the equation:
+    Puisque $P(Z_n=0) = G_n(0)$, et $G_{n+1}(0) = G(G_n(0))$, à la limite la probabilité d'extinction $\pi_0$ doit satisfaire l'équation :
 
     \begin{center}
         \Huge
@@ -2289,114 +2288,114 @@ And the question becomes: how long does the chain ``linger on'' (``stutter'') be
 
 
     \begin{theorem}
-    The extinction probability $\pi_0$ is the \textbf{smallest non-negative solution} to the equation $s = G(s)$.
+    La probabilité d'extinction $\pi_0$ est la \textbf{plus petite solution non négative} de l'équation $s = G(s)$.
     \end{theorem}
 
     \begin{itemize}
-        \item If $\mu \le 1$, the only solution in $[0,1]$ is $s=1$. So $\pi_0=1$.
-        \item If $\mu > 1$, there is a unique solution in $[0,1)$, which is the extinction probability $\pi_0 < 1$.
+        \item Si $\mu \le 1$, la seule solution dans $[0,1]$ est $s=1$. Donc $\pi_0=1$.
+        \item Si $\mu > 1$, il existe une solution unique dans $[0,1)$, qui est la probabilité d'extinction $\pi_0 < 1$.
     \end{itemize}
 \end{frame}
 
 % --- SLIDE 8: From Discrete to Continuous Time ---
 \begin{frame}
-    \frametitle{From Discrete to Continuous Time}
+    \frametitle{Du temps discret au temps continu}
 
-    \begin{block}{Limitation of Galton-Watson}
-        Generations don't happen in synchronized steps in the real world. Individuals give birth and die at random times.
+    \begin{block}{Limitation de Galton-Watson}
+        Les générations n'arrivent pas en étapes synchronisées dans le monde réel. Les individus donnent naissance et meurent à des moments aléatoires.
     \end{block}
 
-    This leads us to \textbf{Continuous-Time Markov Chains (CTMCs)}.
+    Cela nous amène aux \textbf{Chaînes de Markov à temps continu (CMTC)}.
 
     \begin{itemize}
-        \item The state of the system is the population size, $k \in \{0, 1, 2, \dots\}$.
-        \item Instead of generations, we have transition rates:
+        \item L'état du système est la taille de la population, $k \in \{0, 1, 2, \dots\}$.
+        \item Au lieu de générations, nous avons des taux de transition :
             \begin{itemize}
-                \item $\lambda_k$: rate of birth when population is size $k$ (moves to $k+1$).
-                \item $\delta_k$: rate of death when population is size $k$ (moves to $k-1$).
+                \item $\lambda_k$ : taux de naissance lorsque la population est de taille $k$ (passe à $k+1$).
+                \item $\delta_k$ : taux de décès lorsque la population est de taille $k$ (passe à $k-1$).
             \end{itemize}
-        \item Often, we assume these rates are linear: $\lambda_k = k\lambda$ and $\delta_k = k\delta$. This means individuals act independently.
+        \item Souvent, nous supposons que ces taux sont linéaires : $\lambda_k = k\lambda$ et $\delta_k = k\delta$. Cela signifie que les individus agissent indépendamment.
     \end{itemize}
 \end{frame}
 
 % --- SLIDE 9: Branching Process Approximation of a CTMC ---
 \begin{frame}
-    \frametitle{Branching Process Approximation of a CTMC}
+    \frametitle{Approximation par processus de branchement d'une CMTC}
 
-    \begin{alertblock}{The Key Insight}
-    At the beginning of an outbreak (or for a very large population), the dynamics caused by a single individual are largely independent of others.
+    \begin{alertblock}{L'idée clé}
+    Au début d'une épidémie (ou pour une très grande population), la dynamique causée par un seul individu est largement indépendante des autres.
     \end{alertblock}
 
-    This allows us to approximate the start of a CTMC population process with a branching process.
+    Cela nous permet d'approximer le début d'un processus de population CMTC avec un processus de branchement.
 
-    \textbf{Example: A Simple Epidemic (SIR Model)}
+    \textbf{Exemple : Une épidémie simple (modèle SIR)}
     \begin{itemize}
-        \item $S$: Susceptible, $I$: Infected, $R$: Recovered.
-        \item An infected person meets others at a certain rate. If they meet a susceptible, a new infection may occur (an "offspring").
-        \item The infected person recovers (or dies) at another rate, ending their infectious period.
-        \item \textbf{Question:} How many new infections does a single infected person cause on average?
+        \item $S$ : Susceptible, $I$ : Infecté, $R$ : Rétabli.
+        \item Une personne infectée rencontre d'autres personnes à un certain taux. Si elle rencontre un susceptible, une nouvelle infection peut se produire (un « descendant »).
+        \item La personne infectée se rétablit (ou meurt) à un autre taux, terminant sa période infectieuse.
+        \item \textbf{Question :} Combien de nouvelles infections une seule personne infectée cause-t-elle en moyenne ?
     \end{itemize}
 \end{frame}
 
 % --- SLIDE 10: Case Study: The Basic Reproduction Number $\mathcal{R}_0$ ---
 \begin{frame}
-    \frametitle{Case Study: The Basic Reproduction Number $\mathcal{R}_0$}
+    \frametitle{Étude de cas : Le nombre de reproduction de base $\mathcal{R}_0$}
 
-    Consider a single infected individual in a large population of susceptibles.
+    Considérons un seul individu infecté dans une grande population de susceptibles.
     \begin{itemize}
-        \item Let $\beta$ be the infection rate (rate of producing "offspring").
-        \item Let $\gamma$ be the recovery rate (rate of "dying").
+        \item Soit $\beta$ le taux d'infection (taux de production de « descendants »).
+        \item Soit $\gamma$ le taux de rétablissement (taux de « mort »).
     \end{itemize}
 
-    The individual's infectious lifetime is an exponential random variable with mean $1/\gamma$.
+    La durée de vie infectieuse de l'individu est une variable aléatoire exponentielle avec moyenne $1/\gamma$.
 
 
 
-    The average number of secondary infections they cause is:
-    $$ \mathcal{R}_0 = (\text{rate of infection}) \times (\text{average infectious period}) = \beta \times \frac{1}{\gamma} = \frac{\beta}{\gamma} $$
+    Le nombre moyen d'infections secondaires qu'il cause est :
+    $$ \mathcal{R}_0 = (\text{taux d'infection}) \times (\text{période infectieuse moyenne}) = \beta \times \frac{1}{\gamma} = \frac{\beta}{\gamma} $$
 
-    \begin{block}{The Connection}
-    $\mathcal{R}_0$ is precisely the \textbf{mean offspring number} $\mu$ for the embedded branching process that approximates the start of the epidemic.
+    \begin{block}{La connexion}
+    $\mathcal{R}_0$ est précisément le \textbf{nombre moyen de descendants} $\mu$ pour le processus de branchement intégré qui approxime le début de l'épidémie.
     \end{block}
 \end{frame}
 
 % --- SLIDE 11: Applying Branching Theory to Epidemics ---
 \begin{frame}
-    \frametitle{Applying Branching Theory to Epidemics}
+    \frametitle{Appliquer la théorie de branchement aux épidémies}
 
-    The fate of the epidemic's initial phase is determined by $\mathcal{R}_0$:
+    Le destin de la phase initiale de l'épidémie est déterminé par $\mathcal{R}_0$ :
 
     \begin{itemize}
-        \item If $\mathcal{R}_0 \le 1$ ($\mu \le 1$): The number of infected individuals is a subcritical or critical process. The epidemic will die out with probability 1.
+        \item Si $\mathcal{R}_0 \le 1$ ($\mu \le 1$) : Le nombre d'individus infectés est un processus sous-critique ou critique. L'épidémie s'éteindra avec probabilité 1.
 
-        \item If $\mathcal{R}_0 > 1$ ($\mu > 1$): The process is supercritical. There is a positive probability that the epidemic takes off and causes a major outbreak.
+        \item Si $\mathcal{R}_0 > 1$ ($\mu > 1$) : Le processus est sur-critique. Il y a une probabilité positive que l'épidémie décolle et cause une épidémie majeure.
     \end{itemize}
 
 
 
-    We can even calculate the probability of a major outbreak! It is $1 - \pi_0$, where $\pi_0$ is the extinction probability.
+    Nous pouvons même calculer la probabilité d'une épidémie majeure ! C'est $1 - \pi_0$, où $\pi_0$ est la probabilité d'extinction.
 
-    For this simple birth-death infection process, the PGF is $G(s) = \frac{\gamma}{\beta+\gamma} + \frac{\beta}{\beta+\gamma}s$. Solving $s=G(s)$ gives the extinction probability:
+    Pour ce processus d'infection naissance-mort simple, la FGP est $G(s) = \frac{\gamma}{\beta+\gamma} + \frac{\beta}{\beta+\gamma}s$. Résoudre $s=G(s)$ donne la probabilité d'extinction :
 
     $$ \pi_0 = \frac{\gamma}{\beta} = \frac{1}{\mathcal{R}_0} $$
 
-    The probability of a major outbreak is $1 - 1/\mathcal{R}_0$.
+    La probabilité d'une épidémie majeure est $1 - 1/\mathcal{R}_0$.
 \end{frame}
 
 % --- SLIDE 12: Summary ---
 \begin{frame}
-    \frametitle{Summary}
+    \frametitle{Résumé}
 
     \begin{itemize}
-        \item \textbf{Branching Processes} model populations with i.i.d. offspring generation.
+        \item Les \textbf{processus de branchement} modélisent les populations avec une génération de descendants i.i.d.
 
-        \item The fate of the population is determined by the \textbf{mean offspring number} $\mu$. Extinction is certain if $\mu \le 1$.
+        \item Le destin de la population est déterminé par le \textbf{nombre moyen de descendants} $\mu$. L'extinction est certaine si $\mu \le 1$.
 
-        \item The \textbf{extinction probability} $\pi_0$ can be calculated as the smallest non-negative fixed point of the probability generating function $G(s)$.
+        \item La \textbf{probabilité d'extinction} $\pi_0$ peut être calculée comme le plus petit point fixe non négatif de la fonction génératrice de probabilité $G(s)$.
 
-        \item The initial stages of many large-scale \textbf{Continuous-Time Markov Chains} can be approximated by a branching process.
+        \item Les stades initiaux de nombreuses \textbf{chaînes de Markov à temps continu} à grande échelle peuvent être approximés par un processus de branchement.
 
-        \item This allows us to apply the theory to real-world problems, like calculating an epidemic's \textbf{basic reproduction number $\mathcal{R}_0$} and its probability of causing a major outbreak.
+        \item Cela nous permet d'appliquer la théorie à des problèmes du monde réel, comme le calcul du \textbf{nombre de reproduction de base $\mathcal{R}_0$} d'une épidémie et sa probabilité de causer une épidémie majeure.
     \end{itemize}
 \end{frame}
 
