@@ -139,14 +139,14 @@ surv <- 1 - cdf
 # Tracer les trois fonctions
 plot(x, pdf, type = "l", col = "blue", lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
-     main = "PD, CD and Survival functions",
+     main = "Distribution, fonctions de répartition et de survie",
      xaxt = "n")
 lines(x, cdf, col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv, col = "red", lwd = 2, lty = 3)
 
 # Ajouter la légende
 legend("right",
-       legend = c("PDF", "CDF", "Survival"),
+       legend = c("Densité", "FR", "Survie"),
        col = c("blue", "darkgreen", "red"),
        lty = c(1, 2, 3),
        lwd = 2,
@@ -167,7 +167,7 @@ surv <- 1 - cdf
 # Tracer les trois fonctions
 plot(x, pdf, type = "l", col = "blue", lwd = 2,
      ylim = c(0, 1), xlab = "t", ylab = "Value",
-     main = "PD, CD and Survival functions & Hazard rate",
+     main = "Densité, f.r., survie & taux de risque",
      xaxt = "n")
 lines(x, cdf, col = "darkgreen", lwd = 2, lty = 2)
 lines(x, surv, col = "red", lwd = 2, lty = 3)
@@ -175,7 +175,7 @@ lines(x, pdf/surv, col = fg_colour, lty = 3, lwd = 1)
 
 # Ajouter la légende
 legend("right",
-       legend = c("PDF", "CDF", "Survival", "Hazard"),
+       legend = c("Densité", "FR", "Survie", "Risque"),
        col = c("blue", "darkgreen", "red", "black"),
        lty = c(1, 2, 3, 3),
        lwd = 2,
@@ -562,19 +562,21 @@ library(future.apply)
 # Il est utile d'avoir les transitions, les taux et
 # les noms définis dans une fonction
 CTMC_SIS <- function() {
-  # Définir les transitions pour adaptivetau
+  # Transitions de la CMTC
   transitions <- list(
-    c(S = -1, I = +1),  # nouvelle_infection
-    c(S = +1, I = -1)   # rétablissement
+    c(S = -1, I = +1),  # nouvelle infection
+    c(S = +1, I = -1)   # guérison
   )
-  # Définir la fonction de taux
+  # Fonction des taux de transition
   rates <- function(x, params, t) {
     c(
       params[["beta"]] * x["S"] * x["I"],
       params[["gamma"]] * x["I"]
     )
   }
+  # Noms des évènements
   event_names = c("new_infection", "recovery")
+  # On renvoie le résultat
   return(list(transitions = transitions,
               rates = rates,
               event_names = event_names))
@@ -591,7 +593,7 @@ run_one_sim = function(CTMC, params) {
         params = params,
         tf = params$t_f
     )
-    # Interpolate result (just I will do)
+    # Interpolation du résultat (on fait seulement I)
     wanted_t =
       seq(from = 0, to = params$t_f, by = 0.01)
     interp_I = approx(x = sol[,"time"],
@@ -605,10 +607,7 @@ run_one_sim = function(CTMC, params) {
 
 # Par défaut, utiliser tous les cœurs disponibles
 plan(multisession)
-## Pour utiliser moins de workers, en laissant un vide par
-# instance
-# plan(multisession, availableCores()-1)
-## Pour exécuter séquentiellement
+# Pour exécuter séquentiellement, faire
 # plan(sequential)
 
 # Configurer les paramètres ne nécessitant pas de calcul
@@ -630,17 +629,17 @@ SIMS = future_lapply(
   X = 1:params$nb_sims,
   FUN =  function(x) run_one_sim(CTMC, params))
 
-# Trouver la valeur y maximale pour le tracé
+# Trouver la valeur y maximale pour le graphique
 y_max = max(unlist(lapply(SIMS, function(x) max(x$interp_I$I))),
             na.rm = TRUE)
-# Maintenant tracer
+# Maintenant on représente le résultat
 plot(SIMS[[1]]$interp_I$time,
      SIMS[[1]]$interp_I$I,
      type = "l", lwd = 0.5,
-     xlab = "Time (days)",
-     ylab = "Number infectious",
+     xlab = "Temps (jours)",
+     ylab = "Prévalence",
      ylim = c(0, y_max),
-     main = paste("CTMC with R0 =", params$R0))
+     main = TeX(paste("CMTC avec $R_0$ =", params$R0)))
 for (i in 2:length(SIMS)) {
   lines(SIMS[[i]]$interp_I$time,
         SIMS[[i]]$interp_I$I,

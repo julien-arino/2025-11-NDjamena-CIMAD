@@ -83,33 +83,33 @@
 Je travaillais sous contrat avec l'Agence de la santé publique du Canada sur l'\emph{évaluation du risque d'importation de COVID-19}
 \vfill
 \bbullet 
-Produisais un rapport quotidien avec la liste des pays les plus susceptibles de signaler des cas de COVID-19 ensuite
+Je produisais un rapport quotidien avec la liste des pays les plus susceptibles de signaler des cas de COVID-19 dans les jours à venir
 \vfill
 \bbullet
-Utilisais des exécutions d'ensemble d'un modèle de métapopulation déterministe global ajusté
+J'utilisais des simulations ensemblistes d'un modèle de métapopulation déterministe global ajusté
 \end{frame}
 
 \maxFrameImage{FIGS/covid-cluster}
 
 \begin{frame}
-\bbullet Very very long days (18-20 hours, 7 days a week)
+\bbullet Jours très très longs (18-20 heures, 7 jours par semaine)
 \vfill
-\bbullet including a lot of time waiting for the ``cluster'' to finish
+\bbullet Ceci incluait un bon moment à attendre que le ``cluster'' finisse de tourner
 \vfill
-$\implies$ PHAC gave me money for a cluster (yay Threadrippers!!!)
+$\implies$ PHAC/ACSP m'a donné des sous pour acheter un vrai cluster (Threadrippers!!!)
 \vfill
-$\implies$ Also thought about whether my model was really adequate as our focus switched from thinking about movement on a planetary scale to movement within Canadian provinces
+$\implies$ J'ai aussi commencé à réflechir à la validité de mon modèle alors que mon focus passait du mouvement au niveau planétaire à un mouvement plus local entre provinces du Canada
 \end{frame}
 
 \begin{frame}{Qu'est-ce qui ne va pas avec les modèles déterministes ?}
 \bbullet J'ai souligné hier que le SARS-CoV-2 est une \emph{unique} réalisation d'un processus stochastique
 \vfill
-\bbullet Les modèles déterministes « opèrent sur des moyennes » sur un grand ($\to\infty$) nombre de réalisations
+\bbullet Les modèles déterministes « opèrent sur des moyennes » sur un grand ($\to +\infty$) nombre de réalisations
 \vfill
 \bbullet Si nous voulons avoir une meilleure idée de ce qui pourrait se passer, pas seulement en moyenne, alors nous devons voir ce qui peut effectivement se passer
 \end{frame}
 
-\begin{frame}{Mon nouveau focus -- Introductions}
+\begin{frame}{Mon nouveau focus -- Les introductions}
 \bbullet J'ai commencé à penser en particulier aux \defword{introductions} (ou importations) de pathogènes dans de nouvelles populations
 \vfill
 \bbullet En effet, les introductions sont une étape obligatoire dans la propagation spatiale
@@ -175,7 +175,7 @@ Loin d'être la seule raison, mais à titre d'exemple : le Canada a des communau
   \vfill
   Pensez aux temps de résidence dans ces communautés : quel est le temps moyen qu'une personne passe dans une communauté éloignée ou isolée avant de la quitter ?
   \vfill
-  Le \defword{temps de résidence dans une localisation} est le nombre total de trajets entrants et sortants d'une localisation sur une durée (1 mois ici) divisé par la population normale dans la localisation 
+  Le \defword{temps de résidence dans un lieu} est le nombre total de trajets entrants et sortants d'une localisation sur une durée (1 mois ici) divisé par la population normale dans la localisation 
 \end{frame}
 
 \maxFrameImage{FIGS/residence-time-in-airports.png}
@@ -331,9 +331,9 @@ Puisque $T$ est continue, elle a une \defword{fonction de densité de probabilit
 
 
 
-\begin{frame}\frametitle{Fonction de distribution cumulative (f.d.c.)}
+\begin{frame}\frametitle{Fonction de répartition (f.r.)}
 \begin{minipage}{0.4\textwidth}
-La \defword{fonction de distribution cumulative} est une fonction $F(t)$ qui caractérise la distribution de $T$, et définie par
+La \defword{fonction de répartition} est une fonction $F(t)$ qui caractérise la distribution de $T$, et définie par
 \[
 F(s)=\IP(T\leq s)=\int_{-\infty}^sf(x)dx
 \]
@@ -355,7 +355,7 @@ Ceci donne une description du \defword{temps de séjour} d'un
 système dans un état particulier (le temps passé dans l'état)
 \vfill
 $\S$ est une fonction non croissante (puisque $\S=1-F$
-avec $F$ une f.d.c.), et
+avec $F$ une f.r.), et
 $\S(0)=1$ (puisque $T$ est une variable aléatoire non négative)
 \end{frame}
 
@@ -615,8 +615,8 @@ N_0, & 0\leq t\leq\omega \\
 \end{cases}
 \end{equation}
 Tous les individus survivent jusqu'au temps $\omega$, puis ils meurent tous au temps $\omega$
-\vfill
-Ici, $N'=0$ partout sauf en $t=\omega$, où elle est indéfinie
+% \vfill
+% Ici, $N'=0$ partout sauf en $t=\omega$, où elle est indéfinie
 \end{frame}
 
 
@@ -1457,12 +1457,12 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 \begin{frame}[fragile]{Last one did not go well}
     \begin{itemize}
         \item Wanted 1000 time units (days?)
-        \item Interrupted at 289.9840082 because of the test
+        \item Interrupted at 312.2959306 because of the test
         \newline (Slide with $b<d$: sim stopped because the population went extinct, I did not stop it!)
         \item At stop time
         \begin{itemize}
-            \item $N =$ \ensuremath{3.3126\times 10^{4}}
-            \item $|N| =$ 65651 (et $|t|$ aussi, bien sûr !)
+            \item $N =$ \ensuremath{5.1679\times 10^{4}}
+            \item $|N| =$ 103404 (et $|t|$ aussi, bien sûr !)
             \item le temps avançait lentement
         \end{itemize}
     \end{itemize}
@@ -1474,8 +1474,8 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 \hlkwd{tail}\hldef{(}\hlkwd{diff}\hldef{(results}\hlopt{$}\hldef{t))}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.559151e-04 7.849334e-05 3.668805e-04 4.423849e-05 1.354589e-04
-## [6] 3.679588e-09
+## [1] 6.668022e-05 6.789234e-04 8.434152e-04 2.143723e-04 1.434531e-03
+## [6] 2.979959e-09
 \end{verbatim}
 
 \end{knitrout}
@@ -1537,9 +1537,7 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 
 
 
-\subsection{Paralléliser votre code dans \code{R}}
-% The section page
-\newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_4oxcef4oxcef4oxc.jpeg}
+\Ssubsection{Paralléliser votre code dans \code{R}}{FIGS-slides-admin/Gemini_Generated_Image_4oxcef4oxcef4oxc.jpeg}
 
 
 \begin{frame}{Parallélisation}
@@ -1554,7 +1552,7 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 
 
 
-\begin{frame}[fragile, allowframebreaks]{Common part -- The function we run}
+\begin{frame}[fragile, allowframebreaks]{Partie commune -- la fonction utilisée}
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -1591,15 +1589,15 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 
 \maxFrameImage{FIGS/cours-03-parallel-CTMC-plot-1.pdf}
 
-\begin{frame}[fragile]{Benefit of parallelisation}
-    Run the parallel code for 100 sims between `tictoc::tic()` and `tictoc::toc()`, giving `66.958 sec elapsed`, then the sequential version
+\begin{frame}[fragile]{Bénéfices de la parallélisation}
+    Faisons tourner 100 sims entre \code{tictoc::tic()} and \code{tictoc::toc()}, donnant \code{66.958 sec elapsed}, puis la version séquentielle
 \begin{lstlisting}
 tictoc::tic()
 SIMS = lapply(X = 1:params$number_sims,
                 FUN =  function(x) run_one_sim(params))
 tictoc::toc()
 \end{lstlisting}
-    which gives `318.141 sec elapsed` on a 6C/12T Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz (4.75$\times$ faster) or `12.067 sec elapsed` versus `258.985 sec elapsed` on a 32C/64T AMD Ryzen Threadripper 3970X 32-Core Processor (21.46$\times$ faster !)
+    ce qui donne \code{318.141 sec elapsed} sur un Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz 6C/12T (4.75$\times$ plus rapide) ou \code{12.067 sec elapsed} versus \code{258.985 sec elapsed} sur un processeur AMD Ryzen Threadripper 3970X 32-Core/64-Threads (21.46$\times$ plus rapide !)
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%
@@ -1795,112 +1793,105 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Approximations par processus de branchement des CMTC}
+\section{Approximations des CMTC par processus de branchement}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 \begin{frame}
     \frametitle{Qu'est-ce qu'un processus de branchement ?}
-    \begin{block}{L'idée centrale}
-        Un processus de branchement est un modèle mathématique pour une population où les individus produisent un nombre aléatoire de descendants puis meurent.
-    \end{block}
-
+        Un processus de branchement est un modèle mathématique pour une population où les individus produisent un nombre aléatoire de descendants puis meurent
+\vfill
+Pensez aux bactéries qui se divisent, à un virus qui se propage, ou même à la survie des noms de famille
+\vfill
     \begin{itemize}
-        \item Pensez aux bactéries qui se divisent, à un virus qui se propage, ou même à la survie des noms de famille.
-        \item Nous commençons avec une population initiale, $Z_0$.
-        \item Chaque individu de la génération $n$ produit un nombre de descendants pour la génération $n+1$.
-        \item Ce « nombre de descendants » est une variable aléatoire. Tous les individus produisent des descendants selon la même distribution de probabilité, indépendamment les uns des autres.
+        \item Commençons avec une population initiale, $Z_0$
+        \item Chaque individu de la génération $n$ produit un nombre de descendants pour la génération $n+1$
+        \item Ce « nombre de descendants » est une variable aléatoire. Tous les individus produisent des descendants selon la même distribution de probabilité, indépendamment les uns des autres
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Le processus de Galton-Watson}
-
-    Soit $Z_n$ la taille de la population à la génération $n$. Nous commençons typiquement avec $Z_0 = 1$.
-
-    La population évolue selon la règle :
+    Soit $Z_n$ la taille de la population à la génération $n$. Nous commençons typiquement avec $Z_0 = 1$
+\vfill
+    La population évolue selon la règle
     $$ Z_{n+1} = \sum_{i=1}^{Z_n} X_{n,i} $$
-
+\vfill
     \begin{itemize}
-        \item Le terme $X_{n,i}$ représente le nombre de descendants produits par le $i$-ème individu de la génération $n$.
-        \item Les variables $\{X_{n,i}\}$ sont supposées être des variables aléatoires \textbf{indépendantes et identiquement distribuées (i.i.d.)} à valeurs entières.
-        \item Nous appelons leur distribution commune $\{p_k\}_{k=0}^\infty$ la \textbf{distribution des descendants}, où $p_k = P(X = k)$.
+        \item $X_{n,i}$: nombre de descendants produits par le $i$-ème individu de la génération $n$
+        \item Les variables $\{X_{n,i}\}$ sont des variables aléatoires \textbf{indépendantes et identiquement distribuées (i.i.d.)} à valeurs entières
+        \item Nous appelons leur distribution commune $\{p_k\}_{k=0}^\infty$ la \defword{distribution des descendants}, où $p_k = P(X = k)$
     \end{itemize}
 
-    \begin{alertblock}{Les questions fondamentales}
+    \begin{alertblock}{Questions fondamentales}
     \begin{enumerate}
-        \item Quelle est la taille espérée à long terme de la population ?
-        \item Quelle est la probabilité que la population finisse par s'éteindre ?
+        \item Taille espérée à long terme de la population ?
+        \item Probabilité que la population finisse par s'éteindre ?
     \end{enumerate}
     \end{alertblock}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Moyenne des descendants}
-
+    \frametitle{Moyenne de la distribution des descendants}
     Le destin de la population dépend d'un seul paramètre : la moyenne de la distribution des descendants
-
     $$ \mu = E[X] = \sum_{k=0}^{\infty} k \cdot p_k $$
-
-    \begin{block}{Taille de population espérée}
-        En utilisant la loi de l'espérance totale, nous trouvons la taille espérée de la prochaine génération :
-        $$ E[Z_{n+1} | Z_n] = E\left[\sum_{i=1}^{Z_n} X_{n,i} \bigg| Z_n\right] = Z_n E[X] = Z_n \mu $$
-
-        En prenant l'espérance à nouveau, nous obtenons une récurrence simple :
-        $$ E[Z_{n+1}] = \mu E[Z_n] $$
-
-        Ceci implique :
-        $$ E[Z_n] = Z_0 \mu^n $$
-    \end{block}
 \end{frame}
 
-% --- SLIDE 5: The Three Regimes of Population Growth ---
+\begin{frame}{Taille de population espérée}
+        En utilisant la loi de l'espérance totale, nous trouvons la taille espérée de la prochaine génération
+        $$ E[Z_{n+1} | Z_n] = E\left[\sum_{i=1}^{Z_n} X_{n,i} \bigg| Z_n\right] = Z_n E[X] = Z_n \mu $$
+\vfill
+        En prenant l'espérance à nouveau, nous obtenons une récurrence simple
+        $$ E[Z_{n+1}] = \mu E[Z_n] $$
+\vfill
+        Ceci implique
+        $$ E[Z_n] = Z_0 \mu^n $$
+\end{frame}
+
 \begin{frame}
     \frametitle{Les trois régimes de croissance de population}
 
-    Le comportement de $E[Z_n] = Z_0 \mu^n$ suggère trois cas distincts :
+    Le comportement de $E[Z_n] = Z_0 \mu^n$ suggère trois cas distincts
 
     \begin{columns}[T]
         \begin{column}{0.33\textwidth}
             \begin{block}{Sous-critique ($\mu < 1$)}
-                $E[Z_n] \to 0$. La population devrait rétrécir. Elle s'éteint avec probabilité 1.
+                $E[Z_n] \to 0$. La population devrait rétrécir. Elle s'éteint avec probabilité 1
             \end{block}
         \end{column}
         \begin{column}{0.33\textwidth}
             \begin{block}{Critique ($\mu = 1$)}
-                $E[Z_n] = Z_0$. La population devrait rester stable. Curieusement, elle s'éteint quand même avec probabilité 1.
+                $E[Z_n] = Z_0$. La population devrait rester stable. Curieusement, elle s'éteint quand même avec probabilité 1
             \end{block}
         \end{column}
         \begin{column}{0.33\textwidth}
-            \begin{block}{Sur-critique ($\mu > 1$)}
-                $E[Z_n] \to \infty$. La population devrait croître exponentiellement. Elle a une probabilité non nulle de survivre à jamais.
+            \begin{block}{Super-critique ($\mu > 1$)}
+                $E[Z_n] \to \infty$. La population devrait croître exponentiellement. Elle a une probabilité non nulle de survivre à jamais
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
-% --- SLIDE 6: Calculating the Extinction Probability ---
 \begin{frame}
-    \frametitle{Outil : La fonction génératrice de probabilité}
+    \frametitle{Fonction génératrice de probabilité}
 
-    Pour trouver la probabilité d'extinction, nous avons besoin d'un outil puissant : la \textbf{fonction génératrice de probabilité (FGP)} de la distribution des descendants $X$.
+    Pour trouver la probabilité d'extinction, nous utilisons la \defword{fonction génératrice de probabilité} (FGP) de la distribution des descendants $X$.
 
     $$ G(s) = E[s^X] = \sum_{k=0}^{\infty} p_k s^k \quad \text{pour } |s| \le 1 $$
 
     \begin{block}{Propriétés clés}
     \begin{itemize}
         \item $G(1) = \sum p_k = 1$
-        \item La moyenne peut être trouvée à partir de la dérivée : $G'(1) = \sum k p_k = \mu$.
-        \item La FGP de $Z_n$ est le $n$-ième itéré de $G(s)$ avec elle-même. Si $G_n(s)$ est la FGP de $Z_n$, alors $G_{n+1}(s) = G(G_n(s))$.
+        \item La moyenne peut être trouvée à partir de la dérivée : $G'(1) = \sum k p_k = \mu$
+        \item La FGP de $Z_n$ est le $n$-ième itéré de $G(s)$ avec elle-même. Si $G_n(s)$ est la FGP de $Z_n$, alors $G_{n+1}(s) = G(G_n(s))$
     \end{itemize}
     \end{block}
 
 \end{frame}
 
-% --- SLIDE 7: The Extinction Probability Equation ---
 \begin{frame}
     \frametitle{Équation de la probabilité d'extinction}
-    Soit $\pi_0$ la probabilité d'extinction éventuelle, en commençant avec $Z_0=1$.
+    Soit $\pi_0$ la probabilité d'extinction éventuelle, en commençant avec $Z_0=1$
     $$ \pi_0 = P(\text{la population s'éteint}) = \lim_{n \to \infty} P(Z_n = 0) $$
 
     Puisque $P(Z_n=0) = G_n(0)$, et $G_{n+1}(0) = G(G_n(0))$, à la limite la probabilité d'extinction $\pi_0$ doit satisfaire l'équation 
@@ -1909,114 +1900,109 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
 \]
 
     \begin{theorem}
-    La probabilité d'extinction $\pi_0$ est la \textbf{plus petite solution non négative} de l'équation $s = G(s)$.
+    La probabilité d'extinction $\pi_0$ est la \textbf{plus petite solution non négative} de l'équation $s = G(s)$
     \end{theorem}
 
     \begin{itemize}
-        \item Si $\mu \le 1$, la seule solution dans $[0,1]$ est $s=1$. Donc $\pi_0=1$.
-        \item Si $\mu > 1$, il existe une solution unique dans $[0,1)$, qui est la probabilité d'extinction $\pi_0 < 1$.
+        \item Si $\mu \le 1$, la seule solution dans $[0,1]$ est $s=1$. Donc $\pi_0=1$
+        \item Si $\mu > 1$, il existe une solution unique dans $[0,1)$, qui est la probabilité d'extinction $\pi_0 < 1$
     \end{itemize}
 \end{frame}
 
-% --- SLIDE 8: From Discrete to Continuous Time ---
 \begin{frame}
     \frametitle{Du temps discret au temps continu}
 
     \begin{block}{Limitation de Galton-Watson}
-        Les générations n'arrivent pas en étapes synchronisées dans le monde réel. Les individus donnent naissance et meurent à des moments aléatoires.
+        Les générations n'arrivent pas en étapes synchronisées dans le monde réel. Les individus donnent naissance et meurent à des moments aléatoires
     \end{block}
 
-    Cela nous amène aux \textbf{Chaînes de Markov en temps continu (CMTC)}.
+    Cela nous amène aux \textbf{Chaînes de Markov en temps continu (CMTC)}
 
     \begin{itemize}
-        \item L'état du système est la taille de la population, $k \in \{0, 1, 2, \dots\}$.
+        \item L'état du système est la taille de la population, $k \in \{0, 1, 2, \dots\}$
         \item Au lieu de générations, nous avons des taux de transition :
             \begin{itemize}
-                \item $\lambda_k$ : taux de naissance lorsque la population est de taille $k$ (passe à $k+1$).
+                \item $\lambda_k$ : taux de naissance lorsque la population est de taille $k$ (passe à $k+1$)
                 \item $\delta_k$ : taux de décès lorsque la population est de taille $k$ (passe à $k-1$).
             \end{itemize}
-        \item Souvent, nous supposons que ces taux sont linéaires : $\lambda_k = k\lambda$ et $\delta_k = k\delta$. Cela signifie que les individus agissent indépendamment.
+        \item Souvent, nous supposons que ces taux sont linéaires : $\lambda_k = k\lambda$ et $\delta_k = k\delta$. Cela signifie que les individus agissent indépendamment
     \end{itemize}
 \end{frame}
 
-% --- SLIDE 9: Branching Process Approximation of a CTMC ---
 \begin{frame}
-    \frametitle{Approximation par processus de branchement d'une CMTC}
+    \frametitle{Approximation d'une CMTC par processus de branchement}
 
     \begin{alertblock}{L'idée clé}
-    Au début d'une épidémie (ou pour une très grande population), la dynamique causée par un seul individu est largement indépendante des autres.
+    Au début d'une épidémie (ou pour une très grande population), la dynamique causée par un seul individu est largement indépendante des autres
     \end{alertblock}
 
-    Cela nous permet d'approximer le début d'un processus de population CMTC avec un processus de branchement.
+    Cela nous permet d'approximer le début d'un processus de population CMTC avec un processus de branchement
 
     \textbf{Exemple : Une épidémie simple (modèle SIR)}
     \begin{itemize}
-        \item $S$ : Susceptible, $I$ : Infecté, $R$ : Rétabli.
-        \item Une personne infectée rencontre d'autres personnes à un certain taux. Si elle rencontre un susceptible, une nouvelle infection peut se produire (un « descendant »).
-        \item La personne infectée se rétablit (ou meurt) à un autre taux, terminant sa période infectieuse.
+        \item $S$ : Susceptible, $I$ : Infecté, $R$ : Rétabli
+        \item Une personne infectée rencontre d'autres personnes à un certain taux. Si elle rencontre un susceptible, une nouvelle infection peut se produire (un « descendant »)
+        \item La personne infectée se rétablit (ou meurt) à un autre taux, terminant sa période infectieuse
         \item \textbf{Question :} Combien de nouvelles infections une seule personne infectée cause-t-elle en moyenne ?
     \end{itemize}
 \end{frame}
 
-% --- SLIDE 10: Case Study: The Basic Reproduction Number $\mathcal{R}_0$ ---
 \begin{frame}
     \frametitle{Étude de cas : Le nombre de reproduction de base $\mathcal{R}_0$}
 
-    Considérons un seul individu infecté dans une grande population de susceptibles.
+    Considérons un seul individu infecté dans une grande population de susceptibles
     \begin{itemize}
-        \item Soit $\beta$ le taux d'infection (taux de production de « descendants »).
-        \item Soit $\gamma$ le taux de rétablissement (taux de « mort »).
+        \item Soit $\beta$ le taux d'infection (taux de production de « descendants »)
+        \item Soit $\gamma$ le taux de rétablissement (taux de « mort »)
     \end{itemize}
 
-    La durée de vie infectieuse de l'individu est une variable aléatoire exponentielle avec moyenne $1/\gamma$.
+    La durée de vie infectieuse de l'individu est une variable aléatoire exponentielle avec moyenne $1/\gamma$
 
 
 
-    Le nombre moyen d'infections secondaires qu'il cause est :
+    Le nombre moyen d'infections secondaires qu'il cause est
     $$ \mathcal{R}_0 = (\text{taux d'infection}) \times (\text{période infectieuse moyenne}) = \beta \times \frac{1}{\gamma} = \frac{\beta}{\gamma} $$
 
     \begin{block}{La connexion}
-    $\mathcal{R}_0$ est précisément le \textbf{nombre moyen de descendants} $\mu$ pour le processus de branchement intégré qui approxime le début de l'épidémie.
+    $\mathcal{R}_0$ est précisément le \textbf{nombre moyen de descendants} $\mu$ pour le processus de branchement intégré qui approxime le début de l'épidémie
     \end{block}
 \end{frame}
 
-% --- SLIDE 11: Applying Branching Theory to Epidemics ---
 \begin{frame}
-    \frametitle{Appliquer la théorie de branchement aux épidémies}
+    \frametitle{Application aux épidémies}
 
-    Le destin de la phase initiale de l'épidémie est déterminé par $\mathcal{R}_0$ :
+    Le destin de la phase initiale de l'épidémie est déterminé par $\mathcal{R}_0$
 
     \begin{itemize}
-        \item Si $\mathcal{R}_0 \le 1$ ($\mu \le 1$) : Le nombre d'individus infectés est un processus sous-critique ou critique. L'épidémie s'éteindra avec probabilité 1.
+        \item Si $\mathcal{R}_0 \le 1$ ($\mu \le 1$) : Le nombre d'individus infectés est un processus sous-critique ou critique. L'épidémie s'éteint avec probabilité 1
 
-        \item Si $\mathcal{R}_0 > 1$ ($\mu > 1$) : Le processus est sur-critique. Il y a une probabilité positive que l'épidémie décolle et cause une épidémie majeure.
+        \item Si $\mathcal{R}_0 > 1$ ($\mu > 1$) : Le processus est super-critique. Il y a une probabilité positive que l'épidémie décolle et cause une épidémie majeure
     \end{itemize}
 
 
 
-    Nous pouvons même calculer la probabilité d'une épidémie majeure ! C'est $1 - \pi_0$, où $\pi_0$ est la probabilité d'extinction.
+    Nous pouvons même calculer la probabilité d'une épidémie majeure ! C'est $1 - \pi_0$, où $\pi_0$ est la probabilité d'extinction
 
-    Pour ce processus d'infection naissance-mort simple, la FGP est $G(s) = \frac{\gamma}{\beta+\gamma} + \frac{\beta}{\beta+\gamma}s$. Résoudre $s=G(s)$ donne la probabilité d'extinction :
+    Pour ce processus d'infection naissance-mort simple, la FGP est $G(s) = \frac{\gamma}{\beta+\gamma} + \frac{\beta}{\beta+\gamma}s$. Résoudre $s=G(s)$ donne la probabilité d'extinction
 
     $$ \pi_0 = \frac{\gamma}{\beta} = \frac{1}{\mathcal{R}_0} $$
 
-    La probabilité d'une épidémie majeure est $1 - 1/\mathcal{R}_0$.
+    La probabilité d'une épidémie majeure est $1 - 1/\mathcal{R}_0$
 \end{frame}
 
-% --- SLIDE 12: Summary ---
 \begin{frame}
-    \frametitle{Résumé}
+    \frametitle{Résumé pour APB}
 
     \begin{itemize}
         \item Les \textbf{processus de branchement} modélisent les populations avec une génération de descendants i.i.d.
 
-        \item Le destin de la population est déterminé par le \textbf{nombre moyen de descendants} $\mu$. L'extinction est certaine si $\mu \le 1$.
+        \item Le destin de la population est déterminé par le \textbf{nombre moyen de descendants} $\mu$. L'extinction est certaine si $\mu \le 1$
 
-        \item La \textbf{probabilité d'extinction} $\pi_0$ peut être calculée comme le plus petit point fixe non négatif de la fonction génératrice de probabilité $G(s)$.
+        \item La \textbf{probabilité d'extinction} $\pi_0$ peut être calculée comme le plus petit point fixe non négatif de la fonction génératrice de probabilité $G(s)$
 
-        \item Les stades initiaux de nombreuses \textbf{chaînes de Markov en temps continu} à grande échelle peuvent être approximés par un processus de branchement.
+        \item Les stades initiaux de nombreuses \textbf{chaînes de Markov en temps continu} à grande échelle peuvent être approximés par un processus de branchement
 
-        \item Cela nous permet d'appliquer la théorie à des problèmes du monde réel, comme le calcul du \textbf{nombre de reproduction de base $\mathcal{R}_0$} d'une épidémie et sa probabilité de causer une épidémie majeure.
+        \item Cela nous permet d'appliquer la théorie à des problèmes du monde réel, comme le calcul du \textbf{nombre de reproduction de base $\mathcal{R}_0$} d'une épidémie et sa probabilité de causer une épidémie majeure
     \end{itemize}
 \end{frame}
 
