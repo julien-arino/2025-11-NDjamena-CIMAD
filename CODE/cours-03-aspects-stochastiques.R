@@ -28,7 +28,7 @@ opts_chunk$set(echo = TRUE,
                dev = c("pdf", "png"),
                fig.width = 6, 
                fig.height = 4, 
-               fig.path = "FIGS/course-03-",
+               fig.path = "FIGS/cours-03-",
                fig.keep = "high",
                fig.show = "hide")
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
@@ -676,7 +676,62 @@ run_one_sim = function(params) {
 }
 
 
-## ----convert-Rnw-to-R,warning=FALSE,message=FALSE-----------------------------
+## ----sim-birth-death-1,echo=FALSE---------------------------------------------
+library(GillespieSSA2)
+pop_desiree <- 1000
+N0 = 1000
+IC <- c(N = N0)
+d = 1/(45 * 365.25)
+b = pop_desiree * d
+params <- c(b = b, d = d)
+t_f = 100
+reactions <- list(
+  reaction("b", c(N=+1), "naissance"),
+  reaction("d*N", c(N=-1), "deces")
+)
+set.seed(NULL)
+
+
+sol <- ssa(
+  initial_state = IC,
+  reactions = reactions,
+  params = params,
+  method = ssa_exact(),
+  final_time = t_f,
+)
+plot(sol$time, sol$state[,"N"], type = "l",
+     xlab = "Temps (jours)", ylab = "Population")
+abline(h = 1000, col = "darkred", lty = 2)
+
+
+## ----sim-birth-death-2,echo=FALSE---------------------------------------------
+pop_desiree <- 1000
+N0 = 1000
+IC <- c(N = N0)
+d = 1/(45)
+b = pop_desiree * d
+params <- c(b = b, d = d)
+t_f = 100
+reactions <- list(
+  reaction("b", c(N=+1), "naissance"),
+  reaction("d*N", c(N=-1), "deces")
+)
+set.seed(NULL)
+
+
+sol <- ssa(
+  initial_state = IC,
+  reactions = reactions,
+  params = params,
+  method = ssa_exact(),
+  final_time = t_f,
+)
+plot(sol$time, sol$state[,"N"], type = "l",
+     xlab = "Temps (jours)", ylab = "Population")
+abline(h = 1000, col = "darkred", lty = 2)
+
+
+## ----convert-Rnw-to-R, echo=FALSE, results='hide', warning=FALSE, message=FALSE----
 # From https://stackoverflow.com/questions/36868287/purl-within-knit-duplicate-label-error
 rmd_chunks_to_r_temp <- function(file){
   callr::r(function(file, temp){

@@ -30,7 +30,7 @@ opts_chunk$set(echo = TRUE,
                dev = c("pdf", "png"),
                fig.width = 6, 
                fig.height = 4, 
-               fig.path = "FIGS/course-03-",
+               fig.path = "FIGS/cours-03-",
                fig.keep = "high",
                fig.show = "hide")
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
@@ -2017,10 +2017,107 @@ tictoc::toc()
     which gives `318.141 sec elapsed` on a 6C/12T Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz (4.75$\times$ faster) or `12.067 sec elapsed` versus `258.985 sec elapsed` on a 32C/64T AMD Ryzen Threadripper 3970X 32-Core Processor (21.46$\times$ faster !)
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+\Ssubsection{Exemple -- Vérification des paramètres}{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
-\subsection{Exemple -- Phase stochastique d'une épidémie}
-% The section page
-\newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
+\begin{frame}{Exemple simple -- Naissance et mort}
+Nous considérons un modèle de démographie avec un compartiment $N$, avec flux entrant de naissance constant et décès \emph{per capita}
+\[
+\frac{dN}{dt} = b - d\,N,\qquad b,d> 0
+\]
+\vfill
+\bbullet Équilibre \(N^\star = b/d\)
+\vfill
+\bbullet Si $d$ est connu, ce modèle est \textbf{identifiable}: il y a un unique $b = dN^\star$ tel que $N(t)\to N^\star$
+\vfill
+La CMTC correspondante prend la forme \(N(t)\in\IN\), avec les transitions
+\begin{itemize}
+  \item $N\to N+1$ au taux $b$
+  \item $N\to N-1$ au taux $dN$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Une petite expérience}
+Supposons qu'on ait une population humaine de 1 000 personnes
+\vfill
+Prétendons qu'on ne connait pas vraiment l'ordre de grandeur de $d$ ($1/d$ est la durée moyenne de vie). On veut garder une population autour de 1 000 individus
+\vfill
+J'illustre 2 cas:
+\begin{itemize}
+\item mortalité $d=1/45$ ans ($d=1/(45\cdot 365)$ avec unités de temps les jours)
+\item mortalité $d=1/45$ jours
+\end{itemize}
+\end{frame}
+
+<<sim-birth-death-1,echo=FALSE>>=
+library(GillespieSSA2)
+pop_desiree <- 1000
+N0 = 1000
+IC <- c(N = N0)
+d = 1/(45 * 365.25)
+b = pop_desiree * d
+params <- c(b = b, d = d)
+t_f = 100
+reactions <- list(
+  reaction("b", c(N=+1), "naissance"),
+  reaction("d*N", c(N=-1), "deces")
+)
+set.seed(NULL)
+
+
+sol <- ssa(
+  initial_state = IC,
+  reactions = reactions,
+  params = params,
+  method = ssa_exact(),
+  final_time = t_f,
+)
+plot(sol$time, sol$state[,"N"], type = "l",
+     xlab = "Temps (jours)", ylab = "Population")
+abline(h = 1000, col = "darkred", lty = 2)
+@
+
+<<sim-birth-death-2,echo=FALSE>>=
+pop_desiree <- 1000
+N0 = 1000
+IC <- c(N = N0)
+d = 1/(45)
+b = pop_desiree * d
+params <- c(b = b, d = d)
+t_f = 100
+reactions <- list(
+  reaction("b", c(N=+1), "naissance"),
+  reaction("d*N", c(N=-1), "deces")
+)
+set.seed(NULL)
+
+
+sol <- ssa(
+  initial_state = IC,
+  reactions = reactions,
+  params = params,
+  method = ssa_exact(),
+  final_time = t_f,
+)
+plot(sol$time, sol$state[,"N"], type = "l",
+     xlab = "Temps (jours)", ylab = "Population")
+abline(h = 1000, col = "darkred", lty = 2)
+@
+
+\begin{frame}
+Pensez à une population de 1 000 personnes. Laquelle des figures ci-dessous vous semble convenir mieux en terme du nombre d'évènements ayant lieu tous les jours?
+\vfill
+\begin{center}
+\includegraphics[width=0.49\textwidth]{\Sexpr{plot_crop(fig_chunk('sim-birth-death-1', 'pdf'))}}
+\includegraphics[width=0.49\textwidth]{\Sexpr{plot_crop(fig_chunk('sim-birth-death-2', 'pdf'))}}
+\end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+\Ssubsection{Exemple -- Phase stochastique d'une épidémie}{FIGS-slides-admin/Gemini_Generated_Image_5yvymh5yvymh5yvy.jpeg}
 
 \maxFrameImage{FIGS/ArinoMilliken-BMB}
 \nocite{ArinoMilliken2022b}
@@ -2272,14 +2369,10 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
     Soit $\pi_0$ la probabilité d'extinction éventuelle, en commençant avec $Z_0=1$.
     $$ \pi_0 = P(\text{la population s'éteint}) = \lim_{n \to \infty} P(Z_n = 0) $$
 
-    Puisque $P(Z_n=0) = G_n(0)$, et $G_{n+1}(0) = G(G_n(0))$, à la limite la probabilité d'extinction $\pi_0$ doit satisfaire l'équation :
-
-    \begin{center}
-        \Huge
-        $ \pi_0 = G(\pi_0) $
-    \end{center}
-
-
+    Puisque $P(Z_n=0) = G_n(0)$, et $G_{n+1}(0) = G(G_n(0))$, à la limite la probabilité d'extinction $\pi_0$ doit satisfaire l'équation 
+\[
+\pi_0 = G(\pi_0)
+\]
 
     \begin{theorem}
     La probabilité d'extinction $\pi_0$ est la \textbf{plus petite solution non négative} de l'équation $s = G(s)$.
@@ -2394,7 +2487,7 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
 \end{frame}
 
 
-<<convert-Rnw-to-R,warning=FALSE,message=FALSE>>=
+<<convert-Rnw-to-R, echo=FALSE, results='hide', warning=FALSE, message=FALSE>>=
 # From https://stackoverflow.com/questions/36868287/purl-within-knit-duplicate-label-error
 rmd_chunks_to_r_temp <- function(file){
   callr::r(function(file, temp){

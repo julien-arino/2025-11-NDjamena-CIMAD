@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# Compile all course files
-# for f in course-*.Rnw
+# On nettoie les figures
+for f in FIGS/cours-*.pdf 
+do
+  rm $f
+done
+
+# On knit et latex tous les fichiers de cours
 for f in cours-*.Rnw
 do
   # Knit the file
   Rscript -e "knitr::knit('$f')"
-  # Compile with xelatex (three times for cross-references)
+  # Compilation avec xelatex (3 fois plus bibtex pour les références croisées)
   xelatex --nonstopmode "${f%.Rnw}.tex"
+  bibtex "${f%.Rnw}"
   xelatex --nonstopmode "${f%.Rnw}.tex"
   xelatex --nonstopmode "${f%.Rnw}.tex"
 done
