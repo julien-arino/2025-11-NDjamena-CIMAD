@@ -354,43 +354,7 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
 (Article qui vaut la peine d'être lu ne serait-ce que pour son Introduction)
 \end{frame}
 
-\begin{frame}{}
-  \begin{minipage}{0.4\textwidth}
-    \tikzstyle{cloud} = [rectangle, 
-    draw=yellow!90, 
-    fill=yellow!30, 
-    thick, 
-    minimum width=0.6cm,
-    minimum height = 1cm]
-    \tikzstyle{line} = [draw, 
-    -latex', 
-    color=black]
-    \begin{tikzpicture}[scale=1.5, transform shape]
-      \node [cloud] (S) {$q_i$};
-      \coordinate[above=of S] (h1);
-      \coordinate[right=of S] (h2);
-      \coordinate[left=of S] (h3);
-      \coordinate[below=of S] (h4);
-      %% Flows
-      \path [line, very thick] (h1) to node [midway, right] (TextNode) {$i_i(t)$} (S);
-      \path [line, very thick] (S) to node [midway, above] (TextNode) {$f_{ji}$} (h2);
-      \path [line, very thick] (h3) to node [midway, above] (TextNode) {$f_{ij}$} (S);
-      \path [line, very thick] (S) to node [midway, right] (TextNode) {$f_{0i}$} (h4);
-    \end{tikzpicture}  
-  \end{minipage}
-  \begin{minipage}{0.55\textwidth}
-    \begin{itemize}
-      \item $q_i\geq 0$ taille du compartiment, i.e., quantité de matériau cinétiquement homogène présent dans $i$
-      \item $f_{ij}$ et $f_{ji}$ coefficients/fonctions de transfert
-      \item $f_{0i}$ coefficient/fonction d'excrétion
-      \item $i_i(t)$ entrées depuis l'extérieur du système
-    \end{itemize}
-  \end{minipage}
-  \vfill
-  Ce qui précède est un \defword{diagramme de flux}, qui résume les différents flux agissant sur le compartiment
-\end{frame}
-
-\begin{frame}{Qu'est-ce qu'un modèle compartimental?}
+\begin{frame}{Modèle compartimental}
     \begin{definition}[Modèle compartimental]
         Un modèle compartimental est un modèle mathématique qui divise un système en un nombre fini de sous-populations distinctes, homogènes et bien mélangées, appelées \textbf{compartiments}. Le modèle décrit le flux d'individus ou de matière entre ces compartiments au fil du temps
     \end{definition}
@@ -398,23 +362,26 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
     \begin{center}
         \begin{tikzpicture}[
             node distance=3cm,
-            compartment/.style={rectangle, draw, fill=blue!20, rounded corners, minimum height=1.5cm, minimum width=2.5cm, text width=2.5cm, align=center},
-            arrow/.style={-latex, thick}
-        ]
+            compartment/.style={rectangle, draw, fill=blue!20, rounded corners, minimum height=1.25cm, minimum width=3cm, text width=3cm, align=center},
+            arrow/.style={-latex, thick}]
+            %% Les sommets
             \node[compartment] (C1) {Compartiment 1 ($x_1$)};
-            \node[compartment, right of=C1] (C2) {Compartiment 2 ($x_2$)};
-            \node[compartment, right of=C2] (C3) {Compartiment 3 ($x_3$)};
-
-            \draw[arrow] (C1) -- node[above] {$k_{21}$} (C2);
-            \draw[arrow] (C2) -- node[above] {$k_{32}$} (C3);
-            \draw[arrow] (C2) to[bend right] node[below] {$k_{12}$} (C1);
-            \draw[arrow] (C3) to[bend right] node[below] {$k_{23}$} (C2);
-            \draw[arrow] (C1) to[bend right=60] node[above] {Entrée} (C1.north);
-            \draw[arrow] (C3) to[bend left=60] node[above] {Sortie} (C3.north);
+            \node[compartment, right=1.5cm of C1] (C2) {Compartiment 2 ($x_2$)};
+            \node[compartment, right=1.5cm of C2] (C3) {Compartiment 3 ($x_3$)};
+            %% Sommets vides pour faire des flèches
+            \node[above=1cm of C1] (entreeC1) {};
+            \node[above=1cm of C3] (sortieC3) {};
+            %% Les flèches
+            \draw[arrow] (C1) to [bend left] node[above] {$k_{21}$} (C2);
+            \draw[arrow] (C2) to [bend left] node[above] {$k_{32}$} (C3);
+            \draw[arrow] (C2) to [bend left] node[below] {$k_{12}$} (C1);
+            \draw[arrow] (C3) to [bend left] node[below] {$k_{23}$} (C2);
+            \draw[arrow] (entreeC1) to node[left] {Entrée} (C1);
+            \draw[arrow] (C3) to node[right] {Sortie} (sortieC3);
         \end{tikzpicture}
     \end{center}
     \vfill
-    \small{\textbf{Hypothèse clé:} La population dans chaque compartiment est instantanément et parfaitement mélangée}
+    \textbf{Hypothèse clé:} La population dans chaque compartiment est instantanément et parfaitement mélangée
 \end{frame}
 
 \begin{frame}{Histoire ancienne des idées compartimentales}
@@ -425,21 +392,18 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
             \item \textbf{Kermack \& McKendrick (1927):} Ont développé le modèle SIR fondateur pour les épidémies
         \end{itemize}
         \item \textbf{Milieu du XXe siècle:} Formalisation et application en pharmacocinétique et physiologie
-        \item \textbf{John A. Jacquez (1922-2002):} Un pionnier de la théorie mathématique des systèmes compartimentaux
+        \item \textbf{John A. Jacquez (1922-2002):} Pionnier de la théorie mathématique
         \begin{itemize}
             \item Auteur du texte fondateur \textit{"Compartmental Analysis in Biology and Medicine"}
             \item A formalisé les concepts de spécification de modèle, d'identifiabilité structurelle et de propriétés des systèmes linéaires
         \end{itemize}
         \item \textbf{Carl P. Simon:} A travaillé extensivement sur l'analyse qualitative des systèmes dynamiques non linéaires, incluant les modèles épidémiologiques
-        \begin{itemize}
-            \item A contribué significativement à la compréhension de la stabilité des équilibres et des phénomènes de seuil dans la dynamique des maladies
-        \end{itemize}
         \item \textbf{G. G. Walter:} A étudié les propriétés structurelles des modèles compartimentaux, particulièrement l'identifiabilité
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Applications à travers les disciplines}
-    \begin{columns}
+    \begin{columns}[t]
         \begin{column}{0.5\textwidth}
             \textbf{Épidémiologie}
             \begin{itemize}
@@ -447,7 +411,7 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
                 \item Évaluation des stratégies de vaccination
                 \item Prédiction des trajectoires pandémiques (par ex., COVID-19)
             \end{itemize}
-            \vspace{1cm}
+            \vfill
             \textbf{Pharmacologie}
             \begin{itemize}
                 \item Pharmacocinétique (PK) et Pharmacodynamique (PD)
@@ -462,7 +426,7 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
                 \item Dynamique des populations
                 \item Flux de toxines dans les réseaux trophiques
             \end{itemize}
-            \vspace{1cm}
+            \vfill
             \textbf{Autres domaines}
             \begin{itemize}
                 \item Génie chimique (modèles de réacteurs)
@@ -480,42 +444,90 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
 
 \begin{frame}{Les éléments de base}
     \begin{itemize}
-        \item \textbf{Compartiments ($C_i$):} Sous-populations ou quantités de matière.
+        \item \textbf{Compartiments ($C_i$):} Sous-populations ou quantités de matière
         \begin{itemize}
-            \item Exemple: Individus Susceptibles (S), Infectés (I), Rétablis (R).
+            \item Exemple: Individus Susceptibles (S), Infectés (I), Rétablis (R)
         \end{itemize}
-        \item \textbf{Variables d'état ($x_i(t)$):} La quantité ou concentration de matière dans le compartiment $i$ au temps $t$. L'état du système est le vecteur $\vect{x}(t) = [x_1(t), x_2(t), \dots, x_n(t)]^T$.
-        \item \textbf{Flux (Fluxes):} Le taux de transfert de matière entre compartiments ou entre un compartiment et le monde extérieur (environnement).
+        \vfill
+        \item \textbf{Variables d'état ($x_i(t)$):} La quantité ou concentration de matière dans le compartiment $i$ au temps $t$. L'état du système est le vecteur $\vect{x}(t) = (x_1(t), x_2(t), \dots, x_n(t))$
+        \vfill
+        \item \textbf{Flux:} Taux de transfert de matière entre compartiments ou entre un compartiment et le monde extérieur (environnement)
         \begin{itemize}
-            \item Soit $f_{ij}$ le taux de flux du compartiment $j$ vers le compartiment $i$.
-            \item $f_{0j}$ est le taux de flux du compartiment $j$ vers l'environnement (excrétion/sortie).
-            \item $f_{i0}$ est le taux de flux de l'environnement vers le compartiment $i$ (entrée).
+            \item $f_{ij}$ taux de flux du compartiment $j$ vers le compartiment $i$
+            \item $f_{0j}$ taux de flux du compartiment $j$ vers l'environnement (excrétion/sortie)
+            \item $f_{i0}$ taux de flux de l'environnement vers le compartiment $i$ (entrée)
         \end{itemize}
-        \item \textbf{Constantes de taux ($k_{ij}$):} Paramètres qui déterminent le taux de flux. Dans les modèles linéaires, $f_{ij} = k_{ij} x_j$.
+        \vfill
+        \item \textbf{Constantes de taux ($k_{ij}$):} Paramètres qui déterminent le taux de flux. Dans les modèles linéaires, $f_{ij} = k_{ij} x_j$
     \end{itemize}
 \end{frame}
 
+\begin{frame}{}
+  \begin{minipage}{0.4\textwidth}
+    \tikzstyle{cloud} = [rectangle, 
+    draw=yellow!90, 
+    fill=yellow!30, 
+    thick, 
+    minimum width=0.6cm,
+    minimum height = 1cm]
+    \tikzstyle{line} = [draw, 
+    -latex', 
+    color=black]
+    \begin{tikzpicture}[scale=1.5, transform shape]
+      \node [cloud] (S) {$x_i$};
+      \coordinate[above=of S] (h1);
+      \coordinate[right=of S] (h2);
+      \coordinate[left=of S] (h3);
+      \coordinate[below=of S] (h4);
+      %% Flows
+      \path [line, very thick] (h1) to node [midway, right] (TextNode) {$f_{i0}(t)$} (S);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {$f_{ji}$} (h2);
+      \path [line, very thick] (h3) to node [midway, above] (TextNode) {$f_{ij}$} (S);
+      \path [line, very thick] (S) to node [midway, right] (TextNode) {$f_{0i}$} (h4);
+    \end{tikzpicture}  
+  \end{minipage}
+  \begin{minipage}{0.55\textwidth}
+    \begin{itemize}
+      \item $x_i\geq 0$ taille du compartiment, i.e., quantité de matériau cinétiquement homogène présent dans $i$
+      \item $f_{ij}$ et $f_{ji}$ coefficients/fonctions de transfert
+      \item $f_{0i}$ coefficient/fonction d'excrétion
+      \item $f_{i0}(t)$ entrées depuis l'extérieur du système
+    \end{itemize}
+  \end{minipage}
+  \vfill
+  Ce qui précède est un \defword{diagramme de flux}, qui résume les différents flux agissant sur le compartiment
+\end{frame}
+
 \begin{frame}{Formulation mathématique: le système EDO}
-    La dynamique d'un système compartimental est décrite par un système d'équations différentielles ordinaires (EDO) du premier ordre.
+    La dynamique d'un système compartimental est décrite par un système d'EDO du premier ordre
 
-    \begin{block}{Équation fondamentale de bilan}
-        Pour chaque compartiment $i$, le taux de changement de sa variable d'état $x_i$ est donné par:
-        $$ \frac{dx_i}{dt} = (\text{Somme de tous les flux entrants dans } C_i) - (\text{Somme de tous les flux sortants de } C_i) $$
-    \end{block}
+    \begin{definition}[Équation de bilan]
+        Pour chaque compartiment $i=1,\ldots,n$, le taux de changement de la variable d'état $x_i$ est donné par:
+        \begin{multline*}
+          \frac{dx_i}{dt} = \text{Somme de tous les flux entrants dans } C_i \\
+          - \text{Somme de tous les flux sortants de } C_i
+        \end{multline*}
+    \end{definition}
+    \vfill
+    Par abus de language, on dit souvent $x_i$ pour le compartiment $i$
+\end{frame}
 
-    Mathématiquement, pour un système à $n$ compartiments:
-    $$ \frac{dx_i}{dt} = f_{i0}(t) + \sum_{j=1, j\neq i}^{n} f_{ij}(\vect{x}) - \sum_{j=0, j\neq i}^{n} f_{ji}(\vect{x}) $$
+\begin{frame}{Formulation mathématique}
+    Pour un système à $n$ compartiments:
+    \[
+      x_i' = f_{i0}(t) + \sum_{j=1, j\neq i}^{n} f_{ij}(\vect{x}) - \sum_{j=0, j\neq i}^{n} f_{ji}(\vect{x}),\qquad i=1,\ldots,n
+    \]
     où:
     \begin{itemize}
-        \item $f_{i0}(t)$ est l'entrée dans le compartiment $i$.
-        \item $f_{ij}(\vect{x})$ est le flux de $j$ vers $i$.
-        \item $f_{ji}(\vect{x})$ est le flux de $i$ vers $j$.
-        \item $f_{0i}(\vect{x})$ est l'excrétion du compartiment $i$.
+        \item $f_{i0}(t)$ est l'entrée dans le compartiment $i$
+        \item $f_{ij}(\vect{x})$ est le flux de $j$ vers $i$
+        \item $f_{ji}(\vect{x})$ est le flux de $i$ vers $j$
+        \item $f_{0i}(\vect{x})$ est l'excrétion du compartiment $i$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Exemple: un modèle simple à deux compartiments}
-    Considérons un système où un médicament est injecté dans le sang (Compartiment 1) puis se déplace vers les tissus (Compartiment 2) et est également éliminé du sang.
+    Un médicament est injecté dans le sang puis se déplace vers les tissus et est également éliminé du sang
 
     \begin{center}
         \begin{tikzpicture}[
@@ -523,78 +535,71 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
             compartment/.style={rectangle, draw, fill=green!20, rounded corners, minimum height=1.5cm, minimum width=3cm, text width=3cm, align=center},
             arrow/.style={-latex, thick}
         ]
-            \node (env_in) [label=above:Entrée $I(t)$] {};
+            \node (env_in) {};
             \node[compartment, below=1cm of env_in] (C1) {Sang ($x_1$)};
             \node[compartment, right of=C1] (C2) {Tissus ($x_2$)};
-            \node (env_out) [below=1cm of C1, label=below:Élimination] {};
+            \node (env_out) [below=1cm of C1] {};
 
-            \draw[arrow] (env_in) -- (C1);
+            \draw[arrow] (env_in) to node[left] {$I(t)$} (C1); 
             \draw[arrow] (C1) to[bend left] node[above] {$k_{21}$} (C2);
             \draw[arrow] (C2) to[bend left] node[below] {$k_{12}$} (C1);
-            \draw[arrow] (C1) -- node[left] {$k_{01}$} (env_out);
+            \draw[arrow] (C1) to node[left] {$k_{01}$} (env_out);
         \end{tikzpicture}
     \end{center}
 
-    En supposant une cinétique linéaire du premier ordre ($f_{ij} = k_{ij}x_j$):
+    Supposant une cinétique linéaire du premier ordre ($f_{ij} = k_{ij}x_j$)
     \begin{align*}
-        \frac{dx_1}{dt} &= I(t) + k_{12}x_2 - k_{21}x_1 - k_{01}x_1 \\
-        \frac{dx_2}{dt} &= k_{21}x_1 - k_{12}x_2
+        x_1' &= I(t) + k_{12}x_2 - k_{21}x_1 - k_{01}x_1 \\
+        x_2' &= k_{21}x_1 - k_{12}x_2
     \end{align*}
 \end{frame}
 
-\begin{frame}{Modèles linéaires vs. non linéaires}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \textbf{Modèles compartimentaux linéaires}
-            \begin{itemize}
-                \item Tous les taux de flux $f_{ij}$ sont des fonctions linéaires des variables d'état: $f_{ij} = k_{ij}x_j$.
-                \item Le système d'EDO est linéaire:
-                $$ \frac{d\vect{x}}{dt} = A\vect{x} + \vect{b}(t) $$
-                \item $A$ est la matrice compartimentale.
-                \item Analytiquement traitable.
-                \item Courant en cinétique des traceurs et en pharmacocinétique.
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \textbf{Modèles compartimentaux non linéaires}
-            \begin{itemize}
-                \item Au moins un taux de flux $f_{ij}$ est une fonction non linéaire des variables d'état.
-                \item Exemple: $f_{ij} = \frac{V_{max} x_j}{K_m + x_j}$ (cinétique de Michaelis-Menten) ou $f_{ij} = \beta x_i x_j$ (action de masse, comme en épidémiologie).
-                \item Le système d'EDO est non linéaire.
-                \item Nécessite souvent des méthodes numériques et une analyse qualitative.
-                \item Essentiel pour modéliser la dynamique des populations, l'épidémiologie et la cinétique enzymatique.
-            \end{itemize}
-        \end{column}
-    \end{columns}
-    \vfill
-    \begin{alertblock}{Distinction clé}
-        La nature du modèle (linéaire vs. non linéaire) dicte les outils mathématiques disponibles pour son analyse
-    \end{alertblock}
+\begin{frame}{Modèles compartimentaux linéaires}
+    \begin{itemize}
+        \item Tous les taux de flux $f_{ij}$ sont des fonctions linéaires des variables d'état: $f_{ij} = k_{ij}x_j$
+        \item Le système d'EDO est linéaire:
+        $$ \frac{d\vect{x}}{dt} = A\vect{x} + \vect{b}(t) $$
+        \item $A$ est la matrice compartimentale
+        \item Analytiquement traitable
+        \item Courant en cinétique des traceurs et en pharmacocinétique
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Modèles compartimentaux non linéaires}
+    \begin{itemize}
+        \item Au moins un taux de flux $f_{ij}$ est une fonction non linéaire des variables d'état
+        \item Exemple: $f_{ij} = \frac{V_{max} x_j}{K_m + x_j}$ (cinétique de Michaelis-Menten) ou $f_{ij} = \beta x_i x_j$ (action de masse, comme en épidémiologie)
+        \item Le système d'EDO est non linéaire
+        \item Nécessite souvent des méthodes numériques et une analyse qualitative
+        \item Essentiel pour modéliser la dynamique des populations, l'épidémiologie et la cinétique enzymatique
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 \Ssubsection{Propriétés mathématiques fondamentales}{FIGS-slides-admin/Gemini_Generated_Image_k5h4qlk5h4qlk5h4.png}
 
-\begin{frame}{L'espace d'état et la positivité}
+\begin{frame}{Espace d'état}
     \begin{definition}[Espace d'état]
-        L'espace d'état est l'ensemble de toutes les valeurs possibles que le vecteur d'état $\vect{x}(t)$ peut prendre.
+        L'espace d'état est l'ensemble de toutes les valeurs possibles que le vecteur d'état $\vect{x}(t)$ peut prendre
     \end{definition}
     \vfill
     Pour les modèles compartimentaux, les variables d'état représentent des quantités physiques (par ex., concentrations, populations), qui ne peuvent pas être négatives
     \vfill
     Par conséquent, l'espace d'état physiquement significatif est l'orthant non négatif:
-    $$ \Omega = \IRplus^n = \{ \vect{x} \in \IR^n : x_i \ge 0 \text{ pour tout } i=1, \dots, n \} $$
-    \vfill
-    \begin{block}{Positivité des solutions}
-        Une propriété cruciale d'un modèle compartimental bien posé est que si le système commence avec des conditions initiales non négatives, $\vect{x}(0) \in \Omega$, alors la solution $\vect{x}(t)$ doit rester dans $\Omega$ pour tout $t > 0$. Ceci est également connu comme l'\textbf{invariance progressive} de $\IRplus^n$.
-    \end{block}
+    $$ \Omega = \IR_+^n = \{ \vect{x} \in \IR^n : x_i \ge 0 \text{ pour tout } i=1, \dots, n \} $$
+\end{frame}
+
+\begin{frame}{Positivité des solutions}
+  Une propriété cruciale d'un modèle compartimental bien posé est que si le système commence avec des conditions initiales non négatives, $\vect{x}(0) \in \Omega$, alors la solution $\vect{x}(t)$ doit rester dans $\Omega$ pour tout $t > 0$
+  \vfill
+  C'est l'invariance de $\IR_+^n$ sous le flot du système
 \end{frame}
 
 \begin{frame}{Condition pour la positivité des solutions}
     \begin{theorem}[Condition de positivité, souvent attribuée à Jacquez]
-        Considérons le système $\frac{d\vect{x}}{dt} = \vect{f}(\vect{x})$ avec $\vect{x}(0) \ge 0$. L'orthant non négatif $\IRplus^n$ est progressivement invariant si et seulement si pour chaque $i=1, \dots, n$:
-        $$ f_i(\vect{x}) \ge 0 \quad \text{lorsque} \quad \vect{x} \in \IRplus^n \text{ et } x_i=0. $$
+        Considérons le système $\bx' = \vect{f}(\vect{x})$ avec $\vect{x}(0) \ge 0$. L'orthant positif $\IR_+^n$ est positivement invariant sous le flot de $\bf$ si et seulement si pour chaque $i=1, \dots, n$
+        $$ f_i(\vect{x}) \ge 0 \quad \text{lorsque} \quad \vect{x} \in \IR_+^n \text{ et } x_i=0. $$
     \end{theorem}
     \vfill
     \textbf{Interprétation:}
@@ -666,7 +671,7 @@ Un \defword{modèle} est une \emph{représentation simplifiée} d'un système r�
         \frac{dI}{dt} &= \frac{\beta S I}{N} - \gamma I \\
         \frac{dR}{dt} &= \gamma I
     \end{align*}
-    Ici, $S(t)+I(t)+R(t) = N$ est constant. L'espace d'état est le simplexe $\Delta = \{(S,I,R) \in \IRplus^3 : S+I+R=N\}$.
+    Ici, $S(t)+I(t)+R(t) = N$ est constant. L'espace d'état est le simplexe $\Delta = \{(S,I,R) \in \IR_+^3 : S+I+R=N\}$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -2024,7 +2029,7 @@ $$
 \sigma_i\bGamma\bD^{-1}\left(\bS(0)-\bS(\infty)\right)
 +\sigma_i\beta(K)\bh\mathbf{V}^{-1}\bI(0)
 $$
-où $K$ est la popiulation totale initiale
+où $K$ est la population totale initiale
 \end{frame}  
 
 %%%%%%%%%%%%%%%%%%%%
@@ -2502,7 +2507,7 @@ Soit $t^\star$ tel que $C(t^\star)=547$ ; alors $t_i=\textrm{2020-01-22}-t^\star
   \end{align}    
   \end{subequations}
   \vskip1cm
-  Considérons le problème de valeur initiale constitué de \eqref{sys:SIRS_base} auquel nous adjoignons les conditions initiales $S(0)=S_0\geq 0$, $I(0)=I_0\geq 0$ et $R(0)=R_0\geq 0$
+  Considérons le problème de Cauchy constitué de \eqref{sys:SIRS_base} muni des conditions initiales $S(0)=S_0\geq 0$, $I(0)=I_0\geq 0$ et $R(0)=R_0\geq 0$
   \vskip1cm
   Généralement, nous supposons $N_0=S_0+I_0+R_0>0$ pour éviter un cas trivial
   \end{minipage}

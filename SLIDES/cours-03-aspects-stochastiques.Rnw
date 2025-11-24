@@ -48,12 +48,13 @@ knit_hooks$set(document = function(x) {
 # Arrière-plan foncé ?
 plot_blackBG = FALSE
 if (plot_blackBG) {
-  bg_color = "black"
-  fg_color = "white"
+  bg_colour = "black"
+  fg_colour = "white"
   input_setup = "\\input{slides-setup-black-background-fr.tex}"
 } else {
-  bg_color = "white"
-  fg_color = "black"
+  bg_colour = "white"
+  fg_colour = "black"
+  fill_colour = "darkgreen"
   input_setup = "\\input{slides-setup-white-background-fr.tex}"
 }
 cat(input_setup)
@@ -1233,7 +1234,7 @@ Ceci est l'équation différentielle ordinaire (EDO) classique de type logistiqu
 
 
 \begin{frame}\frametitle{Cas d'une fonction de survie en escalier}
-Considérons le cas où le temps passé infecté a une fonction de survie 
+Considérons le cas où le temps passé infecté a une fonction de survie
 \[
 \S(t)=\begin{cases}
 1, & 0\leq t\leq\omega,\\
@@ -1302,7 +1303,7 @@ I'(t)=\beta\frac{(N-I(t))I(t)}{N}
 \path [line, very thick, bend left=10] (S) to node [midway,above,sloped] (TextNode) {$\phi S$} (V);
 \path [line, very thick, bend left=10,color=red] (V) to node [midway,below,sloped] (TextNode) {$\S(t)$} (S);
 \path [line, very thick] (V) to node [midway, below, sloped] (TextNode) {$\sigma\beta VI/N$} (I);
-\end{tikzpicture}    
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}\frametitle{Hypothèses sur $\S$}
@@ -1311,12 +1312,12 @@ $\S(t)$ est une fonction non négative et non croissante avec $\S(0^+)=1$, et te
 Donc $\S(t)$ est une fonction de survie
 \end{frame}
 
-\begin{frame}\frametitle{Le modèle SIS avec vaccination} 
+\begin{frame}\frametitle{Le modèle SIS avec vaccination}
 \begin{subequations}\label{sys:SIVS_general}
 \begin{align}
   \frac{dI(t)}{dt}&= \beta(S(t)+\sigma V(t))I(t)-(d+\gamma)I(t)
-  \label{sys:SIVS_general_I}\\ 
-  V(t)&= V_0(t)  
+  \label{sys:SIVS_general_I}\\
+  V(t)&= V_0(t)
   +\int_0^t(\phi S(u)+\alpha d)\S(t-u)e^{-d(t-u)}
   e^{-\sigma\beta\int_u^tI(x)dx}du \label{sys:SIVS_general_V}
 \end{align}
@@ -1331,7 +1332,7 @@ Donc $\S(t)$ est une fonction de survie
 pas décédée de causes naturelles
 \item $e^{-\sigma\beta\int_u^t I(x)dx}$ fraction de la proportion
   vaccinée pas passée dans la classe infectieuse
-\end{itemize} 
+\end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Réduction du système en utilisant des fonctions $\S(t)$ spécifiques}
@@ -1354,30 +1355,30 @@ Si, d'autre part, vous utilisez une EDO pour évaluer le comportement pour des t
 \vfill
 Les retards discrets font l'hypothèse que chaque individu dans votre population a le même temps de séjour si un compartiment quelconque se voit appliquer un retard... Vous pourriez vouloir penser aux retards distribués ou à d'autres mécanismes pour compenser ceci
 \vfill
-Vous pourriez vouloir utiliser un marteau différent 
+Vous pourriez vouloir utiliser un marteau différent
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Chaînes de Markov à temps continu}
+\section{Chaînes de Markov en temps continu}
 % The section page
 \newSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_bla659bla659bla6.jpeg}
 
-\subsection{Chaînes de Markov à temps continu}
+\subsection{Chaînes de Markov en temps continu}
 \newSubSectionSlide{FIGS-slides-admin/Gemini_Generated_Image_9agynl9agynl9agy.jpeg}
 \begin{frame}
     \frametitle{Du temps discret au temps continu}
-    \begin{block}{Chaînes de Markov à temps discret (CMTD)}
+    \begin{block}{Chaînes de Markov en temps discret (CMTD)}
         Un système transite entre états à des pas de temps fixes et discrets ($n=0, 1, 2, \dots$)
         \begin{itemize}
             \item Le futur dépend uniquement de l'état présent (Propriété de Markov)
             \item Régi par une \textbf{matrice de probabilité de transition} $P$, où $P_{ij}$ est la probabilité de passer de l'état $i$ à $j$ en une étape
         \end{itemize}
     \end{block}
-    
-    \begin{block}{Chaînes de Markov à temps continu (CMTC)}
+
+    \begin{block}{Chaînes de Markov en temps continu (CMTC)}
         Un système peut transiter entre états à \textbf{n'importe quel moment}
         \begin{itemize}
             \item Le temps passé dans un état est une \textbf{variable aléatoire continue}
@@ -1400,7 +1401,7 @@ Vous pourriez vouloir utiliser un marteau différent
         \end{itemize}
     \end{definition}
 \end{frame}
-    
+
 \begin{frame}{La matrice génératrice}
     \begin{block}{Matrice génératrice (Matrice Q)}
         Rassembler tous les taux de transition dans une seule matrice $Q$
@@ -1410,7 +1411,7 @@ Vous pourriez vouloir utiliser un marteau différent
         \end{itemize}
         Une propriété clé est que toutes les lignes de $Q$ somment à zéro : $\sum_{j} Q_{ij} = 0$.
     \end{block}
-    
+
 \end{frame}
 
 
@@ -1418,7 +1419,7 @@ Vous pourriez vouloir utiliser un marteau différent
     \frametitle{Équations de Kolmogorov}
     Soit $P(t)$ la matrice où $P_{ij}(t) = \mathbb{P}(X(t)=j | X(0)=i)$. Comment $P(t)$ évolue-t-elle dans le temps ?
     \vspace{1em}
-    
+
     \begin{alertblock}{Équations de Kolmogorov progressives}
         Décrit le taux de changement de probabilité de finir dans un état cible $j$
         $$ \frac{d}{dt}P(t) = P(t)Q $$
@@ -1438,14 +1439,14 @@ Vous pourriez vouloir utiliser un marteau différent
 % \begin{frame}
 %     \frametitle{The Stationary Distribution}
 %     What happens to the process after a long time? Does it settle into an equilibrium?
-%     
+%
 %     \begin{definition}[Stationary Distribution]
 %         A probability distribution $\boldsymbol{\pi} = (\pi_1, \pi_2, \dots)$ is called a \textbf{stationary distribution} if, once the system is in this distribution, it stays in it.
 %         $$ \boldsymbol{\pi} P(t) = \boldsymbol{\pi} \quad \text{for all } t \ge 0 $$
 %         This implies that the distribution is no longer changing, i.e., $\frac{d}{dt}(\boldsymbol{\pi}P(t)) = \mathbf{0}$.
 %     \end{definition}
-%     
-%     
+%
+%
 %     \begin{block}{Finding the Stationary Distribution}
 %         If a unique stationary distribution exists, it can be found by solving the system of linear equations:
 %         $$ \boldsymbol{\pi} Q = \mathbf{0} $$
@@ -1508,7 +1509,7 @@ Vous pourriez vouloir utiliser un marteau différent
             \node[style=rectangle] (fCTMC) at (6,-2) {focus};
             \path [line, dotted,red] (fCTMC) to (6.75,0.3);
             \path [line, dotted,red] (fCTMC) to  (6.75,-0.475);
-        \end{tikzpicture}        
+        \end{tikzpicture}
     \end{center}
 \end{frame}
 
@@ -1592,7 +1593,7 @@ tant que {$t\leq t_f$}\\
 -\qquad Tirer $\zeta_t$ de $\mathcal{U}([0,1])$\\
 -\qquad Trouver $r$, le plus petit entier tel que $\sum_{k=1}^j a_k(\mathbf{x}(t))> \zeta_t\sum_j a_j(\mathbf{x}(t))=\zeta_t\xi_t$\\
 -\qquad Effectuer la prochaine réaction (celle indexée $r$)\\
--\qquad $t\leftarrow t+\tau_t$\\    
+-\qquad $t\leftarrow t+\tau_t$\\
 \end{frame}
 
 
@@ -1668,7 +1669,7 @@ tant que {$t\leq t_f$}\\
 -\qquad selon {$pos$}\\
 \qquad\qquad - 1: Naissance, $N(t+\tau_t)=N(t)+1$ \\
 \qquad\qquad - 2: Décès, $N(t+\tau_t)=N(t)-1$ \\
-- $t\leftarrow t+\tau_t$    
+- $t\leftarrow t+\tau_t$
 \end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
@@ -1677,13 +1678,13 @@ tant que {$t\leq t_f$}\\
 birth_death_CTMC = function(b = 0.01, d = 0.01) {
   t_0 = 0    # Initial time
   N_0 = 100  # Initial population
-  
+
   # Vectors to store time and state. Initialise with initial condition.
   t = t_0
   N = N_0
-  
+
   t_f = 1000  # Final time
-  
+
   # Track the current time and state (could just check last entry in t
   # and N, but will take more operations)
   t_curr = t_0
@@ -1741,13 +1742,13 @@ if (t[length(t)]-t[(length(t)-1)] < 1e-8) {
 birth_death_CTMC = function(b = 0.01, d = 0.01) {
   t_0 = 0    # Initial time
   N_0 = 100  # Initial population
-  
+
   # Vectors to store time and state. Initialise with initial condition.
   t = t_0
   N = N_0
-  
+
   t_f = 1000  # Final time
-  
+
   # Track the current time and state (could just check last entry in t
   # and N, but will take more operations)
   t_curr = t_0
@@ -1807,7 +1808,7 @@ plot(interevent_time, type = "h",
         \end{itemize}
     \end{itemize}
     \vfill
-    
+
 <<>>=
 tail(diff(results$t))
 @
@@ -1880,7 +1881,7 @@ plot(sol$time, sol$state[,"I"], type = "l",
     J'illustre également une autre bibliothèque SSA que je trouve moins délicate sous Windows car les réactions ne sont pas précompilées : \code{adaptivetau}
 \end{frame}
 
-<<parallel-CTMC-plot, message=FALSE, warning=FALSE>>=
+<<parallel-CTMC-plot, echo=FALSE, message=FALSE, warning=FALSE>>=
 library(adaptivetau)
 library(future.apply)
 # Il est utile d'avoir les transitions, les taux et
@@ -1899,13 +1900,13 @@ CTMC_SIS <- function() {
     )
   }
   event_names = c("new_infection", "recovery")
-  return(list(transitions = transitions, 
+  return(list(transitions = transitions,
               rates = rates,
               event_names = event_names))
 }
 
 run_one_sim = function(CTMC, params) {
-    IC <- c(S = (params$Pop-params$I_0), 
+    IC <- c(S = (params$Pop-params$I_0),
             I = params$I_0)
     set.seed(NULL)
     sol <- ssa.exact(
@@ -1916,10 +1917,10 @@ run_one_sim = function(CTMC, params) {
         tf = params$t_f
     )
     # Interpolate result (just I will do)
-    wanted_t = 
+    wanted_t =
       seq(from = 0, to = params$t_f, by = 0.01)
-    interp_I = approx(x = sol[,"time"], 
-                      y = sol[,"I"], 
+    interp_I = approx(x = sol[,"time"],
+                      y = sol[,"I"],
                       xout = wanted_t)
     names(interp_I) = c("time", "I")
     sol$interp_I = interp_I
@@ -1936,16 +1937,16 @@ plan(multisession)
 # plan(sequential)
 
 # Configurer les paramètres ne nécessitant pas de calcul
-params <- list(gamma = 1/3, 
-               Pop = 1000, 
-               I_0 = 2, 
+params <- list(gamma = 1/3,
+               Pop = 1000,
+               I_0 = 2,
                R0 = 1.5,
                t_f = 100, nb_sims = 50)
-IC <- c(S = (params$Pop-params$I_0), 
+IC <- c(S = (params$Pop-params$I_0),
         I = params$I_0)
 # R0=beta/gamma*S0, donc beta=R0*gamma/S0
-params = 
-  c(params, 
+params =
+  c(params,
     beta = as.numeric(params$R0*params$gamma /
                         IC["S"]))
 # Exécuter la simulation
@@ -1953,8 +1954,6 @@ CTMC <- CTMC_SIS()
 SIMS = future_lapply(
   X = 1:params$nb_sims,
   FUN =  function(x) run_one_sim(CTMC, params))
-#  Libérer les workers !
-stopCluster(cl) 
 
 # Trouver la valeur y maximale pour le tracé
 y_max = max(unlist(lapply(SIMS, function(x) max(x$interp_I$I))),
@@ -1996,18 +1995,13 @@ run_one_sim = function(params) {
     )
     # Interpolate result (just I will do)
     wanted_t = seq(from = 0, to = params$t_f, by = 0.01)
-    sol$interp_I = approx(x = sol$time, y = sol$state[,"I"], 
+    sol$interp_I = approx(x = sol$time, y = sol$state[,"I"],
                           xout = wanted_t)
     names(sol$interp_I) = c("time", "I")
     # Return result
     return(sol)
 }
 @
-
-\end{frame}
-
-\begin{frame}[fragile, allowframebreaks]
-
 \end{frame}
 
 \maxFrameImage{\Sexpr{fig_chunk('parallel-CTMC-plot', 'pdf')}}
@@ -2147,7 +2141,7 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
     \path [line,thick] (LC) to node [midway,above,sloped] (TextNode) {$(1-p_C)\varepsilon_C L_{C}$} (UXC);
     \path [line,thick] (DC) to node [midway, above,sloped] (TextNode) {$(1-\delta_C)\gamma_C D_{C}$} (RC);
     \path [line,thick] (UXC) to node [midway, above,sloped] (TextNode) {$(1-\delta_C)\gamma_C U_{C}$} (RC);
-  \end{tikzpicture}		
+  \end{tikzpicture}
 \end{frame}
 
 \maxFrameImage{FIGS/sim_2023_07_11-11_06_41_ID_9_run86.png}
@@ -2179,7 +2173,7 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
     \begin{block}{L'idée centrale}
         Un processus de branchement est un modèle mathématique pour une population où les individus produisent un nombre aléatoire de descendants puis meurent.
     \end{block}
-    
+
     \begin{itemize}
         \item Pensez aux bactéries qui se divisent, à un virus qui se propage, ou même à la survie des noms de famille.
         \item Nous commençons avec une population initiale, $Z_0$.
@@ -2190,18 +2184,18 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
 
 \begin{frame}
     \frametitle{Le processus de Galton-Watson}
-    
+
     Soit $Z_n$ la taille de la population à la génération $n$. Nous commençons typiquement avec $Z_0 = 1$.
-    
+
     La population évolue selon la règle :
     $$ Z_{n+1} = \sum_{i=1}^{Z_n} X_{n,i} $$
-    
+
     \begin{itemize}
         \item Le terme $X_{n,i}$ représente le nombre de descendants produits par le $i$-ème individu de la génération $n$.
         \item Les variables $\{X_{n,i}\}$ sont supposées être des variables aléatoires \textbf{indépendantes et identiquement distribuées (i.i.d.)} à valeurs entières.
         \item Nous appelons leur distribution commune $\{p_k\}_{k=0}^\infty$ la \textbf{distribution des descendants}, où $p_k = P(X = k)$.
     \end{itemize}
-    
+
     \begin{alertblock}{Les questions fondamentales}
     \begin{enumerate}
         \item Quelle est la taille espérée à long terme de la population ?
@@ -2305,7 +2299,7 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
         Les générations n'arrivent pas en étapes synchronisées dans le monde réel. Les individus donnent naissance et meurent à des moments aléatoires.
     \end{block}
 
-    Cela nous amène aux \textbf{Chaînes de Markov à temps continu (CMTC)}.
+    Cela nous amène aux \textbf{Chaînes de Markov en temps continu (CMTC)}.
 
     \begin{itemize}
         \item L'état du système est la taille de la population, $k \in \{0, 1, 2, \dots\}$.
@@ -2393,7 +2387,7 @@ Et la question devient : combien de temps la chaîne \guillemotleft\thinspace pe
 
         \item La \textbf{probabilité d'extinction} $\pi_0$ peut être calculée comme le plus petit point fixe non négatif de la fonction génératrice de probabilité $G(s)$.
 
-        \item Les stades initiaux de nombreuses \textbf{chaînes de Markov à temps continu} à grande échelle peuvent être approximés par un processus de branchement.
+        \item Les stades initiaux de nombreuses \textbf{chaînes de Markov en temps continu} à grande échelle peuvent être approximés par un processus de branchement.
 
         \item Cela nous permet d'appliquer la théorie à des problèmes du monde réel, comme le calcul du \textbf{nombre de reproduction de base $\mathcal{R}_0$} d'une épidémie et sa probabilité de causer une épidémie majeure.
     \end{itemize}
@@ -2408,7 +2402,7 @@ rmd_chunks_to_r_temp <- function(file){
     knitr::purl(file, output = out_file, documentation = 1)
   }, args = list(file))
 }
-rmd_chunks_to_r_temp("course-03-stochastic=aspects.Rnw")
+rmd_chunks_to_r_temp("cours-03-aspects-stochastiques.Rnw")
 @
 
 
