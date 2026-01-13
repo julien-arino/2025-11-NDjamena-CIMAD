@@ -1,6 +1,6 @@
 ## CIMAD 2025 N'Djaména
 
-Ce répositoire GitHub contient mes transparents pour le cours que je donnerai au CIMAD 2025 en novembre 2025 à N'Djaména.
+Ce répositoire GitHub contient mes transparents pour le cours que j'ai donné au CIMAD 2025 en novembre 2025 à N'Djaména.
 
 Vous trouverez sur cette page web les transparents accessibles directement.
 
